@@ -78,7 +78,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
 8. 用 `oscdimg.exe` 生成 ISO：
    - x64：`-bootdata:2#p0,e,b<etfsboot.com>#pEF,e,b<efisys.bin>`，同时带 BIOS 与 UEFI 引导。
    - ARM64：`-bootdata:1#pEF,e,b<efisys.bin>`，只带 UEFI 引导。
-   - 公共参数：`-m -o -u2 -udfver102 -h -l<label>`；卷标形如 `BATCAVE_OS_310_X64`。
+   - 公共参数：`-m -o -u2 -udfver102 -h -l<label>`；卷标形如 `BATCAVE_OS_311_X64`。
 9. 计算输出 ISO 的 SHA-256 与字节数，调用 `verify-iso.ps1` 只读挂载成品并复检。
 10. 写出构建报告与校验报告；成功后删除暂存目录，失败时保留暂存并删除未通过校验的输出。
 
@@ -86,8 +86,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
 
 ```text
 iso/out/
-├── BATCAVE-OS-3.1.0.iso
-├── BATCAVE-OS-3.1.0-arm64.iso
+├── BATCAVE-OS-3.1.1.iso
+├── BATCAVE-OS-3.1.1-arm64.iso
 ├── ISO-BUILD.json / ISO-BUILD-arm64.json
 ├── VERIFY-ISO.json / VERIFY-ISO-arm64.json
 ├── ISO-SHA256SUMS.txt
@@ -103,8 +103,8 @@ iso/out/
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\verify-iso.ps1 `
-  -Iso iso\out\BATCAVE-OS-3.1.0.iso -Arch x64 -Index 4 `
-  -ExpectVersion 3.1.0 -Report iso\out\VERIFY-ISO.json
+  -Iso iso\out\BATCAVE-OS-3.1.1.iso -Arch x64 -Index 4 `
+  -ExpectVersion 3.1.1 -Report iso\out\VERIFY-ISO.json
 ```
 
 `verify-iso.ps1` 只读挂载 ISO，检查：
@@ -127,14 +127,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\verify-iso.ps1 `
 
 | 项目 | x64 | ARM64 |
 | --- | --- | --- |
-| 输出文件 | `BATCAVE-OS-3.1.0.iso` | `BATCAVE-OS-3.1.0-arm64.iso` |
-| 字节数 | 9,249,839,104 | 8,971,425,792 |
-| SHA-256 | `bbc718bf6791e1e335ca6d2f6068d23d3dd677799564a836e305247d76ad7570` | `bfbb00b104a02b172223f0617324f5989e2a63477348a219d3a366cd924158e3` |
+| 输出文件 | `BATCAVE-OS-3.1.1.iso` | `BATCAVE-OS-3.1.1-arm64.iso` |
+| 字节数 | 9,249,867,776 | 8,971,454,464 |
+| SHA-256 | `5ae1a37ee61309cbee1e994b451ffb1b3c2cc93e8f2351ce1a026965bf728bd3` | `983e8ab5f70849aec4fcbdc36614ef03faab94c16346376c612c07f1d79e4261` |
 | 源 ISO | Windows 11 专业版，索引 4 | Windows 11 专业版，索引 3 |
 | 引导 | BIOS（`0x00`）+ UEFI（`0xEF`） | UEFI（`0xEF`） |
 | WIM 架构 | x64 | arm64 |
 | Node.js | 26.13.0 / `0x8664` | 24.22.1 / `0xAA64` |
-| 卷标 | `BATCAVE_OS_310_X64` | `BATCAVE_OS_310_ARM64` |
+| 卷标 | `BATCAVE_OS_311_X64` | `BATCAVE_OS_311_ARM64` |
 | `allCoreOk` | `true` | `true` |
 
 两份成品 ISO 均已挂载校验：`setup.exe`、`install.wim`、`boot.wim`、BIOS/UEFI 引导目录、EFI fallback、WIM 架构、载荷文件、播放器文件、加速器代码、禁入凭据与任务进度组件。尚未在实体硬件上完成启动回归。

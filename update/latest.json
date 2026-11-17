@@ -12,13 +12,13 @@
   "assets": {
     "github": {
       "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip",
-      "sha256": "4e866ebe11a489d3ca9043445abfd1dba8a9485c14fa45fad60e343954096e05",
-      "size": 41177435
+      "sha256": "6a27e993da6d2472a2fa274adb7abc0e853c2fd769b8e862fc1120a9bd76c834",
+      "size": 41187406
     },
     "gitcode": {
       "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip",
-      "sha256": "4e866ebe11a489d3ca9043445abfd1dba8a9485c14fa45fad60e343954096e05",
-      "size": 41177435
+      "sha256": "6a27e993da6d2472a2fa274adb7abc0e853c2fd769b8e862fc1120a9bd76c834",
+      "size": 41187406
     }
   }
 }

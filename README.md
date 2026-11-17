@@ -168,7 +168,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
   -NodeExe "D:\tools\node-v24.22.1-win-arm64.exe"
 ```
 
-产物为 `iso\out\BATCAVE-OS-3.1.0.iso` 与 `BATCAVE-OS-3.1.0-arm64.iso`，相邻目录同时生成 `VERIFY-ISO*.json`、`ISO-BUILD*.json` 与 `ISO-SHA256SUMS.txt`。构建会校验：
+产物为 `iso\out\BATCAVE-OS-3.1.1.iso` 与 `BATCAVE-OS-3.1.1-arm64.iso`，相邻目录同时生成 `VERIFY-ISO*.json`、`ISO-BUILD*.json` 与 `ISO-SHA256SUMS.txt`。构建会校验：
 
 - `install.wim` 索引名称与架构（x64 / ARM64）。
 - El Torito 引导目录：x64 同时包含 BIOS 与 UEFI，ARM64 为 UEFI。
@@ -180,13 +180,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
 
 | 项目 | x64 | ARM64 |
 | --- | --- | --- |
-| 文件 | `BATCAVE-OS-3.1.0.iso` | `BATCAVE-OS-3.1.0-arm64.iso` |
-| 字节数 | 9,249,839,104 | 8,971,425,792 |
-| SHA-256 | `bbc718bf6791e1e335ca6d2f6068d23d3dd677799564a836e305247d76ad7570` | `bfbb00b104a02b172223f0617324f5989e2a63477348a219d3a366cd924158e3` |
+| 文件 | `BATCAVE-OS-3.1.1.iso` | `BATCAVE-OS-3.1.1-arm64.iso` |
+| 字节数 | 9,249,867,776 | 8,971,454,464 |
+| SHA-256 | `5ae1a37ee61309cbee1e994b451ffb1b3c2cc93e8f2351ce1a026965bf728bd3` | `983e8ab5f70849aec4fcbdc36614ef03faab94c16346376c612c07f1d79e4261` |
 | 引导 | BIOS + UEFI | UEFI |
 | WIM 架构 | x64 | arm64 |
 | 内置 Node.js | 26.13.0 / `0x8664` | 24.22.1 / `0xAA64` |
-| 卷标 | `BATCAVE_OS_310_X64` | `BATCAVE_OS_310_ARM64` |
+| 卷标 | `BATCAVE_OS_311_X64` | `BATCAVE_OS_311_ARM64` |
 | `allCoreOk` | `true` | `true` |
 
 > 两份 ISO 均已挂载校验安装树、引导项、WIM 架构、Node/EFI 架构与 `$OEM$` 载荷，但尚未在实体硬件上做启动回归。

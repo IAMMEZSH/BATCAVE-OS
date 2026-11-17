@@ -666,7 +666,7 @@ BATCAVE 的基座有三条使用路径，均从你自己的官方 Windows 11 ISO
 
 见 [Windows 基座构建与部署](BUILD-ISO.md)。构建脚本：
 
-- `iso\winbase\build-iso.ps1`：官方安装树 + `$OEM$` → 可启动 ISO，产物默认 `iso\out\BATCAVE-OS-3.1.0[-arm64].iso`。
+- `iso\winbase\build-iso.ps1`：官方安装树 + `$OEM$` → 可启动 ISO，产物默认 `iso\out\BATCAVE-OS-3.1.1[-arm64].iso`。
 - `iso\winbase\verify-iso.ps1`：只读挂载成品 ISO，校验 WIM 索引架构、El Torito 的 BIOS/UEFI 引导、载荷、快捷方式、禁入凭据与任务 HUD 缺失，输出 `VERIFY-ISO[-arm64].json`。
 - `iso\winbase\build-winbase.ps1`：生成 Windows To Go VHD。
 - `iso\winbase\verify-vhd.ps1`：只读挂载 VHD，校验分区、引导文件、程序载荷与 PE 架构。

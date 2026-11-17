@@ -2,6 +2,29 @@
 
 本文件记录面向用户的版本变化。更新器的详细机制见 [docs/UPDATE.md](docs/UPDATE.md)。
 
+## 3.1.1 · SENTINEL · 2026-11-17
+
+### 新增
+
+- **自带应用内更新**：TenSaint73OS、环球报阁、CodeForge AI 三个应用可在窗口顶部点“更新”，各自选择 GitHub 或 GitCode 检查、下载并安装新版本。
+  - 发布查询、Windows x64 包选择、SHA-256 / SHA256SUMS.txt 校验、大小校验。
+  - 内置解压与路径安全检查；更新包版本必须与发布版本一致。
+  - 更新前停止应用并备份被替换文件；启动失败自动回滚并恢复旧版本。
+  - 保留用户数据、账号、配置、模型与工作区；`.tsowner`、`OWNER.pin`、`auth.json`、`system.db` 等凭据类文件会被跳过且不会写入本机。
+  - 更新进度显示阶段、百分比、已下载字节与错误信息；记录更新历史与安装来源。
+- **独立启动器**：为 TenSaint73OS、环球报阁、CodeForge AI 补充 Windows 启动器，可不经过 BATCAVE 单独启动；优先使用目录内 `runtime\node.exe` 或 `JAVA_HOME`，找不到时回退系统运行时。
+
+### 变更
+
+- 移除 TenSaint73OS、环球报阁、定位工作站三个项目的群聊入口、面板、中继接口与样式；旧聊天数据文件不删除，TenSaint73OS 的站内 AI 助手对话保留。
+- 更新说明、版本文件与发布清单同步到 3.1.1。
+
+### 验证
+
+- 真实 GitHub / GitCode 检查更新：TenSaint73OS、环球报阁、CodeForge AI 四组查询全部通过。
+- GitCode 真实包端到端更新：TenSaint73OS v1.7.0→1.7.1、环球报阁 v1.1.9→1.2.0，SHA-256、解压、覆盖、数据保留、应用重启均通过；`owner/OWNER.pin` 被识别并跳过。
+- 三个桌面启动器分别以独立端口启动，HTTP 健康检查均返回 200。
+
 ## 3.1.0 · SENTINEL · 2026-11-17
 
 ### 新增

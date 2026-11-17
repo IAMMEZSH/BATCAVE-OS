@@ -205,46 +205,6 @@ What *is* real:
   Cloudflare account and domain).
 - No inbound port forwarding is required.
 
-### Group chat relay (群聊)
-
-- **One room, “大厅”.** Signed-in members read and post from their console.
-  There is no private chat, no direct message and no member-to-member channel.
-- **Everyone can speak, and everyone has a real switch.** Every signed-in
-  account — administrator or member — can read and post in the room. Each
-  account also has a personal “启用群聊” switch: turning it off stops that
-  browser’s polling and posting immediately and sends no chat request, without
-  affecting anybody else. The administrator additionally has a room-wide switch
-  that closes the room for everyone; closing shows a closed notice, stops
-  posting and polling, and makes every relay client receive “群聊已关闭”.
-  Reopening restores the same sealed history.
-- **Guests join with a room token, never with an account.** The administrator
-  creates a token in the console; only its SHA-256 hash is stored, and the
-  plaintext is shown once. The other three projects (Global Reading Room,
-  Wanjuan Ge, Geo Position Workstation) connect with that token and are
-  **disabled by default** — they send no chat request until the user ticks
-  “启用群聊” and saves.
-- **Civility is enforced, not merely announced.** The room states:
-  **“希望大家文明发言，不文明的字符将会变成星号。”** Profanity and any
-  pornography-, gambling- or drug-related term (黄赌毒) are uncivil characters.
-  The server replaces every matched term with `*` of the same length **before
-  the message is stored or fanned out**; each client filters again before
-  display. Chinese terms match as substrings; English terms use word
-  boundaries, so “better” is not mangled by “bet”. The list is shared by the
-  server and all three clients.
-- **Sealed at rest.** The room is sealed to `data/chat.dat` with the same
-  AES-256-GCM envelope used elsewhere; the file never contains plaintext
-  messages.
-- **Bounded and rate-limited.** The last 200 messages are kept; each message is
-  at most 2,000 characters, a display name at most 24; each client may post 20
-  messages per minute; every client polls every 3.5 seconds.
-- **Narrow CORS surface.** Only `/api/chat/relay/*` answers cross-origin
-  requests, with `Access-Control-Allow-Origin: *`; every other console API keeps
-  the same-origin policy. The relay needs no account data, and guest tokens can
-  be revoked at any time.
-- **The administrator can create/revoke tokens and clear the room**, but chat
-  never becomes a side channel into member databases or files: it carries only
-  the room's messages.
-
 ### Operations
 
 - Backup script for Termux; folder-level backup for desktop platforms.
@@ -283,12 +243,6 @@ What *is* real:
   </tr>
   <tr>
     <td colspan="2"><img src="screenshots/usage.png?v=1.7.1" alt="User statistics"><br><sub><b>User statistics</b> — registered accounts, signed-in and unauthenticated visitors, online now, 24-hour and 7-day activity, failed logins and rejected requests. Account and network metadata only; member files and tables never enter this view.</sub></td>
-  </tr>
-  <tr>
-    <td colspan="2"><img src="screenshots/chat-room.png?v=1.7.1" alt="Group chat relay"><br><sub><b>Group chat “大厅”</b> — the administrator’s view: the room states «希望大家文明发言，不文明的字符将会变成星号»; profanity and pornography-, gambling- or drug-related terms are replaced by asterisks on the server before storage, and clipped again by every client before display. The room-wide switch and the relay token live on this page.</sub></td>
-  </tr>
-  <tr>
-    <td colspan="2"><img src="screenshots/chat-member.png?v=1.7.1" alt="Member group chat"><br><sub><b>Member view of “大厅”</b> — every signed-in member can read and post, not only the administrator. Each member has a personal “启用群聊” switch that stops this browser’s polling and posting with zero chat requests; turning it off never affects anybody else. The member’s own message and every seeded profanity/黄赌毒 term are masked.</sub></td>
   </tr>
 </table>
 

@@ -14,6 +14,27 @@
     return err;
   }
 
+  let recovering = false;
+  async function sessionStale() {
+    if (!BOOT.startedAt || recovering) return false;
+    try {
+      const hello = await fetch('/api/hello', { cache: 'no-store' }).then(r => r.json());
+      return !!(hello && hello.startedAt && hello.startedAt !== BOOT.startedAt);
+    } catch { return false; }
+  }
+  async function recoverSession() {
+    if (recovering || !(await sessionStale())) return false;
+    recovering = true;
+    try { sessionStorage.setItem('bc.sessionReloadedAt', String(Date.now())); } catch { }
+    location.reload();
+    return true;
+  }
+  async function handleForbidden(res) {
+    const err = await readError(res);
+    if (res.status === 403) recoverSession().catch(() => { });
+    return err;
+  }
+
   async function request(path, opts = {}) {
     const headers = Object.assign({ 'x-batcave-token': TOKEN }, opts.headers || {});
     if (opts.json !== undefined) {
@@ -22,7 +43,7 @@
       opts.method = opts.method || 'POST';
     }
     const res = await fetch(path, Object.assign({}, opts, { headers }));
-    if (!res.ok) throw await readError(res);
+    if (!res.ok) throw await handleForbidden(res);
     return res.json();
   }
 
@@ -54,7 +75,7 @@
     rawUrl(path, download) { return '/api/fs/raw?' + qs({ path, download: download ? 1 : undefined }); },
     async blobUrl(path) {
       const res = await fetch(api.rawUrl(path));
-      if (!res.ok) throw await readError(res);
+      if (!res.ok) throw await handleForbidden(res);
       return URL.createObjectURL(await res.blob());
     },
     upload(path, file, onProgress) {
@@ -68,7 +89,10 @@
           let data = null;
           try { data = JSON.parse(xhr.responseText); } catch { }
           if (xhr.status >= 200 && xhr.status < 300) resolve(data);
-          else reject(new Error((data && data.error) || ('上传失败 HTTP ' + xhr.status)));
+          else {
+            if (xhr.status === 403) recoverSession().catch(() => { });
+            reject(new Error((data && data.error) || ('上传失败 HTTP ' + xhr.status)));
+          }
         };
         xhr.onerror = () => reject(new Error('上传失败：网络错误'));
         xhr.send(file);
@@ -98,7 +122,7 @@
         const err = new Error(data.error || '需要二次确认');
         err.risky = true; err.data = data; throw err;
       }
-      if (!res.ok) throw await readError(res);
+      if (!res.ok) throw await handleForbidden(res);
 
       const reader = res.body.getReader();
       const dec = new TextDecoder();
@@ -182,6 +206,14 @@
     embeddedList() { return request('/api/embedded/list'); },
     embeddedStart(id) { return request('/api/embedded/start', { json: { id } }); },
     embeddedStop(id) { return request('/api/embedded/stop', { json: { id } }); },
+    embeddedUpdateStatus(app) { return request('/api/embedded/update/status?' + qs({ app })); },
+    embeddedUpdateCheck(app, source) { return request('/api/embedded/update/check?' + qs({ app, source })); },
+    embeddedUpdateApply(app, source, version) { return request('/api/embedded/update/apply', { json: { app, source, version } }); },
+    embeddedUpdateJob(id) { return request('/api/embedded/update/job?' + qs({ id })); },
+
+    releasesFeed(force) { return request('/api/releases/feed?' + qs({ force: force ? 1 : undefined })); },
+    releasesCheck() { return request('/api/releases/check', { json: {} }); },
+    releasesSeen(ids) { return request('/api/releases/seen', { json: { ids } }); },
 
     geoIp(q) { return request('/api/geo/ip?' + qs({ q })); },
     geoTimezone(lat, lon) { return request('/api/geo/timezone?' + qs({ lat, lon })); },
@@ -200,7 +232,7 @@
         if (e.name === 'AbortError') { const err = new Error('aborted'); err.aborted = true; throw err; }
         throw e;
       }
-      if (!res.ok) throw await readError(res);
+      if (!res.ok) throw await handleForbidden(res);
       const reader = res.body.getReader();
       const dec = new TextDecoder();
       let buf = '';

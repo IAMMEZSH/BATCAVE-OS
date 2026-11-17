@@ -200,35 +200,7 @@ nothing is synchronized automatically.
   release notes on both platforms.
 
 
-8. Group chat relay (大厅)
-------------------------------------------------------------
-- One room, "大厅". Every signed-in account - administrator or member - can
-  read and post. There is no private chat and no direct message.
-- Every account has a personal "启用群聊" switch. Turning it off stops that
-  browser's polling and posting immediately, sends no chat request and does not
-  affect anybody else. The administrator also has a room-wide switch that
-  closes the room for everyone; members then see a closed notice, posting and
-  polling stop, and relay clients receive "群聊已关闭".
-- Administrators create room tokens for the other three projects. Only the
-  SHA-256 hash is stored; the plaintext is shown once. Those clients are
-  disabled by default and send no chat request until the user enables chat.
-- The room states: 希望大家文明发言，不文明的字符将会变成星号。
-  Profanity and any pornography-, gambling- or drug-related term (黄赌毒) are
-  uncivil characters. The server replaces every matched term with asterisks of
-  the same length before the message is stored or relayed; every client filters
-  again before display. Chinese terms match as substrings; English terms use
-  word boundaries.
-- Messages are sealed to data/chat.dat with AES-256-GCM. The last 200 are
-  kept; text is capped at 2,000 characters and a name at 24; each client may
-  post 20 messages per minute; clients poll every 3.5 seconds.
-- Only /api/chat/relay/* allows cross-origin requests. Every other console API
-  remains same-origin. Tokens can be revoked at any time, and the administrator
-  can clear the room.
-- Chat is not a side channel: it never exposes member databases, files or
-  passwords.
-
-
-9. Reminders
+8. Reminders
 ------------------------------------------------------------
 - data/ contains the auth vault and encrypted data. Do not upload it to public
   storage or send it to untrusted people.

@@ -57,8 +57,7 @@ Most news readers either send your reading history to a cloud account or lock th
 | **Video** | YouTube, Vimeo, Bilibili and Dailymotion embeds; direct MP4/WebM playback; WebVTT / SRT parsing; cue-level bilingual output; paste-transcript fallback when a platform blocks caption downloads |
 | **Offline library** | Current article as Markdown or standalone HTML in original, translated or bilingual mode; batch ZIP of up to 200 list articles with index and README; OPML import / export |
 | **Data** | Atomic JSON writes, `.bak` safety copy, seven rotating daily backups, portable data folder, one-click shutdown |
-| **Group chat** | Optional “大厅” room over a TenSaint73OS relay; disabled by default; room token stored locally; last 100 messages; 3.5-second polling; profanity and 黄赌毒 (pornography, gambling, drugs) replaced with asterisks on the relay before storage and again locally before display |
-| **Security** | Localhost-only bind, host and origin checks, CSP, path-traversal protection, request-size limits, SSRF guard on image and caption fetches, HTTPS-or-loopback relay addresses only |
+| **Security** | Localhost-only bind, host and origin checks, CSP, path-traversal protection, request-size limits, SSRF guard on image and caption fetches |
 
 ---
 
@@ -100,11 +99,6 @@ Ten full-resolution English plates explain the interface, the architecture, the 
 ![Update notice](docs/images/guide-11-update-notice.png)
 
 An older copy at launch: the card names the newest release — version number included — and links both mirrors. Nothing is uploaded; the check reads one public release record.
-
-### 12 · Group chat
-![Group chat](docs/images/guide-12-chat.png)
-
-The room is off until you enable it. The panel states «希望大家文明发言，不文明的字符将会变成星号»; the relay replaces profanity and pornography-, gambling- or drug-related terms before storage, and this client filters again before display. The token stays in this browser, never in the article library.
 
 The complete operating manual — installation, every setting, provider setup, OCR, captions, backups, API, troubleshooting and the legal boundary — is in **[MANUAL.html](MANUAL.html)**.
 

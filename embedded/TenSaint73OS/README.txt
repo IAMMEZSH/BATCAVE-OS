@@ -1,4 +1,4 @@
-TenSaint73OS · The Saint Key Protocol · v1.7.1
+TenSaint73OS · The Saint Key Protocol · v1.8.0
 ============================================================
 
 A zero-dependency, fully local encrypted private space:
@@ -193,7 +193,7 @@ nothing is synchronized automatically.
   https://gitcode.com/gcw_So3EkhfR/TenSaint73OS
 - Old-version users are reminded in the only channel this project has: the
   login page of the instance they already use. v1.5.1 and newer (including
-  v1.7.1) show the notice with the latest version number before login, for
+  v1.8.0) show the notice with the latest version number before login, for
   owners and members alike, as soon as a newer release is published. There is
   no email list, phone list or push service, and an instance
   that is never opened again cannot be reached; owners should also read the

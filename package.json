@@ -1,6 +1,6 @@
 {
   "name": "batcave-os",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "private": true,
   "description": "Local-first zero-dependency Windows desktop shell with a real shell bridge and in-app updates from GitHub/GitCode.",
   "main": "server.js",

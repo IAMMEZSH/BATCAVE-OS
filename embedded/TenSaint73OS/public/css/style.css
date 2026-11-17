@@ -632,6 +632,7 @@ table.tbl tr:hover td { background: rgba(var(--accent-rgb), .04); }
 .chat-suggests { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 7px; }
 .chat-suggests .btn { font-size: 9px; padding: 4px 10px; }
 
+
 .log-line { font-size: 11px; line-height: 1.9; border-bottom: 1px dashed rgba(var(--primary-rgb), .08); padding: 2px 0; }
 .log-line .lt { color: var(--dim); margin-right: 9px; }
 .log-line.info .ll { color: var(--accent); }

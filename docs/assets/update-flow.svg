@@ -150,6 +150,6 @@
 
     <line x1="70" y1="826" x2="1390" y2="826" stroke="#102c34" stroke-width="1"/>
     <text x="70" y="852" fill="#486a75" font-size="12.5" letter-spacing="1">BATCAVE OS · UPDATE CENTER · 双平台同一 ZIP、同一 SHA-256、同一份说明</text>
-    <text x="1390" y="852" fill="#486a75" font-size="12.5" text-anchor="end" letter-spacing="1">v3.1.1 · SENTINEL</text>
+    <text x="1390" y="852" fill="#486a75" font-size="12.5" text-anchor="end" letter-spacing="1">v3.1.2 · SENTINEL</text>
   </g>
 </svg>

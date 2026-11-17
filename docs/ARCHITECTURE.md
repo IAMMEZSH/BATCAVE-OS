@@ -97,9 +97,9 @@ data/updates/staging-*  → validateStaging → transaction.json → 原子替�
 ```json
 {
   "schema": 1,
-  "version": "3.1.1",
+  "version": "3.1.2",
   "codename": "SENTINEL",
-  "released": "2026-11-17",
+  "released": "2026-11-18",
   "notes": "面向用户的中文更新说明",
   "notesUrls": { "github": "...", "gitcode": "..." },
   "assets": {

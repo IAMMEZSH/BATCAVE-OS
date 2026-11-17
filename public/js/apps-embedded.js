@@ -73,8 +73,8 @@
     const updApplyBtn = body.querySelector('[data-eb-upd-apply]');
     let started = false;
     let appVersion = cfg.version || '';
-    let updateSource = BC.store.get('embedded.source.' + cfg.id, 'github');
-    if (updateSource !== 'github' && updateSource !== 'gitcode') updateSource = 'github';
+    let updateSource = BC.store.get('embedded.source.' + cfg.id, 'gitcode');
+    if (updateSource !== 'github' && updateSource !== 'gitcode') updateSource = 'gitcode';
     let lastCheck = null;
     let updBusy = false;
     let pollTimer = null;
@@ -109,10 +109,14 @@
         r.asset && r.asset.size ? U.fmtBytes(r.asset.size) : '',
         r.published ? '发布 ' + U.fmtDate(r.published) : ''
       ].filter(Boolean).map(x => '<span class="chip">' + U.esc(x) + '</span>').join('');
+      if (r.fallbackFrom) {
+        updateSource = r.source === 'gitcode' ? 'gitcode' : 'github';
+        BC.store.set('embedded.source.' + cfg.id, updateSource);
+      }
       if (!r.updateAvailable) {
         updNotes.innerHTML = '<div class="update-notes-text">当前已是最新版本 v' + U.esc(r.current || '') + '。</div>';
         updApplyBtn.classList.add('hidden');
-        showNote('已是最新版本，无需更新。', '');
+        showNote('已是最新版本，无需更新。' + (r.fallbackFrom ? '（' + sourceLabel(r.fallbackFrom) + ' 不可用，已自动改用 ' + sourceLabel(r.source) + '）' : ''), '');
         setProgress('READY', 100, '');
         setTimeout(() => updProgress.classList.add('hidden'), 900);
         return;
@@ -121,7 +125,7 @@
       updApplyBtn.textContent = '下载并更新 v' + r.latest;
       updApplyBtn.classList.remove('hidden');
       updApplyBtn.disabled = false;
-      showNote('<b>发现新版本 v' + U.esc(r.latest) + '</b> · 来源 ' + sourceLabel(r.source) + '。更新会重启该应用，用户数据保留。', '');
+      showNote('<b>发现新版本 v' + U.esc(r.latest) + '</b> · 来源 ' + sourceLabel(r.source) + (r.fallbackFrom ? '（' + sourceLabel(r.fallbackFrom) + ' 不可用，已自动切换）' : '') + '。更新会重启该应用，用户数据保留。', '');
       setProgress('READY', 100, '校验通过，可以开始更新。');
       setTimeout(() => updProgress.classList.add('hidden'), 1200);
     }
@@ -170,7 +174,7 @@
       showNote('<b>正在更新</b> · 请勿关闭 BATCAVE；应用会在替换完成后自动重启。', '');
       setProgress('STARTING', 1, '准备下载…');
       try {
-        const r = await A.embeddedUpdateApply(cfg.id, updateSource, lastCheck.latest);
+        const r = await A.embeddedUpdateApply(cfg.id, (lastCheck && lastCheck.source) || updateSource, lastCheck.latest);
         pollUpdateJob(r.jobId);
       } catch (e) {
         updBusy = false;
@@ -315,7 +319,7 @@
     desc: '自带社区系统 · 论坛/文件/会员 · 单管理员',
     mount(body, win) {
       return createEmbedded({
-        id: 'tensaint', name: 'TenSaint73OS', en: 'COMMAND NEXUS', port: 7781, version: '1.7.1',
+        id: 'tensaint', name: 'TenSaint73OS', en: 'COMMAND NEXUS', port: 7781, version: '1.8.0',
         desc: '自带运行的 TenSaint73OS：社区论坛、共享文件、会员与 AI 中枢。',
         footNote: '单管理员凭据不随发行包分发；如需最高管理员身份，请在 TenSaint73OS 内用你桌面保存的 .tsowner 凭据导入。'
       }, body, win);
@@ -328,7 +332,7 @@
     desc: '自带全球报刊阅读 · RSS/翻译/朗读',
     mount(body, win) {
       return createEmbedded({
-        id: 'reading', name: '环球报阁', en: 'GLOBAL READING ROOM', port: 7782, version: '1.2.0',
+        id: 'reading', name: '环球报阁', en: 'GLOBAL READING ROOM', port: 7782, version: '1.3.0',
         desc: '多语种报刊阅读：RSS 抓取、正文抽取、翻译、朗读与导出。',
         footNote: '数据独立存放于 BATCAVE 数据目录；不携带任何原有阅读记录或账号数据。'
       }, body, win);

@@ -3,23 +3,23 @@
 **A local-first news and magazine reading room for the world's press.**  
 Public RSS and Atom in, full Chinese translations, offline exports, image OCR and subtitle translation out — all on your own machine.
 
-Version 1.2.0 · Node.js ≥ 20 · Windows · Linux · macOS · Android (Termux) · iPhone / iPad (iSH)
+Version 1.3.0 · Node.js ≥ 20 · Windows · Linux · macOS · Android (Termux) · iPhone / iPad (iSH)
 
 ---
 
 ## Download
 
-**Windows 10 / 11 users:** [**download the portable Windows ZIP**](downloads/windows/global-reading-room-1.2.0-windows-x64.zip), unzip it, then double-click **`Start Global Reading Room.vbs`**. No installer, no admin rights, Node.js is bundled.
+**Windows 10 / 11 users:** [**download the portable Windows ZIP**](downloads/windows/global-reading-room-1.3.0-windows-x64.zip), unzip it, then double-click **`Start Global Reading Room.vbs`**. No installer, no admin rights, Node.js is bundled.
 
 | Platform | Package | Launcher |
 | --- | --- | --- |
-| **Windows 10 / 11 (x64)** | [Windows ZIP](downloads/windows/global-reading-room-1.2.0-windows-x64.zip) | `Start Global Reading Room.vbs` |
-| **Linux** | [Linux tar.gz](downloads/linux/global-reading-room-1.2.0-linux.tar.gz) | `start.sh` |
-| **macOS 12+** | [macOS tar.gz](downloads/macos/global-reading-room-1.2.0-macos.tar.gz) | `Start Global Reading Room.command` |
-| **Android — Termux** | [Termux ZIP](downloads/android-termux/global-reading-room-1.2.0-termux.zip) | `install-termux.sh` |
-| **iPhone / iPad — iSH** | [iSH ZIP](downloads/iphone-ipad-ish/global-reading-room-1.2.0-ish.zip) | `start-ish.sh` |
+| **Windows 10 / 11 (x64)** | [Windows ZIP](downloads/windows/global-reading-room-1.3.0-windows-x64.zip) | `Start Global Reading Room.vbs` |
+| **Linux** | [Linux tar.gz](downloads/linux/global-reading-room-1.3.0-linux.tar.gz) | `start.sh` |
+| **macOS 12+** | [macOS tar.gz](downloads/macos/global-reading-room-1.3.0-macos.tar.gz) | `Start Global Reading Room.command` |
+| **Android — Termux** | [Termux ZIP](downloads/android-termux/global-reading-room-1.3.0-termux.zip) | `install-termux.sh` |
+| **iPhone / iPad — iSH** | [iSH ZIP](downloads/iphone-ipad-ish/global-reading-room-1.3.0-ish.zip) | `start-ish.sh` |
 
-Each platform folder contains its own `README.md` and `SHA256.txt`. All hashes are also in [`downloads/SHA256SUMS.txt`](downloads/SHA256SUMS.txt). The same five packages are attached to the [GitHub v1.2.0 release](https://github.com/IAMMEZSH/global-reading-room/releases/tag/v1.2.0) and the [GitCode v1.2.0 release](https://gitcode.com/gcw_So3EkhfR/global-reading-room/releases/v1.2.0).
+Each platform folder contains its own `README.md` and `SHA256.txt`. All hashes are also in [`downloads/SHA256SUMS.txt`](downloads/SHA256SUMS.txt). The same five packages are attached to the [GitHub v1.3.0 release](https://github.com/IAMMEZSH/global-reading-room/releases/tag/v1.3.0) and the [GitCode v1.3.0 release](https://gitcode.com/gcw_So3EkhfR/global-reading-room/releases/v1.3.0).
 
 ![Global Reading Room command deck](docs/images/guide-01-command-deck.png)
 
@@ -63,7 +63,7 @@ Most news readers either send your reading history to a cloud account or lock th
 
 ## The field guide
 
-Ten full-resolution English plates explain the interface, the architecture, the platform paths and the media pipeline. They are also installed with the app and embedded in the manual.
+Eleven full-resolution English plates explain the interface, the architecture, the platform paths and the media pipeline. They are also installed with the app and embedded in the manual.
 
 ### 01 · Command deck
 ![Command deck](docs/images/guide-01-command-deck.png)
@@ -110,7 +110,7 @@ Package choices and checksums are listed in [Download](#download) at the top of 
 
 ### Windows 10 / 11 (x64) — portable, click to run
 
-1. Extract `global-reading-room-1.2.0-windows-x64.zip`.
+1. Extract `global-reading-room-1.3.0-windows-x64.zip`.
 2. Open the extracted folder.
 3. Double-click **`Start Global Reading Room.vbs`**.
 
@@ -123,8 +123,8 @@ Data lives in `data\` next to the launcher. To move the app, move the whole fold
 Requires Node.js 20 or newer.
 
 ```bash
-tar -xzf global-reading-room-1.2.0-linux.tar.gz
-cd global-reading-room-1.2.0
+tar -xzf global-reading-room-1.3.0-linux.tar.gz
+cd global-reading-room-1.3.0
 chmod +x start.sh
 ./start.sh
 ```
@@ -135,7 +135,7 @@ The browser opens automatically when a desktop session is available. On a headle
 
 Requires Node.js 20 or newer (`brew install node`).
 
-1. Extract `global-reading-room-1.2.0-macos.tar.gz`.
+1. Extract `global-reading-room-1.3.0-macos.tar.gz`.
 2. Double-click **`Start Global Reading Room.command`**.
 3. If Gatekeeper blocks it, right-click → **Open** once.
 
@@ -144,7 +144,7 @@ Requires Node.js 20 or newer (`brew install node`).
 Install **Termux** from F-Droid, then:
 
 ```bash
-unzip global-reading-room-1.2.0-termux.zip -d global-reading-room
+unzip global-reading-room-1.3.0-termux.zip -d global-reading-room
 cd global-reading-room
 bash install-termux.sh
 ```
@@ -157,7 +157,7 @@ In iSH:
 
 ```sh
 apk add nodejs unzip
-unzip global-reading-room-1.2.0-ish.zip -d global-reading-room
+unzip global-reading-room-1.3.0-ish.zip -d global-reading-room
 cd global-reading-room
 sh start-ish.sh
 ```
@@ -293,7 +293,7 @@ lib/imagecache.js      image proxy and disk cache
 lib/exporters.js       Markdown, HTML, ZIP and OPML
 lib/store.js           atomic JSON store, retention, backups
 public/                the zero-framework browser UI
-docs/explainers/       source pages for the ten field-guide plates
+docs/explainers/       source pages for the ten designed field-guide plates
 docs/images/           all screenshots and plates
 ```
 

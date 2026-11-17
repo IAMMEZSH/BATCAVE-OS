@@ -47,13 +47,14 @@ const SECURITY_HEADERS = {
     "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://player.bilibili.com https://www.dailymotion.com https://geo.dailymotion.com",
     "style-src 'self' 'unsafe-inline'",
     "script-src 'self'",
-    "connect-src 'self' https: http://127.0.0.1:* http://localhost:*",
+    "connect-src 'self'",
     "font-src 'self'",
-    "frame-ancestors http://127.0.0.1:* http://localhost:*",
+    "frame-ancestors 'none'",
     "base-uri 'none'",
     "form-action 'self'",
   ].join('; '),
   'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'no-referrer',
 };
 

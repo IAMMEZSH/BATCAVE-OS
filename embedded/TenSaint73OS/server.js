@@ -26,7 +26,7 @@ const USERDATA = path.join(DATA, 'users');
 const USER_FILES = path.join(FILES, 'users');
 const PUBLIC = path.join(ROOT, 'public');
 const SYSTEM_NAME = 'TenSaint73OS';
-const VERSION = '1.7.1';
+const VERSION = '1.8.0';
 // 官方发行页 (更新提示用; 隧道地址仍由 cloudflared 随机生成, 这里不写死任何公网地址)
 const OFFICIAL_URL = 'https://github.com/IAMMEZSH/TenSaint73OS';
 const RELEASES_URL = OFFICIAL_URL + '/releases/latest';
@@ -273,8 +273,7 @@ const sysCtx = {
 /* ---------------- HTTP 基础 ---------------- */
 const SEC_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
-  // BATCAVE 内嵌版：只允许本机 loopback 页面嵌套，公网站点仍无法框住本应用
-  'Content-Security-Policy': 'frame-ancestors http://127.0.0.1:* http://localhost:*',
+  'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'no-referrer',
 };
 
@@ -1646,7 +1645,8 @@ async function handleApi(req, res, pathname) {
   if (!r) return send(res, 404, { error: 'API_NOT_FOUND' });
 
   // 公开路由
-  if (pathname === '/api/login' || pathname === '/api/register' || pathname === '/api/state' || pathname === '/api/theme' || pathname === '/api/logout' || pathname === '/api/update' || pathname === '/api/access' || pathname === '/api/visit') {
+  if (pathname === '/api/login' || pathname === '/api/register' || pathname === '/api/state' || pathname === '/api/theme' || pathname === '/api/logout' || pathname === '/api/update' || pathname === '/api/access' || pathname === '/api/visit'
+   ) {
     return r.handlers[0](req, res);
   }
 

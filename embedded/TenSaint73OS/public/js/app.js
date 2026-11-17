@@ -759,7 +759,7 @@ async function enterAdmin(st, afterLogin) {
   const sideUser = $('#side-user');
   if (sideUser) sideUser.innerHTML = `<b>${esc(S.username)}</b><span>ROOT ADMINISTRATOR</span>`;
   const ver = $('#side-ver');
-  if (ver) ver.textContent = 'OS v' + (st.version || '1.7.1') + ' · ADMIN';
+  if (ver) ver.textContent = 'OS v' + (st.version || '1.8.0') + ' · ADMIN';
   await buildSidebar();
   navigate('dashboard');
   startTicker();
@@ -2226,7 +2226,7 @@ async function renderSettings(c) {
 async function renderAbout(c) {
   c.innerHTML = '';
   let st;
-  try { st = await api('GET', '/api/state'); } catch (e) { st = { version: '1.7.1' }; }
+  try { st = await api('GET', '/api/state'); } catch (e) { st = { version: '1.8.0' }; }
   const card = el('div', 'card');
   card.innerHTML = `<div style="text-align:center;padding:18px 8px">
     <div style="position:relative;width:130px;height:130px;margin:0 auto">
@@ -2235,7 +2235,7 @@ async function renderAbout(c) {
     <h2 style="margin-top:18px;letter-spacing:5px;color:var(--primary)">TENSAINT<span style="color:var(--text)">73</span>OS</h2>
     <div style="font-size:9px;color:var(--dim);letter-spacing:3px;margin-top:7px">圣钥协议 · SANCTUM KEY PROTOCOL</div>
     <div class="mono-list" style="text-align:left;margin-top:24px;line-height:2.2">
-      <div><span class="k">系统版本</span><span class="v hl">v${esc(st.version || '1.7.1')}</span></div>
+      <div><span class="k">系统版本</span><span class="v hl">v${esc(st.version || '1.8.0')}</span></div>
       <div><span class="k">数据库加密</span><span class="v">AES-256-GCM · 管理员库 / 会员库双轨</span></div>
       <div><span class="k">权限模型</span><span class="v">管理员全局 · 会员仅见自己的文件与数据表</span></div>
       <div><span class="k">文件隔离</span><span class="v">每个账号独立虚拟根目录, 接口层强制隔离</span></div>
@@ -2675,7 +2675,7 @@ async function renderAdminAccount(c) {
     <div class="node-tag">${esc(S.nodeId || 'TS73-······')}</div>
     <div style="margin-top:18px">
       <div class="identity-row"><span>角色</span><b>ROOT ADMINISTRATOR</b></div>
-      <div class="identity-row"><span>系统版本</span><b>v${esc(st.version || '1.7.1')}</b></div>
+      <div class="identity-row"><span>系统版本</span><b>v${esc(st.version || '1.8.0')}</b></div>
       <div class="identity-row"><span>全局数据库</span><b>${st.locked ? '加密锁定' : '已解锁 · AES-256-GCM'}</b></div>
       <div class="identity-row"><span>会话策略</span><b>12h 滑动过期</b></div>
     </div>`;

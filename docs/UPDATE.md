@@ -108,13 +108,13 @@ dist/SHA256SUMS.txt
 
 - 缺失 `server.js` 或 `update/sources.json`
 - 把 `update/latest.json` 打进包
-- 符号链接、空文件、日志、`data/`、`iso/`、`test/`、`tools/`、`node_modules/`
+- 符号链接、空文件、日志、`data/`（`public/geo/app/data/` 除外）、`iso/`、`test/`、`tools/`、`node_modules/`、`memory/`
 
 列出包内容（Windows PowerShell）：
 
 ```powershell
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[IO.Compression.ZipFile]::OpenRead("$PWD\dist\BATCAVE-OS-3.1.2.zip").Entries |
+[IO.Compression.ZipFile]::OpenRead("$PWD\dist\BATCAVE-OS-3.1.3.zip").Entries |
   Select-Object FullName, Length | Sort-Object FullName
 ```
 
@@ -132,7 +132,8 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 ```bash
 curl -L https://raw.githubusercontent.com/IAMMEZSH/BATCAVE-OS/main/update/latest.json
-curl -L https://raw.gitcode.com/gcw_So3EkhfR/BATCAVE-OS/raw/main/update/latest.json
+# GitCode 的 raw 域名可能返回 403，改用 API 内容接口（content 字段为 Base64）：
+curl -L "https://api.gitcode.com/api/v5/repos/gcw_So3EkhfR/BATCAVE-OS/contents/update/latest.json?ref=main"
 ```
 
 两条返回的 `assets.github` / `assets.gitcode` 都应指向可匿名下载的 Release 资产，且 SHA-256 与本地 `dist/SHA256SUMS.txt` 一致。
@@ -142,18 +143,18 @@ curl -L https://raw.gitcode.com/gcw_So3EkhfR/BATCAVE-OS/raw/main/update/latest.j
 ```json
 {
   "schema": 1,
-  "version": "3.1.2",
+  "version": "3.1.3",
   "codename": "SENTINEL",
   "released": "2026-11-18",
   "notes": "中文更新说明，最长 30000 字符",
-  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.2",
+  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
   "notesUrls": {
-    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.2",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.2"
+    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.3"
   },
   "assets": {
-    "github": { "url": "https://.../BATCAVE-OS-3.1.2.zip", "sha256": "64位十六进制", "size": 12345678 },
-    "gitcode": { "url": "https://.../BATCAVE-OS-3.1.2.zip", "sha256": "64位十六进制", "size": 12345678 }
+    "github": { "url": "https://.../BATCAVE-OS-3.1.3.zip", "sha256": "64位十六进制", "size": 12345678 },
+    "gitcode": { "url": "https://.../BATCAVE-OS-3.1.3.zip", "sha256": "64位十六进制", "size": 12345678 }
   }
 }
 ```

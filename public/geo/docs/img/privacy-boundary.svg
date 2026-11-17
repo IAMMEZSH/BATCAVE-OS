@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="820" viewBox="0 0 1180 820" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<defs>
+  <linearGradient id="hudbg" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0" stop-color="#0c1626"/><stop offset="0.45" stop-color="#070d18"/><stop offset="1" stop-color="#03060c"/>
+  </linearGradient>
+  <pattern id="hudgrid" width="26" height="26" patternUnits="userSpaceOnUse">
+    <path d="M26 0H0V26" fill="none" stroke="#5d8fb0" stroke-opacity="0.085" stroke-width="1"/>
+  </pattern>
+  <pattern id="hudscan" width="26" height="4" patternUnits="userSpaceOnUse">
+    <rect width="26" height="1" fill="#5d8fb0" fill-opacity="0.045"/>
+  </pattern>
+  <radialGradient id="hudbloom" cx="0.18" cy="0.05" r="0.95">
+    <stop offset="0" stop-color="#59d6ff" stop-opacity="0.10"/><stop offset="0.6" stop-color="#59d6ff" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1180" height="820" fill="url(#hudbg)"/>
+<rect width="1180" height="820" fill="url(#hudgrid)"/>
+<rect width="1180" height="820" fill="url(#hudscan)"/>
+<rect width="1180" height="820" fill="url(#hudbloom)"/>
+<rect x="14" y="14" width="1152" height="792" rx="3" fill="none" stroke="#1d3a53"/>
+<path d="M14 44V14h30M1136 14h30v30M1166 776v30h-30M44 806H14v-30" fill="none" stroke="#3b8fc4" stroke-width="2"/>
+<text x="48" y="58" font-size="11.5" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="3.2">PRIVACY</text>
+<text x="48" y="92" font-size="27" fill="#f3d27a" font-weight="700" text-anchor="start" letter-spacing="0.6">WHAT THE BRIDGE CANNOT SEE</text>
+<text x="48" y="118" font-size="13.5" fill="#8ea9bf" font-weight="400" text-anchor="start">The page holds the coordinates. The bridge holds no field that could carry one.</text>
+<rect x="48" y="140" width="500" height="420" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="140" width="3.5" height="420" rx="1.7" fill="#59d6ff"/>
+<text x="66" y="167" font-size="13" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="1.5">INSIDE THE BROWSER</text>
+<text x="66" y="192" font-size="11" fill="#59d6ff" font-weight="400" text-anchor="start">COORDINATES LIVE HERE</text>
+<text x="66" y="210" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Map centre, GNSS fix, cell solution, bearings, celestial</text>
+<text x="66" y="230" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  result — all computed in this tab.</text>
+<text x="66" y="250" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• The encrypted vault stores what you choose to keep, under</text>
+<text x="66" y="270" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  llgz.vault.v1 (AES-256-GCM).</text>
+<text x="66" y="290" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• No coordinate is placed in a request body, a query string, or</text>
+<text x="66" y="310" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  a header.</text>
+<text x="66" y="338" font-size="11" fill="#59d6ff" font-weight="400" text-anchor="start">REQUEST PATHS THAT DO EXIST</text>
+<text x="66" y="356" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">GET /api/health capability flags only</text>
+<text x="66" y="375" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">GET /api/geoip?ip=… the IP you typed, or none</text>
+<text x="66" y="394" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">GET /api/trace?host=… the hostname you typed</text>
+<text x="66" y="413" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">Position-shaped parameter names are refused before dispatch.</text><line x1="590" y1="146" x2="590" y2="660" stroke="#ff9a94" stroke-width="2" stroke-dasharray="8 7"/><text x="590" y="132" font-size="10.5" fill="#ff9a94" font-weight="700" text-anchor="middle" letter-spacing="2.4">TRUST BOUNDARY</text><rect x="632" y="140" width="500" height="306" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="632" y="140" width="3.5" height="306" rx="1.7" fill="#6fe3b0"/>
+<text x="650" y="167" font-size="13" fill="#6fe3b0" font-weight="600" text-anchor="start" letter-spacing="1.5">INSIDE THE BRIDGE</text>
+<text x="650" y="192" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• 13 parameter names — lat, lon, lng, latitude, longitude,</text>
+<text x="650" y="212" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  position, loc, accuracy, alt, altitude, bearing, heading,</text>
+<text x="650" y="232" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  speed — return 400 privacy_rejected.</text>
+<text x="650" y="252" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• A POST body is never parsed at all; every endpoint is</text>
+<text x="650" y="272" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  read-only.</text>
+<text x="650" y="292" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Log fields are flattened onto one line, so a value cannot</text>
+<text x="650" y="312" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  forge a new log record.</text>
+<text x="650" y="332" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• /api/iface returns counts and the loopback fact — no hostname,</text>
+<text x="650" y="352" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  MAC or LAN address list.</text><rect x="632" y="462" width="500" height="124" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="632" y="462" width="3.5" height="124" rx="1.7" fill="#f3d27a"/>
+<text x="650" y="489" font-size="13" fill="#f3d27a" font-weight="600" text-anchor="start" letter-spacing="1.5">THE OUTBOUND ARROW IS NARROW ON PURPOSE</text>
+<text x="650" y="514" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">GeoIP sends one IP; a trace sends a hostname and probes toward it.</text>
+<text x="650" y="532" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">Neither carries a field for your position; {ip} is the only</text>
+<text x="650" y="550" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">  placeholder.</text><rect x="48" y="604" width="1084" height="74" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="604" width="3.5" height="74" rx="1.7" fill="#ff9a94"/>
+<text x="66" y="631" font-size="13" fill="#ff9a94" font-weight="600" text-anchor="start" letter-spacing="1.5">THE 403 IS THE FEATURE</text>
+<text x="66" y="656" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">A request that carries a coordinate is rejected instead of being stripped and forwarded: the bridge cannot</text>
+<text x="66" y="674" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">silently decide which part of a position was “probably fine” to send.</text><text x="48" y="794" font-size="10.5" fill="#5e7890" font-weight="600" text-anchor="start" letter-spacing="2.2">GEO POSITION WORKSTATION</text><text x="1132" y="794" font-size="10.5" fill="#5e7890" font-weight="600" text-anchor="end" letter-spacing="2.2">MECHANISM DIAGRAM</text></svg>

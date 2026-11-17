@@ -3,7 +3,7 @@
   [ValidateSet('x64', 'arm64')][string]$Arch = 'x64',
   [int]$Index = 0,
   [string]$Report = '',
-  [string]$ExpectVersion = '3.1.2'
+  [string]$ExpectVersion = '3.1.3'
 )
 $ErrorActionPreference = 'Stop'
 if (-not $Index) { $Index = if ($Arch -eq 'arm64') { 3 } else { 4 } }

@@ -1,4 +1,6 @@
 data/
+!public/geo/app/data/
+!public/geo/app/data/**
 dist/
 iso/out/
 node_modules/

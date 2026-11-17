@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="860" viewBox="0 0 1180 860" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<defs>
+  <linearGradient id="hudbg" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0" stop-color="#0c1626"/><stop offset="0.45" stop-color="#070d18"/><stop offset="1" stop-color="#03060c"/>
+  </linearGradient>
+  <pattern id="hudgrid" width="26" height="26" patternUnits="userSpaceOnUse">
+    <path d="M26 0H0V26" fill="none" stroke="#5d8fb0" stroke-opacity="0.085" stroke-width="1"/>
+  </pattern>
+  <pattern id="hudscan" width="26" height="4" patternUnits="userSpaceOnUse">
+    <rect width="26" height="1" fill="#5d8fb0" fill-opacity="0.045"/>
+  </pattern>
+  <radialGradient id="hudbloom" cx="0.18" cy="0.05" r="0.95">
+    <stop offset="0" stop-color="#59d6ff" stop-opacity="0.10"/><stop offset="0.6" stop-color="#59d6ff" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1180" height="860" fill="url(#hudbg)"/>
+<rect width="1180" height="860" fill="url(#hudgrid)"/>
+<rect width="1180" height="860" fill="url(#hudscan)"/>
+<rect width="1180" height="860" fill="url(#hudbloom)"/>
+<rect x="14" y="14" width="1152" height="832" rx="3" fill="none" stroke="#1d3a53"/>
+<path d="M14 44V14h30M1136 14h30v30M1166 816v30h-30M44 846H14v-30" fill="none" stroke="#3b8fc4" stroke-width="2"/>
+<text x="48" y="58" font-size="11.5" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="3.2">LAUNCH PATHS</text>
+<text x="48" y="92" font-size="27" fill="#f3d27a" font-weight="700" text-anchor="start" letter-spacing="0.6">FOUR APPLE PATHS, ONE APPLICATION</text>
+<text x="48" y="118" font-size="13.5" fill="#8ea9bf" font-weight="400" text-anchor="start">Two desktop routes and two mobile routes; only the bridge differs, never the eleven panels.</text>
+<rect x="48" y="140" width="520" height="268" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="140" width="3.5" height="268" rx="1.7" fill="#59d6ff"/>
+<text x="66" y="167" font-size="13" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="1.5">MACOS · TERMINAL (NO CHMOD)</text>
+<text x="66" y="192" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">cd "/Downloads/geo-position-workstation"</text>
+<text x="66" y="211" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">sh 开动-macOS-Linux.sh</text>
+<text x="66" y="236" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Finds python3, falls back to python.</text>
+<text x="66" y="256" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Starts server.py --port 8765 on 127.0.0.1.</text>
+<text x="66" y="276" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Polls /api/health for 10 s, then opens the page.</text>
+<text x="66" y="296" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">open http://127.0.0.1:8765/index.html</text>
+<text x="66" y="315" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• No Python → the offline page still opens, with install hints.</text><rect x="612" y="140" width="520" height="268" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="612" y="140" width="3.5" height="268" rx="1.7" fill="#f3d27a"/>
+<text x="630" y="167" font-size="13" fill="#f3d27a" font-weight="600" text-anchor="start" letter-spacing="1.5">MACOS · FINDER DOUBLE-CLICK</text>
+<text x="630" y="192" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">chmod +x 开动-macOS.command</text>
+<text x="630" y="211" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">xattr -dr com.apple.quarantine .</text>
+<text x="630" y="236" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• The .command file only cd’s and hands over to the shared sh</text>
+<text x="630" y="256" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  engine.</text>
+<text x="630" y="276" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Gatekeeper quarantine applies to ZIP downloads, not to git clone.</text>
+<text x="630" y="296" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Right-click → Open is the one-time alternative to xattr.</text>
+<text x="630" y="316" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">PORT=9000 sh 开动-macOS-Linux.sh</text><rect x="48" y="432" width="520" height="250" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="432" width="3.5" height="250" rx="1.7" fill="#6fe3b0"/>
+<text x="66" y="459" font-size="13" fill="#6fe3b0" font-weight="600" text-anchor="start" letter-spacing="1.5">IPHONE / IPAD · SAFARI</text>
+<text x="66" y="484" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">https://iammezsh.github.io/geo-position-workstation/</text>
+<text x="66" y="509" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Zero install: kernels, offline map and the 623-gate self-test run</text>
+<text x="66" y="529" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  in the tab.</text>
+<text x="66" y="549" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Panel ⑧ keeps IP lookup and DoH; per-hop tracing needs a bridge</text>
+<text x="66" y="569" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  and says so.</text>
+<text x="66" y="589" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• After the first load it keeps working without connectivity.</text>
+<text x="66" y="609" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Share → Add to Home Screen keeps the same origin</text><rect x="612" y="432" width="520" height="250" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="612" y="432" width="3.5" height="250" rx="1.7" fill="#b8a6ff"/>
+<text x="630" y="459" font-size="13" fill="#b8a6ff" font-weight="600" text-anchor="start" letter-spacing="1.5">IPHONE / IPAD · ISH</text>
+<text x="630" y="484" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">apk add python3</text>
+<text x="630" y="503" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">sh 开动-iSH.sh # alternate: sh 开动-iSH.sh 9000</text>
+<text x="630" y="528" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Stage 1 self-test, stage 2 start and poll, stage 3 real numbers,</text>
+<text x="630" y="548" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  stage 4 Safari hand-off.</text>
+<text x="630" y="568" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• If Safari cannot reach the port, the script prints three checks —</text>
+<text x="630" y="588" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  iSH owns that stack.</text>
+<text x="630" y="608" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">apk add curl iputils traceroute</text><rect x="48" y="706" width="1084" height="100" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="706" width="3.5" height="100" rx="1.7" fill="#ff9a94"/>
+<text x="66" y="733" font-size="13" fill="#ff9a94" font-weight="600" text-anchor="start" letter-spacing="1.5">ONE HONEST DEGRADATION</text>
+<text x="66" y="758" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">Without a bridge the page still opens all eleven panels: ten compute locally, and ⑧ states bridge unavailable.</text>
+<text x="66" y="776" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">It does not fabricate hops, and it does not send a coordinate to any fallback service.</text><text x="48" y="834" font-size="10.5" fill="#5e7890" font-weight="600" text-anchor="start" letter-spacing="2.2">GEO POSITION WORKSTATION</text><text x="1132" y="834" font-size="10.5" fill="#5e7890" font-weight="600" text-anchor="end" letter-spacing="2.2">MECHANISM DIAGRAM</text></svg>

@@ -1,16 +1,16 @@
-# BATCAVE OS v3.1.2 · SENTINEL
+# BATCAVE OS v3.1.3 · SENTINEL
 
 一个可离线运行、可制作成可启动 Windows 安装 ISO 或 Windows To Go 系统盘的本地 Web 桌面。后端是零依赖的 Node.js 服务，前端是原生 JavaScript 窗口管理器；终端、编译器、网络、软件中心、邮件、内嵌应用与系统更新都调用真实能力，不是静态演示页。
 
-**当前版本：3.1.2 SENTINEL · 发布于 2026-11-18 · MIT License**
+**当前版本：3.1.3 SENTINEL · 发布于 2026-11-18 · MIT License**
 
 ## 下载
 
 | 内容 | GitHub | GitCode |
 | --- | --- | --- |
-| 程序包 v3.1.2（ZIP，用于安装或应用内更新） | [BATCAVE-OS-3.1.2.zip](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.2/BATCAVE-OS-3.1.2.zip) | [BATCAVE-OS-3.1.2.zip](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.2/BATCAVE-OS-3.1.2.zip) |
-| SHA-256 校验值 | [SHA256SUMS.txt](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.2/SHA256SUMS.txt) | [SHA256SUMS.txt](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.2/SHA256SUMS.txt) |
-| 发布页与完整更新说明 | [Release v3.1.2](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.2) | [Release v3.1.2](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.2) |
+| 程序包 v3.1.3（ZIP，用于安装或应用内更新） | [BATCAVE-OS-3.1.3.zip](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.3/BATCAVE-OS-3.1.3.zip) | [BATCAVE-OS-3.1.3.zip](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.3/BATCAVE-OS-3.1.3.zip) |
+| SHA-256 校验值 | [SHA256SUMS.txt](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.3/SHA256SUMS.txt) | [SHA256SUMS.txt](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.3/SHA256SUMS.txt) |
+| 发布页与完整更新说明 | [Release v3.1.3](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3) | [Release v3.1.3](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.3) |
 | 源码仓库 | [IAMMEZSH/BATCAVE-OS](https://github.com/IAMMEZSH/BATCAVE-OS) | [gcw_So3EkhfR/BATCAVE-OS](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS) |
 
 两个平台发布**同一个 ZIP、同一个 SHA-256、同一份说明**。已安装旧版本的用户不需要重新下载镜像或重装系统，直接在应用内打开"系统更新"，选择 GitHub 或 GitCode 即可升级。
@@ -168,7 +168,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
   -NodeExe "D:\tools\node-v24.22.1-win-arm64.exe"
 ```
 
-产物为 `iso\out\BATCAVE-OS-3.1.2.iso` 与 `BATCAVE-OS-3.1.2-arm64.iso`，相邻目录同时生成 `VERIFY-ISO*.json`、`ISO-BUILD*.json` 与 `ISO-SHA256SUMS.txt`。构建会校验：
+产物为 `iso\out\BATCAVE-OS-3.1.3.iso` 与 `BATCAVE-OS-3.1.3-arm64.iso`，相邻目录同时生成 `VERIFY-ISO*.json`、`ISO-BUILD*.json` 与 `ISO-SHA256SUMS.txt`。构建会校验：
 
 - `install.wim` 索引名称与架构（x64 / ARM64）。
 - El Torito 引导目录：x64 同时包含 BIOS 与 UEFI，ARM64 为 UEFI。
@@ -176,7 +176,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
 - 载荷中不存在 `.tsowner`、`OWNER.pin`、`auth.json`、`system.db`、`data/` 或任何任务进度组件。
 - 输出 ISO 的 SHA-256、字节数、卷标与安装树完整性。
 
-v3.1.1 本机实际构建与挂载校验结果（2026-11-17）。3.1.2 只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.2*.iso`：
+v3.1.1 本机实际构建与挂载校验结果（2026-11-17）。3.1.2 与 3.1.3 只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.3*.iso`：
 
 | 项目 | x64 | ARM64 |
 | --- | --- | --- |

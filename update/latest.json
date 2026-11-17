@@ -1,24 +1,24 @@
 {
   "schema": 1,
-  "version": "3.1.2",
+  "version": "3.1.3",
   "codename": "SENTINEL",
   "released": "2026-11-18",
-  "notes": "BATCAVE OS 3.1.2「SENTINEL」更新说明\n\n一、修复自带应用更新失败\n· 检查更新时若所选平台不可用（GitHub 匿名接口 403/限流、网络中断），自动改用另一平台并显示实际来源。\n· 下载中断或超时后，自动改用另一平台的同名发布包；只有版本、字节数与 SHA-256 完全一致时才继续。\n· 下载连续 90 秒没有数据会自动中止并报错，不再长期卡住；单个下载最长 30 分钟。\n· 更新面板默认优先 GitCode，也可手动切换 GitHub。\n· CodeForge AI 的启动等待延长到 30 秒，慢机器 Java 冷启动不再被误判为启动超时。\n\n二、内置应用升级\n· TenSaint73OS 升级到 v1.8.0（群聊已彻底移除）。\n· 环球报阁升级到 v1.3.0。\n· CodeForge AI 保持 v1.0.4。\n· 已安装旧版 BATCAVE 的用户更新到 3.1.2 后，内置应用即为上述版本；应用数据保留。\n\n三、升级方法\n1. 打开桌面“系统更新”，选择 GitHub 或 GitCode。\n2. 点击“检查更新”，确认 3.1.2 的更新说明。\n3. 点击“下载并安装”，等待校验、替换与重启完成。\n4. 旧版内置应用也可以在应用窗口内点“更新”分别升级。\n\n两平台发布同一个 ZIP、同一个 SHA-256。如果某个平台无法访问，可直接切换另一个平台；也可以手动下载 BATCAVE-OS-3.1.2.zip，解压覆盖程序目录（保留 data/ 与 node.exe），再重启服务。\n可启动 ISO 与 Windows To Go VHD 包含微软 Windows 文件，项目不公开分发；请使用自己的官方 ISO 在本机构建。",
-  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.2",
+  "notes": "BATCAVE OS 3.1.3「SENTINEL」更新说明\n\n一、完整性与内置应用修复\n· 定位工作站补齐三份地图数据与完整说明书，修复内嵌地图空白；构建标记同步为 1.3.0。\n· CodeForge AI 补齐架构文档与图表，发布包排除本机 memory/ 私有索引。\n· TenSaint73OS 补齐 11 张截图与平台部署说明；环球报阁补齐 docs、解说图、构建脚本与平台启动脚本。\n· 修正公开简介与界面中残留的停用功能文案。\n\n二、发布包与下载\n· 发布包补入 iso/winbase/README-FIRST.txt；继续排除 data/、iso/、test/、tools/、node_modules/ 与 memory/。\n· 环球报阁 README 的下载入口指向 v1.3.0 独立发行包，并提供 GitCode 镜像页。\n· 两平台发布同一个 ZIP、同一个 SHA-256。\n\n三、升级方法\n1. 打开桌面“系统更新”，选择 GitHub 或 GitCode。\n2. 点击“检查更新”，确认 3.1.3 的更新说明。\n3. 点击“下载并安装”，等待校验、替换与重启完成。\n4. 旧版内置应用也可以在应用窗口内点“更新”分别升级。\n\n如果某个平台无法访问，可直接切换另一个平台；也可以手动下载 BATCAVE-OS-3.1.3.zip，解压覆盖程序目录（保留 data/ 与 node.exe），再重启服务。\n可启动 ISO 与 Windows To Go VHD 包含微软 Windows 文件，项目不公开分发；请使用自己的官方 ISO 在本机构建。",
+  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
   "notesUrls": {
-    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.2",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.2"
+    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.3"
   },
   "assets": {
     "github": {
-      "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.2/BATCAVE-OS-3.1.2.zip",
-      "sha256": "6f417e99d49dbc2ebc3fd14479f4946566278681c75ebd0c132cccd3aa8df569",
-      "size": 41190826
+      "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.3/BATCAVE-OS-3.1.3.zip",
+      "sha256": "4972d34a2213e1c35045ee49b1e69f2afcce7fec512e64480b6a382a8ed063bb",
+      "size": 78404799
     },
     "gitcode": {
-      "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.2/BATCAVE-OS-3.1.2.zip",
-      "sha256": "6f417e99d49dbc2ebc3fd14479f4946566278681c75ebd0c132cccd3aa8df569",
-      "size": 41190826
+      "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.3/BATCAVE-OS-3.1.3.zip",
+      "sha256": "4972d34a2213e1c35045ee49b1e69f2afcce7fec512e64480b6a382a8ed063bb",
+      "size": 78404799
     }
   }
 }

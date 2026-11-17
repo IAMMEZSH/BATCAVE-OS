@@ -1,6 +1,6 @@
 # BATCAVE OS 使用手册
 
-适用于 BATCAVE OS 3.1.2 · SENTINEL。本手册从第一次启动写到每个面板的实际用途、数据位置与故障处理。更新机制另见 [更新说明](UPDATE.md)。
+适用于 BATCAVE OS 3.1.3 · SENTINEL。本手册从第一次启动写到每个面板的实际用途、数据位置与故障处理。更新机制另见 [更新说明](UPDATE.md)。
 
 ---
 
@@ -558,9 +558,10 @@ BATCAVE 不会索要、代填、读取、上传或保存你的邮箱授权码。
 
 ### 13.5 定位工作站
 
-- 读取浏览器定位授权后的当前位置（需系统与浏览器允许）。
-- 展示坐标与地图入口。
-- 浏览器定位失败时会显示原因；不会伪造位置。
+- 内嵌 geo-windows 11 面板内核：① 总览、② 坐标与格式、③ 基站定位、④ 三角定位、⑤ 信号测距、⑥ GNSS 卫星、⑦ 天象定位、⑧ 联网与路由、⑨ 批处理导出、⑩ 历史收藏、⑪ 内核自检。
+- 城市、国家与陆地数据随程序包分发（`public/geo/app/data/`），地图无需联网即可绘制；完整说明见 `public/geo/MANUAL.md`。
+- 位置、基站、Wi-Fi、GNSS 等数据仅在本机计算；浏览器定位失败时会显示原因，不会伪造位置。
+- 联网与路由面板调用本机桥接层；离线时显示错误。
 
 ---
 
@@ -666,7 +667,7 @@ BATCAVE 的基座有三条使用路径，均从你自己的官方 Windows 11 ISO
 
 见 [Windows 基座构建与部署](BUILD-ISO.md)。构建脚本：
 
-- `iso\winbase\build-iso.ps1`：官方安装树 + `$OEM$` → 可启动 ISO，产物默认 `iso\out\BATCAVE-OS-3.1.2[-arm64].iso`。
+- `iso\winbase\build-iso.ps1`：官方安装树 + `$OEM$` → 可启动 ISO，产物默认 `iso\out\BATCAVE-OS-3.1.3[-arm64].iso`。
 - `iso\winbase\verify-iso.ps1`：只读挂载成品 ISO，校验 WIM 索引架构、El Torito 的 BIOS/UEFI 引导、载荷、快捷方式、禁入凭据与任务 HUD 缺失，输出 `VERIFY-ISO[-arm64].json`。
 - `iso\winbase\build-winbase.ps1`：生成 Windows To Go VHD。
 - `iso\winbase\verify-vhd.ps1`：只读挂载 VHD，校验分区、引导文件、程序载荷与 PE 架构。

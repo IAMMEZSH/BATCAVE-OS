@@ -2,6 +2,26 @@
 
 本文件记录面向用户的版本变化。更新器的详细机制见 [docs/UPDATE.md](docs/UPDATE.md)。
 
+## 3.1.3 · SENTINEL · 2026-11-18
+
+### 修复
+
+- 定位工作站补齐 `app/data/data-cities.js`、`data-countries.js`、`data-land.js` 与 `MANUAL.md`；内嵌地图不再因 `GEODATA undefined` 空白，构建标记同步为 1.3.0。
+- CodeForge AI 发布包不再包含本机 `memory/` 私有索引；补齐其更新日志、架构文档与图表。
+- TenSaint73OS 补齐 11 张截图与平台部署说明；环球报阁补齐 docs、解说图、构建脚本与平台启动脚本，应用内说明可直接查看。
+- 修正公开简介与界面中残留的停用功能文案，统一为当前能力说明。
+- 发布包补入 `iso/winbase/README-FIRST.txt`，同时继续排除 `data/`、`iso/`、`test/`、`tools/`、`node_modules/`、`memory/`。
+
+### 变更
+
+- 环球报阁 README 的下载入口改为指向 v1.3.0 独立发行包（Windows / Linux / macOS / Termux / iSH），并给出 GitCode 镜像页。
+- 版本号、更新清单与文档同步到 3.1.3；程序包与 SHA-256 仍由 `tools/package-update.js` 生成。
+
+### 验证
+
+- `node --test test/update.test.js` 通过；打包内容逐项检查，确认无凭据、无私有 memory、无用户 data。
+- 浏览器实测定位工作站三份数据文件均返回 200，`GEODATA` 已定义且地图正常渲染。
+
 ## 3.1.2 · SENTINEL · 2026-11-18
 
 ### 修复
@@ -39,7 +59,7 @@
 
 ### 变更
 
-- 移除 TenSaint73OS、环球报阁、定位工作站三个项目的群聊入口、面板、中继接口与样式；旧聊天数据文件不删除，TenSaint73OS 的站内 AI 助手对话保留。
+- 移除 TenSaint73OS、环球报阁、定位工作站三个项目的旧版站内消息面板与中继接口；旧聊天数据文件不删除，TenSaint73OS 的站内 AI 助手对话保留。
 - 更新说明、版本文件与发布清单同步到 3.1.1。
 
 ### 验证

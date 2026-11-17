@@ -1,4 +1,4 @@
-/* BATCAVE OS // 定位工作站：嵌入用户的 geo-windows 11 面板内核（无群聊） */
+/* BATCAVE OS // 定位工作站：嵌入用户的 geo-windows 11 面板内核 */
 (function () {
   'use strict';
   const U = BC.util, A = BC.api;
@@ -21,7 +21,7 @@
           '</div>' +
         '</div>' +
         '<iframe class="geo-frame" src="/geo/index.html" title="定位工作站" allow="geolocation; clipboard-write" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads allow-modals"></iframe>' +
-        '<div class="app-status"><span id="geoStatus" class="ok">READY</span><span>GEO-WINDOWS KERNELS · LOCAL ONLY</span><span class="spacer" style="flex:1"></span><span id="geoInfo">群聊已移除 · 全部计算在本机</span></div>' +
+        '<div class="app-status"><span id="geoStatus" class="ok">READY</span><span>GEO-WINDOWS KERNELS · LOCAL ONLY</span><span class="spacer" style="flex:1"></span><span id="geoInfo">全部计算在本机</span></div>' +
       '</div>';
 
     const frame = body.querySelector('.geo-frame');

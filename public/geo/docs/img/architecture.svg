@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="880" viewBox="0 0 1180 880" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<defs>
+  <linearGradient id="hudbg" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0" stop-color="#0c1626"/><stop offset="0.45" stop-color="#070d18"/><stop offset="1" stop-color="#03060c"/>
+  </linearGradient>
+  <pattern id="hudgrid" width="26" height="26" patternUnits="userSpaceOnUse">
+    <path d="M26 0H0V26" fill="none" stroke="#5d8fb0" stroke-opacity="0.085" stroke-width="1"/>
+  </pattern>
+  <pattern id="hudscan" width="26" height="4" patternUnits="userSpaceOnUse">
+    <rect width="26" height="1" fill="#5d8fb0" fill-opacity="0.045"/>
+  </pattern>
+  <radialGradient id="hudbloom" cx="0.18" cy="0.05" r="0.95">
+    <stop offset="0" stop-color="#59d6ff" stop-opacity="0.10"/><stop offset="0.6" stop-color="#59d6ff" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1180" height="880" fill="url(#hudbg)"/>
+<rect width="1180" height="880" fill="url(#hudgrid)"/>
+<rect width="1180" height="880" fill="url(#hudscan)"/>
+<rect width="1180" height="880" fill="url(#hudbloom)"/>
+<rect x="14" y="14" width="1152" height="852" rx="3" fill="none" stroke="#1d3a53"/>
+<path d="M14 44V14h30M1136 14h30v30M1166 836v30h-30M44 866H14v-30" fill="none" stroke="#3b8fc4" stroke-width="2"/>
+<text x="48" y="58" font-size="11.5" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="3.2">STRUCTURE</text>
+<text x="48" y="92" font-size="27" fill="#f3d27a" font-weight="700" text-anchor="start" letter-spacing="0.6">ONE PAGE, SEVEN KERNELS, TWO OUTBOUND EDGES</text>
+<text x="48" y="118" font-size="13.5" fill="#8ea9bf" font-weight="400" text-anchor="start">Every file is loaded by index.html in order; no bundler, no module loader, no CDN.</text>
+<rect x="48" y="140" width="636" height="54" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="140" width="3.5" height="54" rx="1.7" fill="#59d6ff"/>
+<text x="62" y="167" font-size="13" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="1.5">INDEX.HTML</text>
+<text x="62" y="192" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">The only entry point and the only assembly list: 17 local script / link references.</text><line x1="98" y1="194" x2="98" y2="212" stroke="#59d6ff" stroke-width="2" stroke-opacity=".75"/><polygon points="98,212 94.3,203.8 101.7,203.8" fill="#59d6ff"/><rect x="48" y="212" width="636" height="56" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="212" width="3.5" height="56" rx="1.7" fill="#6fe3b0"/>
+<text x="62" y="239" font-size="13" fill="#6fe3b0" font-weight="600" text-anchor="start" letter-spacing="1.5">GEODATA</text>
+<text x="62" y="264" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">countries 9.4 KB · cities 2.08 MB · land 763 KB — merged into globalThis</text><line x1="98" y1="268" x2="98" y2="286" stroke="#59d6ff" stroke-width="2" stroke-opacity=".75"/><polygon points="98,286 94.3,277.8 101.7,277.8" fill="#59d6ff"/><text x="48" y="306" font-size="11.5" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="1.6">SEVEN KERNELS · PURE FUNCTIONS FIRST · EACH EXPORTS selfTest()</text><rect x="48" y="318" width="147" height="54" rx="6" fill="#0a1422" stroke="#24455f"/><rect x="48" y="318" width="3" height="54" fill="#59d6ff"/><text x="60" y="339" font-size="12" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="0.6">GEOGEO</text><text x="60" y="357" font-size="10.5" fill="#7f97ad" font-weight="400" text-anchor="start">geodesic / hull</text><rect x="207" y="318" width="147" height="54" rx="6" fill="#0a1422" stroke="#24455f"/><rect x="207" y="318" width="3" height="54" fill="#f3d27a"/><text x="219" y="339" font-size="12" fill="#f3d27a" font-weight="600" text-anchor="start" letter-spacing="0.6">GEODATUM</text><text x="219" y="357" font-size="10.5" fill="#7f97ad" font-weight="400" text-anchor="start">projections / datum</text><rect x="366" y="318" width="147" height="54" rx="6" fill="#0a1422" stroke="#24455f"/><rect x="366" y="318" width="3" height="54" fill="#6fe3b0"/><text x="378" y="339" font-size="12" fill="#6fe3b0" font-weight="600" text-anchor="start" letter-spacing="0.6">GEOCELL</text><text x="378" y="357" font-size="10.5" fill="#7f97ad" font-weight="400" text-anchor="start">cells / lateration</text><rect x="525" y="318" width="147" height="54" rx="6" fill="#0a1422" stroke="#24455f"/><rect x="525" y="318" width="3" height="54" fill="#b8a6ff"/><text x="537" y="339" font-size="12" fill="#b8a6ff" font-weight="600" text-anchor="start" letter-spacing="0.6">GEOGNSS</text><text x="537" y="357" font-size="10.5" fill="#7f97ad" font-weight="400" text-anchor="start">NMEA / PVT / RAIM</text><rect x="48" y="380" width="147" height="54" rx="6" fill="#0a1422" stroke="#24455f"/><rect x="48" y="380" width="3" height="54" fill="#f3d27a"/><text x="60" y="401" font-size="12" fill="#f3d27a" font-weight="600" text-anchor="start" letter-spacing="0.6">GEOASTRO</text><text x="60" y="419" font-size="10.5" fill="#7f97ad" font-weight="400" text-anchor="start">sun / moon / stars</text><rect x="207" y="380" width="147" height="54" rx="6" fill="#0a1422" stroke="#24455f"/><rect x="207" y="380" width="3" height="54" fill="#59d6ff"/><text x="219" y="401" font-size="12" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="0.6">GEONET</text><text x="219" y="419" font-size="10.5" fill="#7f97ad" font-weight="400" text-anchor="start">policy / fusion</text><rect x="366" y="380" width="147" height="54" rx="6" fill="#0a1422" stroke="#24455f"/><rect x="366" y="380" width="3" height="54" fill="#ff9a94"/><text x="378" y="401" font-size="12" fill="#ff9a94" font-weight="600" text-anchor="start" letter-spacing="0.6">GEOVAULT</text><text x="378" y="419" font-size="10.5" fill="#7f97ad" font-weight="400" text-anchor="start">AES-GCM vault</text><line x1="98" y1="444" x2="98" y2="462" stroke="#59d6ff" stroke-width="2" stroke-opacity=".75"/><polygon points="98,462 94.3,453.8 101.7,453.8" fill="#59d6ff"/><rect x="48" y="462" width="636" height="56" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="462" width="3.5" height="56" rx="1.7" fill="#b8a6ff"/>
+<text x="62" y="489" font-size="13" fill="#b8a6ff" font-weight="600" text-anchor="start" letter-spacing="1.5">UI SHELL</text>
+<text x="62" y="514" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">GEOUI_MAP: Leaflet 1.9.4 wrapper, crosshair, offline land · GEOUI: eleven panels</text><text x="48" y="542" font-size="11.5" fill="#7f97ad" font-weight="400" text-anchor="start">vendor/ · Leaflet (BSD-2) and qrcode.js (MIT) are shipped, never downloaded</text><rect x="48" y="560" width="636" height="96" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="560" width="3.5" height="96" rx="1.7" fill="#6fe3b0"/>
+<text x="64" y="587" font-size="13" fill="#6fe3b0" font-weight="600" text-anchor="start" letter-spacing="1.5">THE SAME FILES, TWO CONTAINERS</text>
+<text x="64" y="612" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">node tests/run-all.mjs → 623 gates / 0 failures</text>
+<text x="64" y="631" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">browser panel ⑪ → 623 gates / 0 failures (71 async)</text>
+<text x="64" y="650" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">A kernel may only reach another through globalThis; no import graph, no Node-only copy.</text><rect x="48" y="674" width="636" height="78" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="48" y="674" width="3.5" height="78" rx="1.7" fill="#f3d27a"/>
+<text x="64" y="701" font-size="13" fill="#f3d27a" font-weight="600" text-anchor="start" letter-spacing="1.5">NO HIDDEN RUNTIME</text>
+<text x="64" y="726" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">No repository fetch at start-up; the page works from a local folder with the network</text>
+<text x="64" y="744" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">  unplugged.</text>
+<text x="64" y="762" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">Offline data is 2.86 MB of the 10 MB full package — that is the point of offline-first.</text><rect x="712" y="140" width="420" height="238" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="712" y="140" width="3.5" height="238" rx="1.7" fill="#ff9a94"/>
+<text x="728" y="167" font-size="12.5" fill="#ff9a94" font-weight="600" text-anchor="start" letter-spacing="1.5">ONLY TWO EDGES MAY LEAVE</text>
+<text x="728" y="192" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Explicit GeoIP lookup — one IP address, sent only</text>
+<text x="728" y="212" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  after you grant network authorisation.</text>
+<text x="728" y="232" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Online basemap — the visible extent as XYZ tiles.</text>
+<text x="728" y="252" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  Vector is the default; tiles need a click.</text>
+<text x="728" y="276" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">No analytics beacon, no update check, no crash reporter,</text>
+<text x="728" y="294" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">  no font or script CDN.</text><rect x="712" y="394" width="420" height="180" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="712" y="394" width="3.5" height="180" rx="1.7" fill="#59d6ff"/>
+<text x="728" y="421" font-size="13" fill="#59d6ff" font-weight="600" text-anchor="start" letter-spacing="1.5">THE BRIDGE IS LOCAL</text>
+<text x="728" y="446" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• server.py and bridge-powershell.ps1 bind 127.0.0.1</text>
+<text x="728" y="466" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  only; other addresses are refused at start-up.</text>
+<text x="728" y="486" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• Every endpoint is GET; a POST is 405. Nothing is</text>
+<text x="728" y="506" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  written except the access log.</text>
+<text x="728" y="526" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">• The target becomes one argv element under</text>
+<text x="728" y="546" font-size="13" fill="#a9bdd0" font-weight="400" text-anchor="start">  shell=False; never a command string.</text><rect x="712" y="590" width="420" height="162" rx="8" fill="#0c1727" stroke="#24455f"/>
+<rect x="712" y="590" width="3.5" height="162" rx="1.7" fill="#6fe3b0"/>
+<text x="728" y="617" font-size="13" fill="#6fe3b0" font-weight="600" text-anchor="start" letter-spacing="1.5">ONE CONTRACT, TWO BRIDGES</text>
+<text x="728" y="642" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">python server.py --selftest → 110 items</text>
+<text x="728" y="661" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">bridge-powershell.ps1 -SelfTest → 202 items</text>
+<text x="728" y="680" font-size="12.5" fill="#8fe3ff" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">python tests/bridge-parity.py → 41 live cases</text>
+<text x="728" y="699" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">Same request to both, compared by status, key set, byte</text>
+<text x="728" y="717" font-size="12" fill="#7f97ad" font-weight="400" text-anchor="start">  count and origin verdict.</text><text x="48" y="854" font-size="10.5" fill="#5e7890" font-weight="600" text-anchor="start" letter-spacing="2.2">GEO POSITION WORKSTATION</text><text x="1132" y="854" font-size="10.5" fill="#5e7890" font-weight="600" text-anchor="end" letter-spacing="2.2">MECHANISM DIAGRAM</text></svg>

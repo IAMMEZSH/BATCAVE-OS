@@ -23,7 +23,7 @@ const update = require('./lib/update');
 const appUpdates = require('./lib/app-updates');
 const releaseFeed = require('./lib/release-feed');
 
-const VERSION = '3.1.2';
+const VERSION = '3.1.3';
 const CODENAME = 'SENTINEL';
 const IS_WIN = process.platform === 'win32';
 const IS_LINUX = process.platform === 'linux';
@@ -796,7 +796,7 @@ async function geoWifiSignals(elevated) {
 
 /* ---------------- geo-windows 桥接兼容层 ----------------
  * 用户的 geo-windows 静态页把同源 origin 当作桥接地址；这些端点按它
- * server.py 的响应契约返回，让嵌入的 11 个面板（无群聊）直接用真实数据。
+ * server.py 的响应契约返回，让嵌入的 11 个面板直接用真实数据。
  */
 function bridgeOriginOk(req) {
   const origin = req.headers.origin;

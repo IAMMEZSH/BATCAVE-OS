@@ -37,7 +37,7 @@ is the least risky choice.
 | Control server | Java 17 | HTTP API, model registry, resumable downloads, ZIP/tar.gz extraction, runtime supervision | Mature standard-library HTTP server, robust streams, simple deployment on one JAR |
 | Auxiliary core | Python 3.13 | Bootstrap, build orchestration, packaging, self-test driver, mock LLM | Glue code changes often; Python keeps the build script readable and portable |
 | Desktop shell | C++17 (Win32) | Tray icon, control center window, Edge app-mode launch | Native window with zero frameworks; launches the console like a product, not a dev server |
-| Web console | HTML/CSS/JS | Chat, debug, models, keys, environment UI | No build step, works on desktop and mobile browsers unmodified |
+| Web console | HTML/CSS/JS | Chat, debug, models, environment UI | No build step, works on desktop and mobile browsers unmodified |
 
 The C++ core never performs network downloads for models — that belongs to the
 Java server, which has reliable streaming and hash handling. The Java server
@@ -50,13 +50,13 @@ supervise and kill process trees.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────┐
-│ Desktop shell  client/main.cpp (Win32, 918 lines)                        │
+│ Desktop shell  client/main.cpp (Win32, 921 lines)                        │
 │  tray icon · control center · start/stop server · open console           │
 └───────────────┬──────────────────────────────────────────────────────────┘
                 │ spawns / HTTP
 ┌───────────────▼──────────────────────────────────────────────────────────┐
-│ Web console  server-java/web/console (app.js 3101 · styles.css 1471)     │
-│  Chat · Debug · Models · Keys · System · hash routing · canvas particles │
+│ Web console  server-java/web/console (app.js 1293 · styles.css 1043)     │
+│  Chat · Debug · Models · Environment · hash routing · canvas particles   │
 └───────────────┬──────────────────────────────────────────────────────────┘
                 │ REST /api/*
 ┌───────────────▼──────────────────────────────────────────────────────────┐

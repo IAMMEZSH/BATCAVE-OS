@@ -86,12 +86,10 @@ All notable changes to CodeForge AI are documented here. Versions follow
   scratch file can enter an archive.
 - Documentation, diagrams and console copy were refreshed to match: the
   manual, API reference, architecture notes, model guide and rendered diagrams
-  now describe CPU/CUDA selection instead of CPU-only inference. Every
-  web-console screenshot now shows the five-view rail (Chat, Debug, Models,
-  Keys, System); the chat, live reply, interjection, debug before/after, model
-  library, CUDA runtime, control center and two mobile views were regenerated
-  at 1.0.4, and the architecture and quick-start diagrams were re-rendered. The
-  native C helper now reports version 1.0.4.
+  now describe CPU/CUDA selection instead of CPU-only inference. Five
+  remaining v1.0.3 screenshots (debug, model library, control center and two
+  mobile views) were regenerated at 1.0.4, and the native C helper now reports
+  version 1.0.4.
 
 ## 1.0.3 — 2026-11-16
 

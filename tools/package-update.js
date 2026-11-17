@@ -8,8 +8,9 @@ const zlib = require('zlib');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = path.join(ROOT, 'dist');
-const ENTRIES = ['server.js', 'bin', 'lib', 'public', 'embedded', 'docs', 'update', 'README.md', 'CHANGELOG.md', 'LICENSE', 'version.json', 'package.json', 'start-batcave.cmd', 'start-batcave.vbs'];
-const SKIP_NAMES = new Set(['.git', 'node_modules', 'data', 'dist', 'iso', 'test', 'tools', 'Thumbs.db', '.DS_Store', 'server.out.log', 'server.err.log']);
+const ENTRIES = ['server.js', 'bin', 'lib', 'public', 'embedded', 'docs', 'update', 'README.md', 'CHANGELOG.md', 'LICENSE', 'version.json', 'package.json', 'start-batcave.cmd', 'start-batcave.vbs', 'iso/winbase/README-FIRST.txt'];
+const SKIP_NAMES = new Set(['.git', 'node_modules', 'data', 'memory', 'dist', 'iso', 'test', 'tools', 'Thumbs.db', '.DS_Store', 'server.out.log', 'server.err.log']);
+const ALLOW_PATHS = new Set(['public/geo/app/data']);
 
 function crc32(buf) {
   let c = 0xFFFFFFFF;
@@ -32,8 +33,9 @@ async function collect(rel, out) {
   if (st.isSymbolicLink()) throw new Error('symlink not allowed: ' + rel);
   if (st.isDirectory()) {
     for (const ent of await fsp.readdir(full, { withFileTypes: true })) {
-      if (SKIP_NAMES.has(ent.name) || ent.name.endsWith('.log')) continue;
-      await collect(rel + '/' + ent.name, out);
+      const childRel = rel + '/' + ent.name;
+      if ((SKIP_NAMES.has(ent.name) && !ALLOW_PATHS.has(childRel)) || ent.name.endsWith('.log')) continue;
+      await collect(childRel, out);
     }
     return;
   }

@@ -332,7 +332,7 @@
     desc: '自带全球报刊阅读 · RSS/翻译/朗读',
     mount(body, win) {
       return createEmbedded({
-        id: 'reading', name: '环球报阁', en: 'GLOBAL READING ROOM', port: 7782, version: '1.3.0',
+        id: 'reading', name: '环球报阁', en: 'GLOBAL READING ROOM', port: 7782, version: '1.3.1',
         desc: '多语种报刊阅读：RSS 抓取、正文抽取、翻译、朗读与导出。',
         footNote: '数据独立存放于 BATCAVE 数据目录；不携带任何原有阅读记录或账号数据。'
       }, body, win);

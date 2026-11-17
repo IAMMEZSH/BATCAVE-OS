@@ -5,8 +5,9 @@ const fsp = require('node:fs/promises');
 const path = require('node:path');
 const { CATALOG, CATEGORIES, REGIONS } = require('./sources');
 const {
-  hashId, nowIso, normalizeUrl, stripTracking, feedKey, truncate, safeJsonParse,
+  hashId, nowIso, normalizeUrl, stripTracking, feedKey, truncate, safeJsonParse, unwrapNestedUrl,
 } = require('./util');
+
 const APP_VERSION = require('../package.json').version;
 
 const CATEGORY_IDS = new Set(CATEGORIES.map((item) => item.id));
@@ -171,6 +172,14 @@ class Store {
       if (typeof article.read !== 'boolean') article.read = false;
       if (typeof article.starred !== 'boolean') article.starred = false;
       if (article.blocks && !Array.isArray(article.blocks)) article.blocks = null;
+      if (typeof article.image === 'string' && article.image) {
+        const fixed = unwrapNestedUrl(article.image);
+        if (fixed !== article.image) { article.image = fixed; this.dirty = true; }
+        if (article.link && stripTracking(article.image) === stripTracking(article.link)) {
+          article.image = '';
+          this.dirty = true;
+        }
+      }
     }
 
     if (!this.db.seeded) {

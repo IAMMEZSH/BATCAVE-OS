@@ -115,7 +115,11 @@ async function main() {
   for (const key of ['github', 'gitcode']) {
     manifest.assets = manifest.assets || {};
     manifest.assets[key] = { url: base[key] + zipName, sha256, size: buf.length };
-    if (manifest.notesUrls) manifest.notesUrls[key] = base[key].replace('/releases/download/' + 'v' + version.version + '/', '/releases/tag/v' + version.version);
+    if (manifest.notesUrls) {
+      manifest.notesUrls[key] = key === 'github'
+        ? 'https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v' + version.version
+        : 'https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v' + version.version;
+    }
   }
   if (manifest.notesUrl) manifest.notesUrl = manifest.notesUrls ? manifest.notesUrls.github : manifest.notesUrl;
   await fsp.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');

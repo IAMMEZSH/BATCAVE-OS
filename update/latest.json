@@ -7,18 +7,18 @@
   "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1",
   "notesUrls": {
     "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/tag/v3.1.1"
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.1"
   },
   "assets": {
     "github": {
       "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip",
-      "sha256": "6a27e993da6d2472a2fa274adb7abc0e853c2fd769b8e862fc1120a9bd76c834",
-      "size": 41187406
+      "sha256": "a8b64bef7f9184482d8c0caa04b92b9880c24cc39ce3f9f09152b40ce328bded",
+      "size": 41187591
     },
     "gitcode": {
       "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip",
-      "sha256": "6a27e993da6d2472a2fa274adb7abc0e853c2fd769b8e862fc1120a9bd76c834",
-      "size": 41187406
+      "sha256": "a8b64bef7f9184482d8c0caa04b92b9880c24cc39ce3f9f09152b40ce328bded",
+      "size": 41187591
     }
   }
 }

@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | 程序包 v3.1.1（ZIP，用于安装或应用内更新） | [BATCAVE-OS-3.1.1.zip](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip) | [BATCAVE-OS-3.1.1.zip](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip) |
 | SHA-256 校验值 | [SHA256SUMS.txt](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.1/SHA256SUMS.txt) | [SHA256SUMS.txt](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.1/SHA256SUMS.txt) |
-| 发布页与完整更新说明 | [Release v3.1.1](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1) | [Release v3.1.1](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/tag/v3.1.1) |
+| 发布页与完整更新说明 | [Release v3.1.1](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1) | [Release v3.1.1](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.1) |
 | 源码仓库 | [IAMMEZSH/BATCAVE-OS](https://github.com/IAMMEZSH/BATCAVE-OS) | [gcw_So3EkhfR/BATCAVE-OS](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS) |
 
 两个平台发布**同一个 ZIP、同一个 SHA-256、同一份说明**。已安装旧版本的用户不需要重新下载镜像或重装系统，直接在应用内打开"系统更新"，选择 GitHub 或 GitCode 即可升级。

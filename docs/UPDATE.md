@@ -149,7 +149,7 @@ curl -L https://raw.gitcode.com/gcw_So3EkhfR/BATCAVE-OS/raw/main/update/latest.j
   "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1",
   "notesUrls": {
     "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/tag/v3.1.1"
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.1"
   },
   "assets": {
     "github": { "url": "https://.../BATCAVE-OS-3.1.1.zip", "sha256": "64位十六进制", "size": 12345678 },

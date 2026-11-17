@@ -1,6 +1,6 @@
 # BATCAVE OS 使用手册
 
-适用于 BATCAVE OS 3.1.0 · SENTINEL。本手册从第一次启动写到每个面板的实际用途、数据位置与故障处理。更新机制另见 [更新说明](UPDATE.md)。
+适用于 BATCAVE OS 3.1.1 · SENTINEL。本手册从第一次启动写到每个面板的实际用途、数据位置与故障处理。更新机制另见 [更新说明](UPDATE.md)。
 
 ---
 

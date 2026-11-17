@@ -20,8 +20,10 @@ const appsLib = require('./lib/apps');
 const mail = require('./lib/mail');
 const embedded = require('./lib/embedded');
 const update = require('./lib/update');
+const appUpdates = require('./lib/app-updates');
+const releaseFeed = require('./lib/release-feed');
 
-const VERSION = '3.1.0';
+const VERSION = '3.1.1';
 const CODENAME = 'SENTINEL';
 const IS_WIN = process.platform === 'win32';
 const IS_LINUX = process.platform === 'linux';
@@ -1476,6 +1478,8 @@ async function createServer() {
   bridge.init();
   await home.init(HOME_ROOT);
   await update.init();
+  appUpdates.init(DATA_DIR);
+  releaseFeed.init(DATA_DIR);
   await buildBoot();
 
   const server = http.createServer(async (req, res) => {
@@ -1579,7 +1583,7 @@ async function createServer() {
 
       if (pathname === '/api/embedded/list' && req.method === 'GET') {
         if (!tokenOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
-        return sendJSON(res, 200, await embedded.list());
+        return sendJSON(res, 200, await embedded.list(DATA_DIR));
       }
 
       if (pathname === '/api/embedded/start' && req.method === 'POST') {
@@ -1592,6 +1596,69 @@ async function createServer() {
         if (!tokenOk(req) || !originOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
         const body = await readJSON(req, 8 * 1024);
         return sendJSON(res, 200, await embedded.stop(String(body.id || '')));
+      }
+
+      if (pathname === '/api/embedded/update/status' && req.method === 'GET') {
+        if (!tokenOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
+        try {
+          return sendJSON(res, 200, await appUpdates.status(url.searchParams.get('app') || ''));
+        } catch (e) {
+          return sendJSON(res, e.status || 500, { ok: false, error: e.message });
+        }
+      }
+
+      if (pathname === '/api/embedded/update/check' && req.method === 'GET') {
+        if (!tokenOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
+        try {
+          return sendJSON(res, 200, await appUpdates.check(url.searchParams.get('app') || '', url.searchParams.get('source') || 'github'));
+        } catch (e) {
+          return sendJSON(res, e.status || 502, { ok: false, error: e.message });
+        }
+      }
+
+      if (pathname === '/api/embedded/update/apply' && req.method === 'POST') {
+        if (!tokenOk(req) || !originOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
+        const body = await readJSON(req, 8 * 1024);
+        try {
+          return sendJSON(res, 202, appUpdates.startApply(body.app || '', body.source || 'github', body.version || ''));
+        } catch (e) {
+          return sendJSON(res, e.status || 500, { ok: false, error: e.message });
+        }
+      }
+
+      if (pathname === '/api/embedded/update/job' && req.method === 'GET') {
+        if (!tokenOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
+        const job = appUpdates.getJob(url.searchParams.get('id') || '');
+        if (!job) return sendJSON(res, 404, { error: 'no app update job' });
+        return sendJSON(res, 200, job);
+      }
+
+      if (pathname === '/api/releases/feed' && req.method === 'GET') {
+        if (!tokenOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
+        try {
+          return sendJSON(res, 200, await releaseFeed.getFeed({ force: url.searchParams.get('force') === '1' }));
+        } catch (e) {
+          return sendJSON(res, 502, { ok: false, error: e.message });
+        }
+      }
+
+      if (pathname === '/api/releases/check' && req.method === 'POST') {
+        if (!tokenOk(req) || !originOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
+        try {
+          return sendJSON(res, 200, await releaseFeed.getFeed({ force: true }));
+        } catch (e) {
+          return sendJSON(res, 502, { ok: false, error: e.message });
+        }
+      }
+
+      if (pathname === '/api/releases/seen' && req.method === 'POST') {
+        if (!tokenOk(req) || !originOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
+        const body = await readJSON(req, 32 * 1024);
+        try {
+          return sendJSON(res, 200, await releaseFeed.markSeen(body.ids));
+        } catch (e) {
+          return sendJSON(res, 500, { ok: false, error: e.message });
+        }
       }
 
       if (pathname === '/api/apps/search' && req.method === 'GET') {
@@ -1931,6 +1998,7 @@ async function start(options = {}) {
     }
   }
   const url = `http://${HOST === '0.0.0.0' ? '127.0.0.1' : HOST}:${port}/`;
+  releaseFeed.startWatching();
   console.log(banner(port));
   process.on('exit', () => { try { embedded.stopAll(); } catch (e) { /* children already gone */ } });
   process.on('SIGINT', () => process.exit(0));

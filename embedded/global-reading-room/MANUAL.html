@@ -170,15 +170,14 @@ footer.end{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px;ma
   <a href="#images">10 · Images &amp; OCR</a>
   <a href="#video">11 · Video &amp; subtitles</a>
   <a href="#export">12 · Exports</a>
-  <a href="#groupchat">13 · Group chat</a>
-  <a href="#settings">14 · Settings</a>
-  <a href="#data">15 · Data &amp; backup</a>
-  <a href="#security">16 · Security</a>
-  <a href="#api">17 · Local API</a>
-  <a href="#troubleshooting">18 · Troubleshooting</a>
-  <a href="#legal">19 · Legal</a>
-  <a href="#faq">20 · FAQ</a>
-  <a href="#appendix">21 · Appendices</a>
+  <a href="#settings">13 · Settings</a>
+  <a href="#data">14 · Data &amp; backup</a>
+  <a href="#security">15 · Security</a>
+  <a href="#api">16 · Local API</a>
+  <a href="#troubleshooting">17 · Troubleshooting</a>
+  <a href="#legal">18 · Legal</a>
+  <a href="#faq">19 · FAQ</a>
+  <a href="#appendix">20 · Appendices</a>
 </nav>
 
 <main>
@@ -650,40 +649,8 @@ Key        (leave empty for Ollama)</code></pre>
   <div class="note"><b>Copyright:</b> exports are for personal offline reading. Do not republish, resell or redistribute the exported articles. The copyright notice stays in the exported files.</div>
 </section>
 
-<section id="groupchat">
-  <h2><span class="num">13 · Group chat</span>The room, the token and the asterisk rule</h2>
-  <p>The reading room can join the <strong>“大厅”</strong> room of a TenSaint73OS relay. It is <strong>disabled by default</strong>: until you tick <strong>启用群聊</strong> and save, the client sends no chat request at all. The token is stored in this browser only, never in the article library, and the address must be HTTPS or a loopback <code>http://127.0.0.1</code> / <code>http://localhost</code>.</p>
-  <h3>Setup</h3>
-  <ol class="steps">
-    <li>Open <strong>群聊</strong> in the top bar, then <strong>群聊设置</strong>.</li>
-    <li>Fill <strong>中继地址</strong> with the TenSaint73OS base URL, for example <code>https://relay.example.com</code> or <code>http://127.0.0.1:7373</code>.</li>
-    <li>Paste the <strong>房间令牌</strong> issued by the TenSaint73OS administrator. Only its hash exists on the relay; the plaintext is shown once.</li>
-    <li>Pick a display name (at most 24 characters), tick <strong>启用群聊</strong>, and save. <strong>测试连接</strong> performs a single read-only check first.</li>
-  </ol>
-  <figure class="plate">
-    <img src="docs/images/guide-12-chat.png" alt="Group chat panel over the reading room, showing the civility rule, the relay settings and masked messages">
-    <figcaption><span>Field guide 12 · the room, the token and the asterisk rule</span><span>Disabled by default; nothing is sent until chat is enabled and saved</span></figcaption>
-  </figure>
-  <h3>Civility is enforced</h3>
-  <div class="note"><b>希望大家文明发言，不文明的字符将会变成星号。</b> Profanity and every pornography-, gambling- or drug-related term (黄赌毒) count as uncivil characters. The relay replaces each matched term with <code>*</code> of the same length <em>before the message is stored or relayed</em>, and this client filters again before display. Chinese terms match as substrings; English terms use word boundaries, so “better” is not mangled by “bet”. Empty messages, messages over 2,000 characters and more than 20 posts per minute are refused.</div>
-  <h3>What is and is not shared</h3>
-  <div class="tablewrap">
-  <table>
-    <thead><tr><th>Item</th><th>Behaviour</th></tr></thead>
-    <tbody>
-      <tr><td>Messages</td><td>One public room, “大厅”. The relay keeps the last 200; this client renders the last 100.</td></tr>
-      <tr><td>Polling</td><td>Every 3.5 seconds while the panel is open and chat is enabled; the timer stops when the panel closes or chat is disabled.</td></tr>
-      <tr><td>Identity</td><td>A display name and the room token. No article, feed, translation, setting or browsing history is sent.</td></tr>
-      <tr><td>Token storage</td><td>Browser local storage on this device. The relay stores only a SHA-256 hash and the administrator can revoke it at any time.</td></tr>
-      <tr><td>Offline</td><td>The room reports the failure; reading, translation, OCR and exports continue to work.</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <div class="ok"><b>The rule in one line:</b> what reaches the relay is already masked, and what appears on screen is masked once more. The asterisk is not a decoration.</div>
-</section>
-
 <section id="settings">
-  <h2><span class="num">14 · Reference</span>Every setting, explained</h2>
+  <h2><span class="num">13 · Reference</span>Every setting, explained</h2>
   <div class="tablewrap">
   <table>
     <thead><tr><th>Setting</th><th>Default</th><th>What it does</th><th>Recommended</th></tr></thead>
@@ -708,7 +675,7 @@ Key        (leave empty for Ollama)</code></pre>
 </section>
 
 <section id="data" class="alt">
-  <h2><span class="num">15 · Data</span>The folder that is the whole application</h2>
+  <h2><span class="num">14 · Data</span>The folder that is the whole application</h2>
   <pre><code>data/
 ├─ db.json                      sources, article index, settings, read/star state
 ├─ db.json.bak                  previous good copy
@@ -739,7 +706,7 @@ Key        (leave empty for Ollama)</code></pre>
 </section>
 
 <section id="security">
-  <h2><span class="num">16 · Trust boundary</span>Security and privacy model</h2>
+  <h2><span class="num">15 · Trust boundary</span>Security and privacy model</h2>
   <div class="grid2">
     <div class="card">
       <h4>Network</h4>
@@ -786,7 +753,7 @@ Key        (leave empty for Ollama)</code></pre>
 </section>
 
 <section id="api" class="alt">
-  <h2><span class="num">17 · Automation</span>The local HTTP API</h2>
+  <h2><span class="num">16 · Automation</span>The local HTTP API</h2>
   <p>Every UI action is backed by a local JSON endpoint. You can script exports, trigger a sync or integrate the archive with another tool. All endpoints are under <code>http://127.0.0.1:7317/api</code> and inherit the localhost-only policy.</p>
   <h3>Health and state</h3>
   <pre><code>curl http://127.0.0.1:7317/api/health
@@ -833,7 +800,7 @@ curl -X POST http://127.0.0.1:7317/api/captions \
 </section>
 
 <section id="troubleshooting">
-  <h2><span class="num">18 · Recovery</span>Troubleshooting matrix</h2>
+  <h2><span class="num">17 · Recovery</span>Troubleshooting matrix</h2>
   <div class="tablewrap">
   <table>
     <thead><tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr></thead>
@@ -866,7 +833,7 @@ curl -X POST http://127.0.0.1:7317/api/captions \
 </section>
 
 <section id="legal" class="alt">
-  <h2><span class="num">19 · Boundary</span>Legal, copyright and honest limitations</h2>
+  <h2><span class="num">18 · Boundary</span>Legal, copyright and honest limitations</h2>
   <h3>What the software reads</h3>
   <p>Global Reading Room reads <strong>public RSS/Atom feeds</strong> and <strong>publicly accessible article pages</strong>. It sends ordinary HTTP requests, respects the publisher's response, and does not defeat authentication, paywalls, DRM, CAPTCHAs or anti-bot systems.</p>
   <h3>What you may do with the output</h3>
@@ -890,7 +857,7 @@ curl -X POST http://127.0.0.1:7317/api/captions \
 </section>
 
 <section id="faq">
-  <h2><span class="num">20 · Answers</span>Frequently asked questions</h2>
+  <h2><span class="num">19 · Answers</span>Frequently asked questions</h2>
   <h3>Is it really free?</h3>
   <p>The application is free to run and has no subscription. Translation providers may have their own free tiers and quotas. MyMemory needs no key; DeepL, Azure and Baidu have free allowances; OpenAI-compatible services bill according to their own terms.</p>
   <h3>Does it work offline?</h3>
@@ -920,7 +887,7 @@ curl -X POST http://127.0.0.1:7317/api/captions \
 </section>
 
 <section id="appendix" class="alt">
-  <h2><span class="num">21 · Appendices</span>Short references</h2>
+  <h2><span class="num">20 · Appendices</span>Short references</h2>
   <h3>A · Keyboard shortcuts</h3>
   <div class="tablewrap">
   <table>

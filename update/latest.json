@@ -1,24 +1,24 @@
 {
   "schema": 1,
-  "version": "3.1.0",
+  "version": "3.1.1",
   "codename": "SENTINEL",
   "released": "2026-11-17",
-  "notes": "BATCAVE OS 3.1.0「SENTINEL」更新说明\n\n一、新增系统更新中心\n· 在桌面或开始菜单打开“系统更新”，可自由选择 GitHub 或 GitCode 作为更新来源。\n· 自动检查最新版本，显示版本号、发布时间、更新包大小与完整更新说明。\n· 下载过程显示百分比、已下载字节与当前阶段；下载完成后校验 SHA-256 与字节数，防止文件损坏或被替换。\n· 校验、解压、结构检查、文件替换分阶段进行；失败会自动回滚到更新前的版本。\n· 更新只替换程序层（server.js、lib、public、embedded、docs 等），不会重装 Windows，不会删除 data/ 与 ~/Batcave 中的个人数据。\n· 更新完成后点击“重启 BATCAVE”，旧进程退出并由重启助手拉起新版本，已打开的页面会自动轮询直到新版本上线。\n· 某个平台无法访问时会自动尝试另一平台，并在界面中标注实际使用的来源。\n\n二、Windows 基座：可启动 ISO 与 Windows To Go\n· 新增可启动 Windows 安装 ISO 构建：保留官方安装树，只在 sources$OEM$ 注入 BATCAVE、对应架构 node.exe 与 SetupComplete.cmd；安装完成即带桌面，首次登录自动全屏启动。\n· x64 ISO 同时包含 BIOS 与 UEFI 引导，ARM64 ISO 为 UEFI 引导；构建后自动挂载成品，校验 WIM 架构、引导目录、载荷、快捷方式与禁入凭据。\n· ISO 安装版程序位于 C:BATCAVE-OS，运行数据写入 %LOCALAPPDATA%BATCAVE-OS，更新程序层时不触碰用户数据。\n· Windows To Go 新增 ARM64 镜像构建：使用 ARM64 官方 ISO（专业版索引 3）与 win-arm64 Node.js，引导管理器、winload.efi、node.exe 均校验为 0xAA64。\n· x64 与 ARM64 共用同一套构建、校验、直写 U 盘脚本，日志与 BUILD-INFO 按架构分开保存。\n· 构建改为按 GPT 分区类型定位 EFI 与 Windows 分区，并动态分配空闲盘符，修复 S: 被占用导致构建失败的问题。\n\n三、应用与体验\n· 软件中心新增“游戏加速器”：网易UU加速器、雷神加速器、迅游加速器，可从各自官网解析最新安装包，校验 HTTPS 主机与 Authenticode 厂商签名后启动官方安装器，并核验注册表安装结果。\n· 内嵌 CodeForge AI 1.0.4，优先复用本机完整安装，否则运行自带精简版。\n· 新增内置“影音播放器”：扫描 Music / Videos / Downloads / Uploads 与自定义目录，支持音频与视频播放列表、进度拖动、倍速、循环、音量与全屏；文件服务支持 HTTP Range，视频可随机跳转。\n· 新增内置“图片查看器”：扫描 Pictures / Gallery / Uploads / Downloads 与自定义目录，支持缩略图、缩放、旋转、幻灯片、全屏、下载与删除；文件管理器双击图片或媒体文件即可用对应查看器打开。\n· 邮箱继续使用用户本人输入的 QQ / 163 / 126 / yeah.net 授权码，凭据只驻留内存，不落盘、不写日志。\n· 移除已完成任务的全部界面标签与进度数据文件，程序包与 ISO 不再包含任务进度组件。\n· start-batcave.cmd / .vbs 优先使用程序目录内的 node.exe，离线基座不依赖系统 PATH。\n\n四、升级方法\n1. 打开“系统更新”，选择 GitHub 或 GitCode。\n2. 点击“检查更新”，确认 3.1.0 的更新说明。\n3. 点击“下载并安装”，等待校验与替换完成。\n4. 点击“重启 BATCAVE”，刷新页面即进入 3.1.0。\n\n如果两个平台都暂时无法访问，可手动下载 BATCAVE-OS-3.1.0.zip，解压覆盖程序目录（保留 data/ 与 node.exe），再重启服务。\n可启动 ISO 与 Windows To Go VHD 包含微软 Windows 文件，项目不公开分发；请使用自己的官方 ISO 在本机构建。",
-  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.0",
+  "notes": "BATCAVE OS 3.1.1「SENTINEL」更新说明\n\n一、自带应用可在系统内更新\n· TenSaint73OS、环球报阁、CodeForge AI 三个自带应用新增“更新”入口。\n· 每个应用可自行选择 GitHub 或 GitCode 作为更新来源；某个平台下载不通时可直接切换另一个平台。\n· 检查更新会显示当前版本、最新版本、发布时间、更新包大小与完整更新说明。\n· 下载完成后校验 SHA-256 与字节数；解压前检查路径穿越、符号链接与文件大小；更新包版本必须与发布版本一致。\n· 更新前自动停止应用并备份被替换的文件；新版本启动失败会自动回滚并尝试恢复旧版本。\n· 用户数据、账号、配置、模型与工作区保留；更新包若携带 .tsowner、OWNER.pin、auth.json、system.db 等凭据类文件，会被跳过且不会写入本机。\n\n二、独立启动器\n· 为 TenSaint73OS、环球报阁、CodeForge AI 补充 Windows 启动器；不经过 BATCAVE 也可以直接启动单个项目。\n· 启动器优先使用程序目录内的 runtime\\node.exe 或 JAVA_HOME，找不到时回退到系统 node / java，并给出明确提示。\n\n三、群聊功能移除\n· TenSaint73OS、环球报阁、定位工作站三个项目移除群聊入口、面板、中继接口与相关样式。\n· 旧聊天数据文件不随升级删除；只移除功能入口与接口。\n· TenSaint73OS 的站内 AI 助手对话保留，不属于群聊。\n\n四、安装与更新方法\n1. 打开桌面“系统更新”，选择 GitHub 或 GitCode。\n2. 点击“检查更新”，确认 3.1.1 的更新说明。\n3. 点击“下载并安装”，等待校验、替换与重启完成。\n4. 自带应用打开后点顶部“更新”，可分别检查 TenSaint73OS、环球报阁与 CodeForge AI。\n\n如果某个平台无法访问，可切换另一个平台；也可以手动下载 BATCAVE-OS-3.1.1.zip，解压覆盖程序目录（保留 data/ 与 node.exe），再重启服务。\n可启动 ISO 与 Windows To Go VHD 包含微软 Windows 文件，项目不公开分发；请使用自己的官方 ISO 在本机构建。",
+  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1",
   "notesUrls": {
-    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.0",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/tag/v3.1.0"
+    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.1",
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/tag/v3.1.1"
   },
   "assets": {
     "github": {
-      "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.0/BATCAVE-OS-3.1.0.zip",
-      "sha256": "a037a8ef3c269e4a8d550186e08eecc505158dc30c34ee9fd702bf61528808a2",
-      "size": 41176199
+      "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip",
+      "sha256": "4e866ebe11a489d3ca9043445abfd1dba8a9485c14fa45fad60e343954096e05",
+      "size": 41177435
     },
     "gitcode": {
-      "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.0/BATCAVE-OS-3.1.0.zip",
-      "sha256": "a037a8ef3c269e4a8d550186e08eecc505158dc30c34ee9fd702bf61528808a2",
-      "size": 41176199
+      "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.1/BATCAVE-OS-3.1.1.zip",
+      "sha256": "4e866ebe11a489d3ca9043445abfd1dba8a9485c14fa45fad60e343954096e05",
+      "size": 41177435
     }
   }
 }

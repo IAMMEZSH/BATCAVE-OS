@@ -1,0 +1,181 @@
+TenSaint73OS · Android / Termux Deployment Guide
+================================================
+This guide covers Android + Termux only. For Windows, Linux, macOS and iPhone/iPad
+see the package's Start Here document.
+This package is not an APK. On Android, Termux runs Node and Chrome opens the
+console. The public package contains no administrator account, real database or
+key.
+
+1. Install Termux
+-----------------
+1. Install Termux from F-Droid. The Play Store build is outdated and not
+   recommended.
+2. Optional: install Termux:Widget (home-screen widget) and Termux:Boot
+   (start at boot).
+3. Open Termux and run:
+     termux-setup-storage
+     pkg update -y
+     pkg install -y nodejs-lts cloudflared openssl termux-api unzip
+   Verify:
+     node -v
+     cloudflared --version
+
+2. Unpack and first start
+-------------------------
+1. Put TenSaint73OS-Android-Termux.zip in the phone's Download directory.
+2. In Termux:
+     cd ~
+     unzip ~/storage/downloads/TenSaint73OS-Android-Termux.zip -d ~/
+   After unpacking you should have:
+     ~/TenSaint73OS               main program and data
+     ~/启动-TenSaint73OS-Android.sh
+     ~/安装-Termux桌面小部件.sh
+3. Start it (either command):
+     sh ~/启动-TenSaint73OS-Android.sh
+   or:
+     cd ~/TenSaint73OS
+     sh start.sh
+4. Open in the browser:
+     http://127.0.0.1:7373
+
+3. Accounts
+-----------
+The public package is member-only by default:
+  - Register: press Register on the login page; an ordinary member is created.
+  - Sign in: use your member account. If a security phone is bound, the number
+    is required as well.
+  - Sign out: the power button at the lower left.
+  - Delete: Account Security -> Permanently delete account. This destroys the
+    account's encrypted database and files.
+Every member's data and files are encrypted on disk, and members cannot read
+each other's space. No administrator is built in, and the page cannot register
+one.
+
+If the instance owner wants the supreme administrator on this device:
+  The program never generates administrator credentials and the public package
+  contains none. Register the key you trust, then import the encrypted .tsowner
+  exported on the original device:
+     sh owner/fingerprint-owner-key.sh "/path/to/your.tsowner"
+     sh owner/import-owner-key.sh
+     The first command writes owner/OWNER.pin (fingerprint only, no credentials,
+     portable across devices). While it is absent every import is refused.
+     Enter the .tsowner path and the owner-key passphrase. The import accepts the
+     key only when it matches the pin, so self-made keys are rejected. The
+     administrator identity (username, password hash and bound phone) is written
+     into this installation's encrypted auth vault.
+  Then start the program and sign in with the original administrator password
+  plus the original bound phone number. The import works only while this
+  installation has no administrator. No admin.env, environment variable,
+  console switch, API call or AI command can create one.
+The full cross-device export/import procedure is in owner/README.txt.
+The administrator password is also the encryption key of data/system.db;
+losing it makes the system database unrecoverable.
+
+4. Networking: Cloudflare outbound tunnel
+-----------------------------------------
+The server binds 127.0.0.1 only; other devices on the LAN cannot connect
+directly. For external access, sign in as administrator -> Network Matrix ->
+Tunnel Control -> Start tunnel.
+On first use press Install tunnel component. If the official source is
+unreachable the installer switches to a mirror automatically, downloads large
+files in parallel segments to avoid per-connection throttling, and on Windows
+verifies the digital signature. Linux, Termux and iSH start the tunnel after a
+self-check; macOS is supported the same way.
+After replacing or upgrading program files, fully exit and restart the platform
+before the page can load the new version. Replace the whole TenSaint73OS
+directory; at minimum server.js and core/downloader.js must be updated together,
+or the service will not start.
+You can also run, in Termux:
+  cd ~/TenSaint73OS
+  ./run-online.sh
+The script acquires a wake lock, starts the cloudflared outbound tunnel and
+prints the HTTPS hostname Cloudflare allocates for this process. It is HTTPS end
+to end, needs no public IP and opens no router port.
+The first run asks you to type yes and confirm that the administrator password
+is a strong secret known only to you. Press Ctrl+C to stop; the tunnel closes
+with the process.
+
+Notes:
+  - A Quick Tunnel gets a new URL on every restart. A stable URL requires a
+    Cloudflare named tunnel.
+  - Never forward port 7373 to the Internet. It is plain HTTP; passwords would
+    travel in the clear.
+  - The sidebar URL board collects the current tunnel address and keeps its
+    history.
+
+Stable URL (optional, requires your own domain):
+  - Register a free Cloudflare account and create a named tunnel in Zero Trust.
+  - cloudflared tunnel login
+  - cloudflared tunnel create tensaint
+  - Put the tunnel credentials in data/tunnel.json and write data/tunnel.yml:
+      tunnel: your-tunnel-id
+      credentials-file: /data/data/com.termux/files/home/TenSaint73OS/data/tunnel.json
+      ingress:
+        - hostname: your-domain
+          service: http://localhost:7373
+        - service: http_status:404
+  - Before starting:
+      export TS_TUNNEL_NAME=tensaint
+      export TS_PUBLIC_URL=https://your-domain
+  - Then run ./run-online.sh; the address stays fixed.
+
+5. Staying online (Android kills background apps)
+-------------------------------------------------
+Do all of these:
+  1. Settings -> Apps -> Termux -> Battery -> Unrestricted / Not optimized.
+  2. Allow Termux and Termux:Boot to autostart in the vendor's startup manager.
+  3. Keep the phone on power for long sessions.
+  4. In Developer options, disable limits on background processes.
+
+Start at boot (requires Termux:Boot):
+  mkdir -p ~/.termux/boot
+  cat > ~/.termux/boot/tensaint.sh <<'EOF'
+#!/data/data/com.termux/files/usr/bin/sh
+termux-wake-lock
+cd ~/TenSaint73OS
+node server.js
+EOF
+  chmod 700 ~/.termux/boot/tensaint.sh
+After a reboot, without opening Termux, verify with the phone browser at
+127.0.0.1:7373.
+
+6. Home-screen widget
+---------------------
+  sh ~/安装-Termux桌面小部件.sh
+Then install Termux:Widget from F-Droid, long-press the home screen -> Widgets
+-> Termux:Widget -> choose TenSaint73OS.
+The widget starts local mode and opens the browser. For an external address,
+run ./run-online.sh manually first.
+
+7. Backup
+---------
+  cd ~/TenSaint73OS
+  ./backup.sh
+This creates /sdcard/Download/tensaint-backup-YYYYMMDD-HHMM.tar.gz.enc.
+The backup contains data/install.salt, which must be kept with the encrypted
+databases; system.db alone cannot be restored without the salt.
+To restore, unpack into ~/TenSaint73OS; the exact command is printed at the end
+of backup.sh.
+The backup is still your private data. Do not upload it to public storage or
+group chats.
+
+8. Per-person grants (optional, administrator)
+----------------------------------------------
+The supreme administrator can see all data. Other accounts can use only their
+own space by default. Under Users -> Grants the administrator can set a level
+per global table and per directory.
+Changes take effect on the member's next request; revoking removes access
+immediately.
+
+9. Security reminders
+---------------------
+- The public package carries no administrator credentials; the administrator
+  belongs to the instance owner alone.
+- The server binds 127.0.0.1 by default; external access must go through the
+  HTTPS tunnel.
+- data/ contains the encrypted databases, auth.json, system.db and install.salt.
+  Do not upload it to public storage, group chats or untrusted people.
+- A forgotten administrator password cannot decrypt system.db. Keep both the
+  backup and the password.
+- Keep Node.js and cloudflared updated; do not install repackaged builds from
+  unknown sources.

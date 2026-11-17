@@ -1,0 +1,16 @@
+data/
+dist/
+iso/out/
+node_modules/
+*.log
+server.out.log
+server.err.log
+*.tmp-*
+.qa-*/
+.DS_Store
+Thumbs.db
+.env
+.tsowner
+OWNER.pin
+auth.json
+system.db

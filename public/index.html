@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="cyan">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04070b">
+<meta name="color-scheme" content="dark">
+<title>BATCAVE OS // SENTINEL</title>
+<link rel="stylesheet" href="/css/os.css">
+<link rel="stylesheet" href="/css/mail.css">
+<link rel="stylesheet" href="/css/update.css">
+<link rel="stylesheet" href="/css/player.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-bat" viewBox="0 0 24 24"><path d="M12 4.2c1.2 1.7 2 3 4 3.4-.2 1.8-.9 2.9-2.2 3.8 1.7-.2 3.1-1 4.3-2.3.4 2.7 1.7 4.5 3.7 5.6-2.4.3-4.4-.1-6.2-1.3.5 2.1 1.8 3.5 3.9 4.3-3 .4-5.5-.3-7.5-2.2-2 1.9-4.5 2.6-7.5 2.2 2.1-.8 3.4-2.2 3.9-4.3-1.8 1.2-3.8 1.6-6.2 1.3 2-1.1 3.3-2.9 3.7-5.6 1.2 1.3 2.6 2.1 4.3 2.3C8.9 10.5 8.2 9.4 8 7.6c2-.4 2.8-1.7 4-3.4z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></symbol>
+  <symbol id="i-files" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 10h18"/></symbol>
+  <symbol id="i-browser" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 4 5.7 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.7-4-9s1.4-6.5 4-9z"/></symbol>
+  <symbol id="i-forge" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M6 13l3-3 2 2 3-4 4 5"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1z"/></symbol>
+  <symbol id="i-notes" viewBox="0 0 24 24"><path d="M5 3h11l4 4v14H5z"/><path d="M15 3v5h5M8 12h8M8 16h6"/></symbol>
+  <symbol id="i-vault" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="4"/><path d="M12 8v2M12 14v2M8 12h2M14 12h2"/></symbol>
+  <symbol id="i-gallery" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m21 15-5-5L5 20"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-weather" viewBox="0 0 24 24"><path d="M7 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18.4 12 3 3 0 0 1 18 18z"/><path d="M8 21l-1 2M12 21l-1 2M16 21l-1 2"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+  <symbol id="i-security" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.4 8 8 9 4.6-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 8h10a5 5 0 0 1 4.9 6l-.6 3a2.5 2.5 0 0 1-4.3 1L15 16H9l-2 2a2.5 2.5 0 0 1-4.3-1l-.6-3A5 5 0 0 1 7 8z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></symbol>
+  <symbol id="i-alfred" viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v3M8 18h4"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></symbol>
+  <symbol id="i-taskmgr" viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="M6 9h4M6 12h8M6 15h6"/></symbol>
+  <symbol id="i-editor" viewBox="0 0 24 24"><path d="M4 20h16M5 16l10-10 3 3-10 10H5z"/><path d="m13 8 3 3"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v9"/><path d="M6.4 6.4a8 8 0 1 0 11.2 0"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-restart" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-min" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-max" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="1"/></symbol>
+  <symbol id="i-restore" viewBox="0 0 24 24"><rect x="7" y="7" width="12" height="12" rx="1"/><path d="M5 15V5h10"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 15 7-7 7 7"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m21 15-5-5L5 20"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M4 4h13l3 3v13H4z"/><path d="M8 4v6h8V4M8 20v-6h8v6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m7 4 13 8-13 8z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 4v16M16 4v16"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8zM21 3 11 13"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+  <symbol id="i-memory" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10v4M11 10v4M15 10v4M19 10v4M6 18v2M18 18v2"/></symbol>
+  <symbol id="i-disk" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+  <symbol id="i-network" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="6" rx="1"/><rect x="2" y="15" width="6" height="6" rx="1"/><rect x="16" y="15" width="6" height="6" rx="1"/><path d="M12 9v3M5 15v-3h14v3"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M19 13v7H4V5h7"/></symbol>
+  <symbol id="i-reader" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 12h8M8 15h5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10M9 20v-6h6v6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 21h20z"/><path d="M12 9v5M12 17h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 3l3 3M14 5l3 3"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+  <symbol id="i-run" viewBox="0 0 24 24"><path d="m6 4 12 8-12 8z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L20 8l-4-4L4 16z"/><path d="m14 6 4 4"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></symbol>
+  <symbol id="i-radio" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="m7 8 10-5"/><circle cx="16" cy="14" r="2.6"/><path d="M6 12h4M6 16h4"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9h16l-1-5H5z"/><path d="M5 9v11h14V9"/><path d="M9 13h6v7"/></symbol>
+</svg>
+
+<div id="boot" class="screen boot-screen">
+  <div class="boot-noise"></div>
+  <div class="boot-frame">
+    <div class="boot-emblem"><span class="boot-ring"></span><span class="boot-ring r2"></span><svg class="ic"><use href="#i-bat"></use></svg></div>
+    <div class="boot-kicker">WAYNE ENTERPRISES // BLACK SITE 03</div>
+    <h1 class="boot-title" data-text="BATCAVE OS">BATCAVE OS</h1>
+    <div class="boot-codename">SENTINEL · v3.1</div>
+    <div class="boot-progress"><i id="bootBar"></i></div>
+    <div id="bootLog" class="boot-log"></div>
+    <button id="bootSkip" class="boot-skip">按任意键跳过 / SKIP</button>
+  </div>
+  <div class="boot-corners"><span></span><span></span><span></span><span></span></div>
+</div>
+
+<div id="oobe" class="screen oobe-screen hidden">
+  <div class="oobe-panel">
+    <div class="oobe-head">
+      <div class="logo-lockup"><svg class="ic"><use href="#i-bat"></use></svg><div><b>BATCAVE OS</b><span>FIRST BOOT PROTOCOL</span></div></div>
+      <span class="chip">OOBE // 01</span>
+    </div>
+    <div class="oobe-body">
+      <div class="oobe-copy">
+        <span class="eyebrow">INITIALIZE OPERATOR</span>
+        <h2>建立你的<br><em>夜间行动档案</em></h2>
+        <p>所有设置只保存在本机浏览器。系统不会上传代号、壁纸或任何个人数据。</p>
+        <ul class="oobe-list">
+          <li><span>01</span>真实终端与文件系统桥接</li>
+          <li><span>02</span>本地优先 · 令牌保护</li>
+          <li><span>03</span>随时可在设置中修改</li>
+        </ul>
+      </div>
+      <div class="oobe-form">
+        <label class="field-label" for="oobeName">行动代号 / CALLSIGN</label>
+        <input id="oobeName" class="input" maxlength="18" value="BRUCE" autocomplete="off" spellcheck="false">
+        <label class="field-label">界面色相 / ACCENT</label>
+        <div id="oobeAccents" class="swatches"></div>
+        <label class="field-label">初始壁纸 / BACKDROP</label>
+        <div id="oobeWalls" class="wall-picks"></div>
+        <button id="oobeStart" class="btn primary big"><span>初始化系统</span><svg class="ic"><use href="#i-right"></use></svg></button>
+        <p class="fine">继续即表示你了解：这是一个非官方同人系统，与 DC / Warner Bros. 无关。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="login" class="screen login-screen hidden">
+  <div class="login-bg"></div>
+  <div class="login-top">
+    <div class="logo-lockup small"><svg class="ic"><use href="#i-bat"></use></svg><div><b>BATCAVE OS</b><span>SENTINEL</span></div></div>
+    <div class="login-secure"><span class="dot live"></span> LOCAL SESSION // ENCRYPTED</div>
+  </div>
+  <div class="login-main">
+    <div class="login-time">
+      <div id="loginClock" class="giant-clock">--:--</div>
+      <div id="loginDate" class="giant-date">—</div>
+      <div class="login-tagline">THE NIGHT IS OURS. <span>GOTHAM GRID ONLINE</span></div>
+    </div>
+    <div class="login-card">
+      <div class="login-card-top"><span>OPERATOR LOGIN</span><span>OMEGA CLEARANCE</span></div>
+      <div class="login-user">
+        <div class="avatar"><svg class="ic"><use href="#i-bat"></use></svg><i class="avatar-pulse"></i></div>
+        <div><h2 id="loginName">BRUCE</h2><p>LOCAL OPERATOR · 单用户模式</p></div>
+      </div>
+      <button id="loginEnter" class="login-enter"><span id="loginAction">进入系统</span><span class="keycap">ENTER ↵</span></button>
+      <p id="loginHint" class="login-hint">无需密码 · 本机会话仅限本地访问</p>
+      <div class="login-card-foot"><span>NODE <b id="loginHost">LOCAL</b></span><span id="loginLinux">LINUX CORE —</span></div>
+    </div>
+  </div>
+  <div class="login-foot">
+    <span>© SENTINEL // FAN-MADE INTERFACE</span>
+    <span>SECURE. LOCAL. YOURS.</span>
+  </div>
+</div>
+
+<main id="desktop" class="desktop hidden">
+  <div id="wallpaperLayer" class="wallpaper-layer"></div>
+  <div class="desktop-grid-overlay"></div>
+  <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+  <div id="desktopIcons" class="desktop-icons" aria-label="桌面图标"></div>
+  <div id="windowsLayer" class="windows-layer"></div>
+  <div id="notificationStack" class="notification-stack" aria-live="polite"></div>
+
+  <nav id="taskbar" class="taskbar" aria-label="任务栏">
+    <button id="startBtn" class="start-btn" aria-label="打开开始菜单" aria-expanded="false">
+      <span class="start-orb"><svg class="ic"><use href="#i-bat"></use></svg></span>
+      <span class="start-label">SENTINEL</span>
+    </button>
+    <div class="tb-divider"></div>
+    <div id="pinnedApps" class="tb-apps"></div>
+    <div class="tb-spacer"></div>
+    <div id="runningApps" class="tb-apps running"></div>
+    <div class="tb-divider slim"></div>
+    <div class="tray">
+      <span id="trayLinux" class="tray-pill" title="Linux Core 状态"><i class="dot"></i><span>LINUX</span></span>
+      <span id="trayNet" class="tray-indicators" title="网络状态"><svg class="ic"><use href="#i-wifi"></use></svg></span>
+      <button id="trayVolume" class="tray-btn" aria-label="声音"><svg class="ic"><use href="#i-volume"></use></svg></button>
+      <button id="trayLock" class="tray-btn" aria-label="锁定"><svg class="ic"><use href="#i-lock"></use></svg></button>
+      <button id="clockBtn" class="clock-btn" aria-label="日期与时间">
+        <span id="clockTime">--:--</span>
+        <span id="clockDate">—</span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="launcher" class="launcher hidden" aria-label="开始菜单">
+    <div class="launcher-head">
+      <div class="launcher-search"><svg class="ic"><use href="#i-search"></use></svg><input id="launcherSearch" placeholder="搜索应用、文件或输入命令…" autocomplete="off" spellcheck="false"><span class="keycap">ESC</span></div>
+      <div class="launcher-account"><div class="mini-avatar"><svg class="ic"><use href="#i-user"></use></svg></div><div><b id="launcherName">BRUCE</b><span>LOCAL OPERATOR</span></div></div>
+    </div>
+    <div class="launcher-quick">
+      <span class="eyebrow">PINNED // 快捷访问</span>
+      <div id="launcherPinned" class="quick-grid"></div>
+    </div>
+    <div class="launcher-all">
+      <span class="eyebrow">ALL MODULES // 全部应用</span>
+      <div id="launcherGrid" class="app-grid"></div>
+    </div>
+    <div class="launcher-foot">
+      <div class="launcher-actions">
+        <button class="foot-btn" data-power="lock"><svg class="ic"><use href="#i-lock"></use></svg>锁定</button>
+        <button class="foot-btn" data-power="restart"><svg class="ic"><use href="#i-restart"></use></svg>重启</button>
+        <button class="foot-btn danger" data-power="shutdown"><svg class="ic"><use href="#i-power"></use></svg>关机</button>
+      </div>
+      <div class="launcher-meta"><span id="launcherBuild">SENTINEL v3.1</span><span>↑↓ 选择 · ENTER 打开 · ALT+SPACE 呼出</span></div>
+    </div>
+  </section>
+
+  <div id="modalRoot"></div>
+  <div id="toastRoot" class="toast-root" aria-live="polite"></div>
+  <div id="cursorAura" class="cursor-aura"></div>
+  <div id="scanline" class="scanline"></div>
+  <div id="fxLayer" class="fx-layer"></div>
+</main>
+
+<div id="powerScreen" class="screen power-screen hidden">
+  <div class="power-inner">
+    <svg class="ic power-mark"><use href="#i-bat"></use></svg>
+    <h2 id="powerTitle">SYSTEM OFFLINE</h2>
+    <p id="powerMsg">所有本地进程已停止。</p>
+    <button id="powerResume" class="btn primary"><svg class="ic"><use href="#i-power"></use></svg>重新接通电源</button>
+  </div>
+</div>
+
+<script>window.__BC_BOOT__=__BATCAVE_BOOTSTRAP__;</script>
+<script src="/js/api.js" defer></script>
+<script src="/js/core.js" defer></script>
+<script src="/js/terminal.js" defer></script>
+<script src="/js/files.js" defer></script>
+<script src="/js/browser.js" defer></script>
+<script src="/js/apps-tools.js" defer></script>
+<script src="/vendor/hls.min.js" defer></script>
+<script src="/js/apps-media.js" defer></script>
+<script src="/js/apps-player.js" defer></script>
+<script src="/js/apps-geo.js" defer></script>
+<script src="/js/apps-store.js" defer></script>
+<script src="/js/apps-mail.js" defer></script>
+<script src="/vendor/pdf-lib.min.js" defer></script>
+<script src="/js/apps-embedded.js" defer></script>
+<script src="/js/apps-office.js" defer></script>
+<script src="/js/apps-system.js" defer></script>
+<script src="/js/apps-update.js" defer></script>
+<script src="/js/apps-extra.js" defer></script>
+<script src="/js/boot.js" defer></script>
+</body>
+</html>

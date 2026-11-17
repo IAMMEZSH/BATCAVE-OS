@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880" role="img" aria-label="BATCAVE OS 更新流程：双源清单、版本比较、下载校验、ZIP 结构校验、事务替换、重启载入与失败回滚">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#04070b"/>
+      <stop offset="0.55" stop-color="#061018"/>
+      <stop offset="1" stop-color="#030509"/>
+    </linearGradient>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5ffbf1"/>
+      <stop offset="1" stop-color="#2b7f8c"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a1720"/>
+      <stop offset="1" stop-color="#071018"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#0e2630" stroke-width="0.6" opacity="0.55"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#5ffbf1"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#ffc64d"/>
+    </marker>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="880" fill="url(#bg)"/>
+  <rect width="1400" height="880" fill="url(#grid)"/>
+  <circle cx="1240" cy="90" r="230" fill="#0b2c35" opacity="0.28"/>
+  <circle cx="120" cy="800" r="260" fill="#0a2229" opacity="0.22"/>
+
+  <g font-family="'Segoe UI','Microsoft YaHei','PingFang SC','Noto Sans CJK SC',sans-serif">
+    <rect x="70" y="52" width="152" height="4" rx="2" fill="url(#head)"/>
+    <text x="70" y="100" fill="#e9fffd" font-size="30" font-weight="700" letter-spacing="2">UPDATE PIPELINE</text>
+    <text x="70" y="130" fill="#6d8f9b" font-size="15" letter-spacing="1.2">BATCAVE OS · 从 GitHub / GitCode 到重启载入，全程校验、可回滚</text>
+    <g transform="translate(1120,66)">
+      <rect x="0" y="0" width="210" height="36" rx="18" fill="#071820" stroke="#1c4b56"/>
+      <circle cx="22" cy="18" r="5" fill="#4dffb8"/>
+      <text x="40" y="23" fill="#bdeee8" font-size="13" letter-spacing="1">SHA-256 · 事务 · 回滚</text>
+    </g>
+
+    <!-- stage cards -->
+    <g>
+      <rect x="70" y="170" width="300" height="190" rx="14" fill="url(#card)" stroke="#14414c"/>
+      <rect x="70" y="170" width="300" height="3" rx="1.5" fill="#5ffbf1" opacity="0.8"/>
+      <text x="94" y="204" fill="#4fb7c2" font-size="11" letter-spacing="2.2">01 · SOURCES</text>
+      <text x="94" y="238" fill="#e9fffd" font-size="22" font-weight="600">更新来源</text>
+      <text x="94" y="274" fill="#9fc4cc" font-size="14.5">GitHub / GitCode 双源</text>
+      <text x="94" y="300" fill="#6d8f9b" font-size="13.5">界面自由切换</text>
+      <text x="94" y="324" fill="#6d8f9b" font-size="13.5">平台不可用自动回退</text>
+    </g>
+    <line x1="370" y1="265" x2="402" y2="265" stroke="#5ffbf1" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="410" y="170" width="300" height="190" rx="14" fill="url(#card)" stroke="#14414c"/>
+      <rect x="410" y="170" width="300" height="3" rx="1.5" fill="#5ffbf1" opacity="0.8"/>
+      <text x="434" y="204" fill="#4fb7c2" font-size="11" letter-spacing="2.2">02 · DISCOVER</text>
+      <text x="434" y="238" fill="#e9fffd" font-size="22" font-weight="600">并行探测清单</text>
+      <text x="434" y="274" fill="#9fc4cc" font-size="14.5">多地址并行 · 8 秒超时</text>
+      <text x="434" y="300" fill="#6d8f9b" font-size="13.5">HTTPS 主机白名单</text>
+      <text x="434" y="324" fill="#6d8f9b" font-size="13.5">逐跳校验重定向</text>
+    </g>
+    <line x1="710" y1="265" x2="742" y2="265" stroke="#5ffbf1" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="750" y="170" width="300" height="190" rx="14" fill="url(#card)" stroke="#14414c"/>
+      <rect x="750" y="170" width="300" height="3" rx="1.5" fill="#5ffbf1" opacity="0.8"/>
+      <text x="774" y="204" fill="#4fb7c2" font-size="11" letter-spacing="2.2">03 · COMPARE</text>
+      <text x="774" y="238" fill="#e9fffd" font-size="22" font-weight="600">版本比较</text>
+      <text x="774" y="274" fill="#9fc4cc" font-size="14.5">语义版本 vX.Y.Z</text>
+      <text x="774" y="300" fill="#6d8f9b" font-size="13.5">展示版本、日期与包大小</text>
+      <text x="774" y="324" fill="#6d8f9b" font-size="13.5">附完整中文更新说明</text>
+    </g>
+    <line x1="1050" y1="265" x2="1082" y2="265" stroke="#5ffbf1" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="1090" y="170" width="300" height="190" rx="14" fill="url(#card)" stroke="#14414c"/>
+      <rect x="1090" y="170" width="300" height="3" rx="1.5" fill="#5ffbf1" opacity="0.8"/>
+      <text x="1114" y="204" fill="#4fb7c2" font-size="11" letter-spacing="2.2">04 · DOWNLOAD</text>
+      <text x="1114" y="238" fill="#e9fffd" font-size="22" font-weight="600">流式下载</text>
+      <text x="1114" y="274" fill="#9fc4cc" font-size="14.5">边下载边计算 SHA-256</text>
+      <text x="1114" y="300" fill="#6d8f9b" font-size="13.5">显示进度、字节数</text>
+      <text x="1114" y="324" fill="#6d8f9b" font-size="13.5">与当前阶段</text>
+    </g>
+
+    <!-- row turn -->
+    <path d="M1240 360V420" fill="none" stroke="#5ffbf1" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="1090" y="420" width="300" height="190" rx="14" fill="url(#card)" stroke="#14414c"/>
+      <rect x="1090" y="420" width="300" height="3" rx="1.5" fill="#5ffbf1" opacity="0.8"/>
+      <text x="1114" y="454" fill="#4fb7c2" font-size="11" letter-spacing="2.2">05 · VERIFY</text>
+      <text x="1114" y="488" fill="#e9fffd" font-size="22" font-weight="600">完整性校验</text>
+      <text x="1114" y="524" fill="#9fc4cc" font-size="14.5">SHA-256 + 字节数双比对</text>
+      <text x="1114" y="550" fill="#6d8f9b" font-size="13.5">拒绝损坏、缺字节</text>
+      <text x="1114" y="574" fill="#6d8f9b" font-size="13.5">或被替换的更新包</text>
+    </g>
+    <line x1="1082" y1="515" x2="1058" y2="515" stroke="#5ffbf1" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="750" y="420" width="300" height="190" rx="14" fill="url(#card)" stroke="#14414c"/>
+      <rect x="750" y="420" width="300" height="3" rx="1.5" fill="#5ffbf1" opacity="0.8"/>
+      <text x="774" y="454" fill="#4fb7c2" font-size="11" letter-spacing="2.2">06 · ZIP GUARD</text>
+      <text x="774" y="488" fill="#e9fffd" font-size="22" font-weight="600">ZIP 结构校验</text>
+      <text x="774" y="524" fill="#9fc4cc" font-size="14.5">内置读取器，不落地脚本</text>
+      <text x="774" y="550" fill="#6d8f9b" font-size="13.5">拒绝路径穿越、符号链接</text>
+      <text x="774" y="574" fill="#6d8f9b" font-size="13.5">拒绝加密条目与超限文件</text>
+    </g>
+    <line x1="742" y1="515" x2="718" y2="515" stroke="#5ffbf1" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="410" y="420" width="300" height="190" rx="14" fill="url(#card)" stroke="#14414c"/>
+      <rect x="410" y="420" width="300" height="3" rx="1.5" fill="#5ffbf1" opacity="0.8"/>
+      <text x="434" y="454" fill="#4fb7c2" font-size="11" letter-spacing="2.2">07 · APPLY</text>
+      <text x="434" y="488" fill="#e9fffd" font-size="22" font-weight="600">事务替换</text>
+      <text x="434" y="524" fill="#9fc4cc" font-size="14.5">先备份，再逐项替换程序层</text>
+      <text x="434" y="550" fill="#6d8f9b" font-size="13.5">data/ 与 ~/Batcave 保留</text>
+      <text x="434" y="574" fill="#6d8f9b" font-size="13.5">写入事务日志，失败自动回滚</text>
+    </g>
+    <line x1="402" y1="515" x2="378" y2="515" stroke="#5ffbf1" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="70" y="420" width="300" height="190" rx="14" fill="url(#card)" stroke="#1f5c4d"/>
+      <rect x="70" y="420" width="300" height="3" rx="1.5" fill="#4dffb8" opacity="0.9"/>
+      <text x="94" y="454" fill="#4dc9a0" font-size="11" letter-spacing="2.2">08 · RESTART</text>
+      <text x="94" y="488" fill="#e9fffd" font-size="22" font-weight="600">重启载入</text>
+      <text x="94" y="524" fill="#9fc4cc" font-size="14.5">重启助手拉起新进程</text>
+      <text x="94" y="550" fill="#6d8f9b" font-size="13.5">BATCAVE_TOKEN 延续会话</text>
+      <text x="94" y="574" fill="#6d8f9b" font-size="13.5">页面轮询并自动恢复</text>
+      <g transform="translate(94,588)">
+        <rect x="0" y="0" width="126" height="16" rx="8" fill="#07231b" stroke="#1f5c4d"/>
+        <circle cx="12" cy="8" r="3.5" fill="#4dffb8"/>
+        <text x="24" y="12" fill="#4dffb8" font-size="10.5" letter-spacing="1.4">READY · 上线</text>
+      </g>
+    </g>
+
+    <!-- rollback -->
+    <path d="M560 610V690" fill="none" stroke="#ffc64d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrowAmber)"/>
+    <g>
+      <rect x="70" y="700" width="1320" height="86" rx="12" fill="#0c1114" stroke="#4a3a14"/>
+      <rect x="94" y="722" width="4" height="42" rx="2" fill="#ffc64d"/>
+      <text x="114" y="736" fill="#ffc64d" font-size="12" letter-spacing="2">FAILURE PATH</text>
+      <text x="114" y="764" fill="#d9cba7" font-size="15">任一步失败：自动回滚到更新前版本；若进程中途退出，下次启动按事务日志恢复未完成事务。</text>
+      <text x="980" y="764" fill="#6d8f9b" font-size="13" text-anchor="start">Windows 基座与系统补丁由 Windows Update 维护</text>
+    </g>
+
+    <line x1="70" y1="826" x2="1390" y2="826" stroke="#102c34" stroke-width="1"/>
+    <text x="70" y="852" fill="#486a75" font-size="12.5" letter-spacing="1">BATCAVE OS · UPDATE CENTER · 双平台同一 ZIP、同一 SHA-256、同一份说明</text>
+    <text x="1390" y="852" fill="#486a75" font-size="12.5" text-anchor="end" letter-spacing="1">v3.1.0 · SENTINEL</text>
+  </g>
+</svg>

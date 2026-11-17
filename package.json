@@ -1,0 +1,15 @@
+{
+  "name": "batcave-os",
+  "version": "3.1.0",
+  "private": true,
+  "description": "Local-first zero-dependency Windows desktop shell with a real shell bridge and in-app updates from GitHub/GitCode.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/update.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

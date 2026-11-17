@@ -23,7 +23,7 @@ const update = require('./lib/update');
 const appUpdates = require('./lib/app-updates');
 const releaseFeed = require('./lib/release-feed');
 
-const VERSION = '3.1.1';
+const VERSION = '3.1.2';
 const CODENAME = 'SENTINEL';
 const IS_WIN = process.platform === 'win32';
 const IS_LINUX = process.platform === 'linux';

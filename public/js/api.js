@@ -192,7 +192,7 @@
 
     updateStatus() { return request('/api/update/status'); },
     updateCheck(source) { return request('/api/update/check?' + qs({ source })); },
-    updateApply(source, version) { return request('/api/update/apply', { json: { source, version } }); },
+    updateApply(source, version, revision) { return request('/api/update/apply', { json: { source, version, revision } }); },
     updateJob(id) { return request('/api/update/job?' + qs({ id })); },
     updateRestart() { return request('/api/update/restart', { json: {} }); },
 

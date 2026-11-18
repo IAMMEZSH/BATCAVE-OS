@@ -1,6 +1,6 @@
 # BATCAVE OS 使用手册
 
-适用于 BATCAVE OS 3.1.3 · SENTINEL。本手册从第一次启动写到每个面板的实际用途、数据位置与故障处理。更新机制另见 [更新说明](UPDATE.md)。
+适用于 BATCAVE OS 3.1.4 · SENTINEL。本手册从第一次启动写到每个面板的实际用途、数据位置与故障处理。更新机制另见 [更新说明](UPDATE.md)。
 
 ---
 
@@ -181,7 +181,7 @@ node server.js --port=8080 --host=127.0.0.1
 
 首次启动会在映射根目录生成：
 
-- `README.md`：BATCAVE OS // SENTINEL 3.1.3 简介。
+- `README.md`：BATCAVE OS // SENTINEL 3.1.4 简介。
 - `Documents/SENTINEL-BRIEFING.md`：示例夜间简报。
 - `Projects/`：示例 Python 脚本等。
 - `Pictures/`、`Music/`、`Videos/`、`Downloads/`、`Notes/`：空目录，分别供图片查看器、影音播放器、下载与代号笔记使用。
@@ -667,7 +667,7 @@ BATCAVE 的基座有三条使用路径，均从你自己的官方 Windows 11 ISO
 
 见 [Windows 基座构建与部署](BUILD-ISO.md)。构建脚本：
 
-- `iso\winbase\build-iso.ps1`：官方安装树 + `$OEM$` → 可启动 ISO，产物默认 `iso\out\BATCAVE-OS-3.1.3[-arm64].iso`。
+- `iso\winbase\build-iso.ps1`：官方安装树 + `$OEM$` → 可启动 ISO，产物默认 `iso\out\BATCAVE-OS-3.1.4[-arm64].iso`。
 - `iso\winbase\verify-iso.ps1`：只读挂载成品 ISO，校验 WIM 索引架构、El Torito 的 BIOS/UEFI 引导、载荷、快捷方式、禁入凭据与任务 HUD 缺失，输出 `VERIFY-ISO[-arm64].json`。
 - `iso\winbase\build-winbase.ps1`：生成 Windows To Go VHD。
 - `iso\winbase\verify-vhd.ps1`：只读挂载 VHD，校验分区、引导文件、程序载荷与 PE 架构。

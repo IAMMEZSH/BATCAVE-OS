@@ -44,7 +44,7 @@ BATCAVE OS 从早期版本起内置更新中心。它解决的是一个具体问
 1. 并行请求所选平台的多个清单 URL（原始文件、网页 raw、API 内容接口），单个 8 秒超时。
 2. 校验清单结构：版本号、发布说明、资产 URL、SHA-256、字节数。
 3. 要求资产 URL 为 HTTPS 且命中主机白名单。
-4. 与当前版本做数字段比较（`3.10.0 > 3.9.9`，不是字符串比较）。
+4. 与当前版本做数字段比较（`3.10.0 > 3.9.9`，不是字符串比较）；版本号相同时再比较 `revision` 修订号。
 5. 显示"已是最新"或"发现新版本"，并列出更新说明与包大小。
 
 ### 4. 下载并安装
@@ -82,7 +82,7 @@ BATCAVE OS 从早期版本起内置更新中心。它解决的是一个具体问
 
 ### 1. 准备
 
-1. 修改 `version.json`：`version`、`codename`、`released`。
+1. 修改 `version.json`：`version`、`revision`、`build`、`codename`、`released`。
 2. 更新 `CHANGELOG.md` 与 `update/latest.json` 的 `notes`（中文，面向用户）。
 3. 同步 `package.json` 的版本号。
 4. 运行测试：
@@ -114,7 +114,7 @@ dist/SHA256SUMS.txt
 
 ```powershell
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[IO.Compression.ZipFile]::OpenRead("$PWD\dist\BATCAVE-OS-3.1.3.zip").Entries |
+[IO.Compression.ZipFile]::OpenRead("$PWD\dist\BATCAVE-OS-3.1.4.zip").Entries |
   Select-Object FullName, Length | Sort-Object FullName
 ```
 
@@ -126,7 +126,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 2. 把更新后的 `update/latest.json` 提交到两个仓库的默认分支（更新器从 `raw` / API 内容接口读取）。
 3. 两个平台的资产必须**字节一致**，SHA-256 相同。
 4. 确认 `update/sources.json` 中的仓库地址与实际仓库一致。
-5. 用旧版本安装实测一次更新，再发布公告。
+5. 用上一构建安装实测一次更新，再发布公告。
 
 ### 4. 校验线上清单
 
@@ -143,25 +143,27 @@ curl -L "https://api.gitcode.com/api/v5/repos/gcw_So3EkhfR/BATCAVE-OS/contents/u
 ```json
 {
   "schema": 1,
-  "version": "3.1.3",
+  "version": "3.1.4",
+  "revision": 0,
+  "build": "2026-11-18",
   "codename": "SENTINEL",
   "released": "2026-11-18",
   "notes": "中文更新说明，最长 30000 字符",
-  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
+  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4",
   "notesUrls": {
-    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.3"
+    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4",
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.4"
   },
   "assets": {
-    "github": { "url": "https://.../BATCAVE-OS-3.1.3.zip", "sha256": "64位十六进制", "size": 12345678 },
-    "gitcode": { "url": "https://.../BATCAVE-OS-3.1.3.zip", "sha256": "64位十六进制", "size": 12345678 }
+    "github": { "url": "https://.../BATCAVE-OS-3.1.4.zip", "sha256": "64位十六进制", "size": 12345678 },
+    "gitcode": { "url": "https://.../BATCAVE-OS-3.1.4.zip", "sha256": "64位十六进制", "size": 12345678 }
   }
 }
 ```
 
 约束：
 
-- `version` 必须是 `x.y.z` 纯数字三段。
+- `version` 必须是 `x.y.z` 纯数字三段；`revision` 为可选非负整数，版本相同且修订号更大时视为可更新。
 - 每个资产必须有 `url`、64 位十六进制 `sha256`、正整数字节数。
 - 包大小上限 256 MiB，解压总量上限 1 GiB，单文件上限 64 MiB，条目上限 20000。
 - GitHub / GitCode 的 API 内容接口可能返回 base64 包装，更新器会自动解包后再校验。

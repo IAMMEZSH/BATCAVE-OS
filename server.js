@@ -23,7 +23,9 @@ const update = require('./lib/update');
 const appUpdates = require('./lib/app-updates');
 const releaseFeed = require('./lib/release-feed');
 
-const VERSION = '3.1.3';
+const VERSION = '3.1.4';
+const REVISION = 0;
+const BUILD = '2026-11-18';
 const CODENAME = 'SENTINEL';
 const IS_WIN = process.platform === 'win32';
 const IS_LINUX = process.platform === 'linux';
@@ -75,6 +77,8 @@ update.configure({
   serverPath: __filename,
   dataDir: DATA_DIR,
   version: VERSION,
+  revision: REVISION,
+  build: BUILD,
   codename: CODENAME,
   port: PORT,
   host: HOST,
@@ -215,7 +219,7 @@ function neofetch() {
 function aboutText() {
   return [
     paint('BATCAVE OS // SENTINEL', A.cyan + A.bold),
-    `version ${VERSION}  ·  build ${CODENAME}`,
+    `version ${VERSION}${REVISION ? ' r' + REVISION : ''}  ·  build ${BUILD}  ·  ${CODENAME}`,
     '',
     'An unofficial fan-made cyber desktop, inspired by a certain nocturnal detective.',
     'Not affiliated with DC Comics or Warner Bros.',
@@ -469,6 +473,8 @@ async function stats() {
       pid: process.pid,
       node: process.version,
       version: VERSION,
+      revision: REVISION,
+      build: BUILD,
       port: PORT
     },
     bridge: {
@@ -1177,7 +1183,7 @@ async function handleProxy(req, res, u) {
     const { res: upstream, buf } = await fetchCappedDeadline(url, {
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 BatcaveOS/3.1.3',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 BatcaveOS/' + VERSION,
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
         'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
         'cache-control': incognito ? 'no-store' : 'no-cache',
@@ -1452,6 +1458,8 @@ async function buildBoot() {
   HOME_UNIX = IS_LINUX ? HOME_ROOT : (info.wsl ? bridge.toWslPath(HOME_ROOT) : null);
   BOOT = {
     version: VERSION,
+    revision: REVISION,
+    build: BUILD,
     codename: CODENAME,
     token: TOKEN,
     platform: IS_WIN ? 'windows' : IS_LINUX ? 'linux' : process.platform,
@@ -1493,7 +1501,7 @@ async function createServer() {
         return sendJSON(res, 200, {
           ...BOOT,
           token: undefined,
-          server: { version: VERSION, codename: CODENAME, pid: process.pid, node: process.version }
+          server: { version: VERSION, revision: REVISION, build: BUILD, codename: CODENAME, pid: process.pid, node: process.version }
         });
       }
 
@@ -1792,7 +1800,7 @@ async function createServer() {
         if (!tokenOk(req) || !originOk(req)) return sendJSON(res, 403, { error: 'forbidden' });
         const body = await readJSON(req, 8 * 1024);
         try {
-          return sendJSON(res, 202, update.startApply(body.source || 'github', body.version || ''));
+          return sendJSON(res, 202, update.startApply(body.source || 'github', body.version || '', body.revision));
         } catch (e) {
           return sendJSON(res, e.status || 500, { ok: false, error: e.message || 'update failed' });
         }
@@ -1959,7 +1967,7 @@ function banner(port) {
     paint(' ███████▄   ▄███████', A.cyan) + paint('   BATCAVE OS', A.white + A.bold) + paint('  //  ' + CODENAME, A.rose),
     paint(' █████████ █████████', A.cyan) + paint('   a nocturnal cyber desktop', A.gray),
     paint('  ▀███████ ███████▀', A.cyan),
-    paint('    ▀█████ █████▀', A.cyan) + paint('     v' + VERSION + '  ·  real shell bridge', A.gray),
+    paint('    ▀█████ █████▀', A.cyan) + paint('     v' + VERSION + (REVISION ? ' r' + REVISION : '') + '  ·  real shell bridge', A.gray),
     paint('      ▀██ ██▀', A.cyan),
     '',
     '  ' + paint('URL    ', A.ice) + paint('http://' + HOST + ':' + port, A.cyan + A.bold),
@@ -2012,7 +2020,7 @@ async function start(options = {}) {
 
 if (require.main === module) {
   if (argv.help) {
-    console.log(`BATCAVE OS ${VERSION} ${CODENAME}
+    console.log(`BATCAVE OS ${VERSION}${REVISION ? ' r' + REVISION : ''} ${CODENAME}
 
 Usage: node server.js [options]
 
@@ -2031,7 +2039,7 @@ Usage: node server.js [options]
     process.exit(0);
   }
   if (argv.version) {
-    console.log(VERSION + ' ' + CODENAME);
+    console.log(VERSION + (REVISION ? ' r' + REVISION : '') + ' ' + CODENAME);
     process.exit(0);
   }
   if (argv.tui) {
@@ -2044,4 +2052,4 @@ Usage: node server.js [options]
   }
 }
 
-module.exports = { start, VERSION, CODENAME };
+module.exports = { start, VERSION, REVISION, BUILD, CODENAME };

@@ -108,6 +108,8 @@ async function main() {
   const manifestPath = path.join(ROOT, 'update', 'latest.json');
   const manifest = JSON.parse(await fsp.readFile(manifestPath, 'utf8'));
   manifest.version = version.version;
+  manifest.revision = Number(version.revision || 0);
+  manifest.build = String(version.build || '');
   manifest.codename = version.codename;
   manifest.released = version.released;
   const base = {
@@ -133,6 +135,8 @@ async function main() {
     bytes: buf.length,
     sha256,
     version: version.version,
+    revision: Number(version.revision || 0),
+    build: String(version.build || ''),
     manifest: manifestPath
   }, null, 2));
 }

@@ -69,11 +69,13 @@ async function tempDir(prefix) {
   return fsp.mkdtemp(path.join(os.tmpdir(), prefix));
 }
 
-function payloadFiles(version = '3.2.0', marker = 'NEW') {
+function payloadFiles(version = '3.2.0', marker = 'NEW', revision) {
   const n = marker.padEnd(32, '.');
+  const versionJson = { version, codename: 'TEST', channel: 'stable' };
+  if (revision !== undefined) versionJson.revision = revision;
   return [
     { name: 'server.js', data: '// ' + n + '\n' + 'x'.repeat(32) },
-    { name: 'version.json', data: JSON.stringify({ version, codename: 'TEST', channel: 'stable' }) },
+    { name: 'version.json', data: JSON.stringify(versionJson) },
     { name: 'lib/update.js', data: '// lib ' + n },
     { name: 'public/index.html', data: '<!doctype html>' + n },
     { name: 'public/js/apps-update.js', data: '// app ' + n },
@@ -92,6 +94,16 @@ test('compareVersions orders semver triples', () => {
   assert.equal(T.compareVersions('3.10.0', '3.9.9'), 1);
   assert.equal(T.compareVersions('2.9.9', '3.0.0'), -1);
   assert.equal(T.compareVersions('bad', '3.0.0'), 0);
+});
+
+test('isNewer compares version then revision', () => {
+  assert.equal(T.isNewer('3.1.4', 0, '3.1.3', 0), true);
+  assert.equal(T.isNewer('3.1.4', 0, '3.1.4', 0), false);
+  assert.equal(T.isNewer('3.1.4', 1, '3.1.4', 0), true);
+  assert.equal(T.isNewer('3.1.4', 0, '3.1.4', 1), false);
+  assert.equal(T.parseRevision('2'), 2);
+  assert.equal(T.parseRevision(0), 0);
+  assert.equal(T.parseRevision('bad'), 0);
 });
 
 test('parseManifestText unwraps base64 contents API payload', () => {
@@ -156,6 +168,7 @@ test('validateStaging accepts a complete payload and rejects escapes', async () 
   assert.ok(files.some(f => f.rel === 'server.js'));
 
   await assert.rejects(T.validateStaging(staging, '9.9.9'), /version mismatch/);
+  await assert.rejects(T.validateStaging(staging, '3.2.0', 9), /revision mismatch/);
 
   const badDir = path.join(dir, 'bad');
   await fsp.cp(staging, badDir, { recursive: true });
@@ -226,6 +239,33 @@ test('applyLocalForTest replaces files, backs up and records history', async () 
 
   const recovered = await update.recover();
   assert.equal(recovered, null);
+});
+
+
+test('applyLocalForTest accepts a newer revision of the same version', async () => {
+  const root = await tempDir('bc-rev-root-');
+  const dataDir = path.join(root, 'data');
+  await fsp.mkdir(dataDir, { recursive: true });
+  await fsp.mkdir(path.join(root, 'public', 'js'), { recursive: true });
+  await fsp.mkdir(path.join(root, 'lib'), { recursive: true });
+  await fsp.writeFile(path.join(root, 'server.js'), '// OLD REV\n' + 'o'.repeat(32));
+  await fsp.writeFile(path.join(root, 'version.json'), JSON.stringify({ version: '3.2.0', revision: 0 }));
+  await fsp.writeFile(path.join(root, 'public', 'index.html'), 'OLD INDEX');
+  await fsp.writeFile(path.join(root, 'public', 'js', 'apps-update.js'), 'OLD APP');
+  await fsp.writeFile(path.join(root, 'lib', 'update.js'), 'OLD UPDATE');
+  update.configure({ root, dataDir, version: '3.2.0', revision: 0, codename: 'OLD', serverPath: path.join(root, 'server.js'), port: 7777, host: '127.0.0.1', home: root, token: 't', allowLocalNet: false, allowDestructive: false });
+
+  const dir = await tempDir('bc-rev-apply-');
+  const zipPath = path.join(dir, 'revision.zip');
+  await fsp.writeFile(zipPath, buildZip(payloadFiles('3.2.0', 'REV', 1)));
+  const manifest = { version: '3.2.0', revision: 1, codename: 'NEW', notes: 'revision notes', notesUrl: '' };
+  const installed = await T.applyLocalForTest(zipPath, manifest, 'gitcode');
+  assert.equal(installed.version, '3.2.0');
+  assert.equal(installed.revision, 1);
+  assert.equal(installed.previousRevision, 0);
+  const state = await update.status();
+  assert.equal(state.currentRevision, 0);
+  assert.equal(state.history[0].revision, 1);
 });
 
 test('recover restores an interrupted transaction', async () => {

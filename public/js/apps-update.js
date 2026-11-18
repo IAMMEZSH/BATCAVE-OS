@@ -22,6 +22,36 @@
     return s ? s.label : String(id || '—');
   }
 
+  function revOf(value) {
+    const n = Number(value);
+    return Number.isFinite(n) && n > 0 ? Math.trunc(n) : 0;
+  }
+
+  function buildOf(version, revision) {
+    const r = revOf(revision);
+    return 'v' + (version || '—') + (r ? ' · r' + r : '');
+  }
+
+  function checkKey(result) {
+    return String(result.latest || '') + '-r' + revOf(result.latestRevision);
+  }
+
+  function notifyUpdate(result, auto) {
+    const label = buildOf(result.latest, result.latestRevision);
+    const item = BC.notify('发现 BATCAVE ' + label, auto
+      ? '版本号已更新；本次修复三个内嵌应用一直加载的问题。打开系统更新查看说明并安装。'
+      : '打开系统更新查看更新说明并安装。', { icon: 'download', kind: 'ok', ttl: auto ? 15000 : 8000 });
+    if (!item) return;
+    const box = item.querySelector('div');
+    if (!box) return;
+    const btn = document.createElement('button');
+    btn.className = 'btn small primary';
+    btn.textContent = '打开系统更新';
+    btn.style.marginTop = '6px';
+    btn.addEventListener('click', () => { BC.openApp('update'); item.remove(); });
+    box.appendChild(btn);
+  }
+
   function when(value) {
     if (!value) return '—';
     const d = new Date(value);
@@ -84,13 +114,13 @@
     function renderHistory() {
       const rows = (status && status.history || []).slice(0, 8);
       el('#updHistory').innerHTML = rows.length
-        ? rows.map(r => '<div class="update-history-row"><b>v' + U.esc(r.version) + '</b><span>' + U.esc(labelOf(r.source)) + ' · ' + U.esc(when(r.installedAt)) + (r.previousVersion ? ' · 来自 v' + U.esc(r.previousVersion) : '') + '</span></div>').join('')
+        ? rows.map(r => '<div class="update-history-row"><b>' + U.esc(buildOf(r.version, r.revision)) + '</b><span>' + U.esc(labelOf(r.source)) + ' · ' + U.esc(when(r.installedAt)) + (r.previousVersion ? ' · 来自 ' + U.esc(buildOf(r.previousVersion, r.previousRevision)) : '') + '</span></div>').join('')
         : '<div class="update-foot">暂无更新记录。</div>';
     }
 
     function renderStatus() {
       if (!status) return;
-      el('#updCurrent').textContent = 'v' + (status.current || '—');
+      el('#updCurrent').textContent = buildOf(status.current, status.currentRevision);
       el('#updCodename').textContent = status.codename || '';
       el('#updRestartBanner').classList.toggle('hidden', !status.restartRequired);
       renderHistory();
@@ -108,20 +138,22 @@
       }
       const fallback = check.fallback ? '<div class="update-banner" style="margin:0 0 10px"><span><b>' + U.esc(labelOf(check.requestedSource)) + ' 暂不可用</b> · 已自动改用 ' + U.esc(labelOf(check.source)) + ' 的清单。</span></div>' : '';
       const pending = status && status.restartRequired && status.installed && status.installed.version;
-      if (pending && String(pending) === String(check.latest) && check.updateAvailable) {
+      const pendingBuild = pending ? buildOf(pending, status.installed.revision) : '';
+      if (pending && String(pending) === String(check.latest) && revOf(status.installed.revision) === revOf(check.latestRevision) && check.updateAvailable) {
         card.innerHTML =
-          '<div class="update-card-head"><div><h3>v' + U.esc(pending) + ' 已安装，等待重启</h3>' +
-            '<p>文件已替换并通过校验。重启 BATCAVE 后载入新版本，当前进程仍是 v' + U.esc(check.current) + '。</p></div>' +
+          '<div class="update-card-head"><div><h3>' + U.esc(pendingBuild) + ' 已安装，等待重启</h3>' +
+            '<p>文件已替换并通过校验。重启 BATCAVE 后载入新版本，当前进程仍是 ' + U.esc(buildOf(check.current, check.currentRevision)) + '。</p></div>' +
             '<span class="chip" style="color:var(--ok);border-color:rgba(77,255,184,.28)">READY</span></div>' +
           fallback +
           notesBlock((status.installed && status.installed.notes) || check.notes) +
-          '<div class="update-actions"><button class="btn primary" data-act="restart">' + U.icon('restart') + ' 重启并载入 v' + U.esc(pending) + '</button></div>';
+          '<div class="update-actions"><button class="btn primary" data-act="restart">' + U.icon('restart') + ' 重启并载入 ' + U.esc(pendingBuild) + '</button></div>';
         return;
       }
       if (check.updateAvailable) {
+        const sameVersion = String(check.latest) === String(check.current);
         card.innerHTML =
-          '<div class="update-card-head"><div><h3>发现新版本 v' + U.esc(check.latest) + ' <span style="color:var(--acc)">' + U.esc(check.latestCodename || '') + '</span></h3>' +
-            '<p>当前 v' + U.esc(check.current) + ' · 发布于 ' + U.esc(when(check.released)) + ' · 更新包 ' + U.esc(fmtSize(check.size)) + ' · 来源 ' + U.esc(labelOf(check.source)) + '</p></div>' +
+          '<div class="update-card-head"><div><h3>' + (sameVersion ? '发现修复更新 ' : '发现新版本 ') + U.esc(buildOf(check.latest, check.latestRevision)) + ' <span style="color:var(--acc)">' + U.esc(check.latestCodename || '') + '</span></h3>' +
+            '<p>当前 ' + U.esc(buildOf(check.current, check.currentRevision)) + ' · 发布于 ' + U.esc(when(check.released)) + ' · 更新包 ' + U.esc(fmtSize(check.size)) + ' · 来源 ' + U.esc(labelOf(check.source)) + '</p></div>' +
             '<span class="chip">' + U.esc(PHASES.done) + '</span></div>' +
           fallback +
           '<div class="update-meta"><span class="chip">SHA-256 校验</span><span class="chip">保留 data/</span><span class="chip">可回滚备份</span></div>' +
@@ -129,10 +161,10 @@
           '<div class="update-actions"><button class="btn primary" data-act="apply">' + U.icon('download') + ' 下载并安装</button><button class="btn small" data-act="notes">完整更新说明</button><span class="spacer"></span><span class="update-foot">安装完成后重启即可，无需重装系统。</span></div>';
         return;
       }
-      const ahead = check.latest && check.current && check.latest !== check.current;
+      const ahead = check.latest && check.current && (check.latest !== check.current || revOf(check.latestRevision) < revOf(check.currentRevision));
       card.innerHTML =
         '<div class="update-card-head"><div><h3>' + (ahead ? '当前版本高于发布源' : '已是最新版本') + '</h3>' +
-          '<p>当前 v' + U.esc(check.current) + ' ' + U.esc(check.codename || '') + ' · 发布源 v' + U.esc(check.latest) + ' · 检查时间 ' + U.esc(when(check.checkedAt)) + '</p></div>' +
+          '<p>当前 ' + U.esc(buildOf(check.current, check.currentRevision)) + ' ' + U.esc(check.codename || '') + ' · 发布源 ' + U.esc(buildOf(check.latest, check.latestRevision)) + ' · 检查时间 ' + U.esc(when(check.checkedAt)) + '</p></div>' +
           '<span class="chip" style="color:var(--ok);border-color:rgba(77,255,184,.28)">' + U.esc(ahead ? 'DEV' : 'LATEST') + '</span></div>' +
         fallback +
         '<div class="update-actions"><button class="btn small" data-act="notes">查看当前版本说明</button><span class="spacer"></span><span class="update-foot">更新源：' + U.esc(labelOf(check.source)) + '</span></div>' +
@@ -179,10 +211,10 @@
       try {
         check = await A.updateCheck(source);
         renderCheck();
-        if (check.updateAvailable && !auto) BC.notify('发现 BATCAVE ' + check.latest, '打开系统更新查看说明并安装。', { icon: 'download', kind: 'ok', ttl: 8000 });
-        if (check.updateAvailable && auto && BC.store.get('update.notified') !== check.latest) {
-          BC.store.set('update.notified', check.latest);
-          BC.notify('发现 BATCAVE ' + check.latest, labelOf(check.source) + ' 已发布新版本。打开系统更新即可安装。', { icon: 'download', kind: 'ok', ttl: 10000 });
+        if (check.updateAvailable && !auto) notifyUpdate(check, false);
+        if (check.updateAvailable && auto && BC.store.get('update.notified') !== checkKey(check)) {
+          BC.store.set('update.notified', checkKey(check));
+          notifyUpdate(check, true);
         }
       } catch (e) {
         renderError(e.message || String(e));
@@ -194,13 +226,14 @@
 
     async function doApply() {
       if (!check || !check.updateAvailable || busy) return;
-      const ok = await BC.ui.confirm('安装 BATCAVE ' + check.latest, '将下载并替换程序层文件。data/、内嵌应用数据和账号不会被覆盖；安装完成后需要重启 BATCAVE。更新包会校验 SHA-256。', { okText: '下载并安装', danger: false });
+      const label = buildOf(check.latest, check.latestRevision);
+      const ok = await BC.ui.confirm('安装 BATCAVE ' + label, '将下载并替换程序层文件。data/、内嵌应用数据和账号不会被覆盖；安装完成后需要重启 BATCAVE。更新包会校验 SHA-256。', { okText: '下载并安装', danger: false });
       if (!ok) return;
       setBusy(true);
       el('#updProgress').classList.remove('hidden');
       el('#updBar').style.width = '0%';
       try {
-        const res = await A.updateApply(check.source || source, check.latest);
+        const res = await A.updateApply(check.source || source, check.latest, check.latestRevision);
         jobId = res.jobId;
         BC.toast('已开始下载更新');
         pollJob();
@@ -245,14 +278,17 @@
       if (!ok) return;
       el('#updReboot').classList.remove('hidden');
       try { await A.updateRestart(); } catch (e) { /* the service may drop before replying */ }
-      const target = (check && (check.latest || check.current)) || (status && status.current) || '';
+      const pending = status && status.installed;
+      const target = (check && (check.latest || check.current)) || (pending && pending.version) || (status && status.current) || '';
+      const targetRevision = (check && check.latestRevision) || (pending && pending.revision) || 0;
       for (let i = 0; i < 60; i++) {
         await new Promise(r => setTimeout(r, 1000));
         try {
           const res = await fetch('/api/hello', { cache: 'no-store' });
           if (!res.ok) continue;
           const hello = await res.json();
-          if (!target || (hello.server && hello.server.version === target)) { location.reload(); return; }
+          const server = hello.server || {};
+          if (!target || (String(server.version) === String(target) && (!revOf(targetRevision) || revOf(server.revision) === revOf(targetRevision)))) { location.reload(); return; }
         } catch {}
       }
       el('#updReboot').innerHTML = '<b>重启超时</b><span>请关闭 BATCAVE 窗口，然后重新打开桌面快捷方式。更新文件已经安装，不会丢失数据。</span>';
@@ -290,6 +326,22 @@
     win.setTitle('系统更新', 'UPDATE CENTER');
     return () => stopPoll();
   }
+
+  let announced = false;
+  async function announceUpdate() {
+    if (announced || !BC.isLive || !BC.isLive()) return;
+    try {
+      const result = await A.updateCheck(BC.store.get('update.source', 'github'));
+      if (!result || !result.ok) return;
+      announced = true;
+      if (!result.updateAvailable) return;
+      const key = checkKey(result);
+      if (BC.store.get('update.notified') === key) return;
+      BC.store.set('update.notified', key);
+      notifyUpdate(result, true);
+    } catch { }
+  }
+  BC.checkUpdates = announceUpdate;
 
   BC.registerApp({
     id: 'update', name: '系统更新', en: 'UPDATE CENTER', icon: 'download', color: '#4dffb8',

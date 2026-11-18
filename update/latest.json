@@ -1,24 +1,26 @@
 {
   "schema": 1,
-  "version": "3.1.3",
+  "version": "3.1.4",
+  "revision": 0,
+  "build": "2026-11-18",
   "codename": "SENTINEL",
   "released": "2026-11-18",
-  "notes": "BATCAVE OS 3.1.3「SENTINEL」更新说明\n\n一、完整性与内置应用修复\n· 定位工作站补齐三份地图数据与完整说明书，修复内嵌地图空白；构建标记同步为 1.3.0。\n· CodeForge AI 补齐架构文档与图表，发布包排除本机 memory/ 私有索引。\n· TenSaint73OS 补齐 11 张截图与平台部署说明；环球报阁补齐 docs、解说图、构建脚本与平台启动脚本。\n· 修正公开简介与界面中残留的停用功能文案。\n\n二、发布包与下载\n· 发布包补入 iso/winbase/README-FIRST.txt；继续排除 data/、iso/、test/、tools/、node_modules/ 与 memory/。\n· 环球报阁 README 的下载入口指向 v1.3.1 独立发行包，并提供 GitCode 镜像页。\n· 两平台发布同一个 ZIP、同一个 SHA-256。\n\n三、升级方法\n1. 打开桌面“系统更新”，选择 GitHub 或 GitCode。\n2. 点击“检查更新”，确认 3.1.3 的更新说明。\n3. 点击“下载并安装”，等待校验、替换与重启完成。\n4. 旧版内置应用也可以在应用窗口内点“更新”分别升级。\n\n如果某个平台无法访问，可直接切换另一个平台；也可以手动下载 BATCAVE-OS-3.1.3.zip，解压覆盖程序目录（保留 data/ 与 node.exe），再重启服务。\n可启动 ISO 与 Windows To Go VHD 包含微软 Windows 文件，项目不公开分发；请使用自己的官方 ISO 在本机构建。\n\n2026-11-18 文件刷新：内嵌环球报阁升级至 1.3.1（BATCAVE 版本号保持 3.1.3），修复畸形图片链接、图片地址等于文章链接与图源失败缓存三处问题。\n\n2026-11-18 发行包行尾修正：包内 Unix 启动器统一为 LF、Windows 启动器统一为 CRLF，并同步最新说明书与样式副本；BATCAVE 版本号保持 3.1.3。",
-  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
+  "notes": "BATCAVE OS 3.1.4「SENTINEL」修复更新\n\n一、本次修复\n· 修复 TenSaint73OS、环球报阁、CodeForge AI 三个内嵌应用在 BATCAVE 桌面中一直加载、无法打开的问题。\n· 内嵌启动时只对带 ?embed=batcave 的地址放宽 X-Frame-Options 与 CSP frame-ancestors；直接访问应用地址仍然返回 DENY，安全边界不变。\n· 重启内嵌子进程后实测三个应用均可打开：TenSaint73OS 登录页、环球报阁文章列表、CodeForge AI Neural Console。\n· 保留原有账号、文章、工作区与内嵌应用数据，不覆盖 data/。\n\n二、版本说明\n· 版本号升级到 3.1.4，所有已安装旧版的用户都能通过现有更新器识别并安装本次修复。\n· 更新器新增 revision 修订号字段与同版本修订比较能力；本次 3.1.4 的 revision 为 0，安装后仍可继续接收同版本修订。\n\n三、升级方法\n1. 打开桌面“系统更新”，选择 GitHub 或 GitCode。\n2. 点击“检查更新”，确认 3.1.4 的更新说明。\n3. 点击“下载并安装”，等待 SHA-256 校验、文件替换与重启完成。\n4. 旧版内置应用也可以在应用窗口内点“更新”分别升级。\n\n如果某个平台暂时无法访问，可直接切换另一个平台；也可以手动下载 BATCAVE-OS-3.1.4.zip，解压覆盖程序目录（保留 data/ 与 node.exe），再重启服务。两平台发布同一个 ZIP、同一个 SHA-256。\n\n四、验证\n· node --test test/update.test.js 通过；更新包逐项检查，确认包含修复后的三个内嵌服务端文件。\n· 更新包不包含 data/、iso/、test/、tools/、node_modules/ 与 memory/。\n· 下载链接、SHA-256 与字节数在两个平台发布后复核。\n\n2026-11-18：本次发布只修复内嵌应用加载与更新器版本识别，不重装系统，不覆盖个人数据。",
+  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4",
   "notesUrls": {
-    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.3",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.3"
+    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4",
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.4"
   },
   "assets": {
     "github": {
-      "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.3/BATCAVE-OS-3.1.3.zip",
-      "sha256": "e4c43e0321f7a6ec5af52342820a6888a16ed8c3dc6b4479ca9c3962220e5b7f",
-      "size": 76314380
+      "url": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.4/BATCAVE-OS-3.1.4.zip",
+      "sha256": "4778f9192ccb1d36e0687db8066b8c427f0408a29f80f45e42398dd34183b5cb",
+      "size": 75316491
     },
     "gitcode": {
-      "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.3/BATCAVE-OS-3.1.3.zip",
-      "sha256": "e4c43e0321f7a6ec5af52342820a6888a16ed8c3dc6b4479ca9c3962220e5b7f",
-      "size": 76314380
+      "url": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.4/BATCAVE-OS-3.1.4.zip",
+      "sha256": "4778f9192ccb1d36e0687db8066b8c427f0408a29f80f45e42398dd34183b5cb",
+      "size": 75316491
     }
   }
 }

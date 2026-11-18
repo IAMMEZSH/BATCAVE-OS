@@ -123,20 +123,20 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\verify-iso.ps1 `
 
 > 离线校验证明的是结构、架构与载荷完整性，**不等于实体启动回归**。首次安装仍建议先在备用机或虚拟机验证，再写入常用设备。
 
-### 1.7 本机实测结果（v3.1.1，2026-11-17）
+### 1.7 本机实测结果（2026-11-17）
 
-> 3.1.2 与 3.1.3 只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.3*.iso`。
+> 此后只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.3*.iso`。
 
 | 项目 | x64 | ARM64 |
 | --- | --- | --- |
-| 输出文件 | `BATCAVE-OS-3.1.1.iso` | `BATCAVE-OS-3.1.1-arm64.iso` |
+| 输出文件 | 该次构建的 x64 ISO | 该次构建的 ARM64 ISO |
 | 字节数 | 9,249,867,776 | 8,971,454,464 |
 | SHA-256 | `5ae1a37ee61309cbee1e994b451ffb1b3c2cc93e8f2351ce1a026965bf728bd3` | `983e8ab5f70849aec4fcbdc36614ef03faab94c16346376c612c07f1d79e4261` |
 | 源 ISO | Windows 11 专业版，索引 4 | Windows 11 专业版，索引 3 |
 | 引导 | BIOS（`0x00`）+ UEFI（`0xEF`） | UEFI（`0xEF`） |
 | WIM 架构 | x64 | arm64 |
 | Node.js | 26.13.0 / `0x8664` | 24.22.1 / `0xAA64` |
-| 卷标 | `BATCAVE_OS_311_X64` | `BATCAVE_OS_311_ARM64` |
+| 卷标 | `BATCAVE_OS_<版本>_X64` | `BATCAVE_OS_<版本>_ARM64` |
 | `allCoreOk` | `true` | `true` |
 
 两份成品 ISO 均已挂载校验：`setup.exe`、`install.wim`、`boot.wim`、BIOS/UEFI 引导目录、EFI fallback、WIM 架构、载荷文件、播放器文件、加速器代码、禁入凭据与任务进度组件。尚未在实体硬件上完成启动回归。

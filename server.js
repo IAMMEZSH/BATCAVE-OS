@@ -1177,7 +1177,7 @@ async function handleProxy(req, res, u) {
     const { res: upstream, buf } = await fetchCappedDeadline(url, {
       redirect: 'follow',
       headers: {
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 BatcaveOS/3.0',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36 BatcaveOS/3.1.3',
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
         'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
         'cache-control': incognito ? 'no-store' : 'no-cache',

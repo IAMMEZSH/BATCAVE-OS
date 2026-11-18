@@ -124,7 +124,7 @@
       '</div>' +
       '<div class="term-screen" tabindex="0">' +
         '<div class="term-welcome">' +
-          '<div><span class="hl">BATCAVE SHELL</span> // <span class="rose">REAL EXECUTION BRIDGE</span> ' + U.esc(BOOT.version || '3.0') + '</div>' +
+          '<div><span class="hl">BATCAVE SHELL</span> // <span class="rose">REAL EXECUTION BRIDGE</span> ' + U.esc(BOOT.version || '3.1.3') + '</div>' +
           '<div>交互输出来自真实进程。系统不会伪造命令结果。</div>' +
           '<div class="dim">Ctrl+C 终止 · TAB 补全 · ↑↓ 历史 · 右键复制/粘贴</div>' +
           (BOOT.bridge && BOOT.bridge.linuxAvailable ? '' : '<div style="color:var(--warn);margin-top:5px">LINUX CORE 离线：sudo / apt-get / brew 会给出明确说明，需 WSL2 或 Batcave ISO。</div>') +

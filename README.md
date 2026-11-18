@@ -176,17 +176,17 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
 - 载荷中不存在 `.tsowner`、`OWNER.pin`、`auth.json`、`system.db`、`data/` 或任何任务进度组件。
 - 输出 ISO 的 SHA-256、字节数、卷标与安装树完整性。
 
-v3.1.1 本机实际构建与挂载校验结果（2026-11-17）。3.1.2 与 3.1.3 只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.3*.iso`：
+此前一次本机实际构建与挂载校验结果（2026-11-17）。此后只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.3*.iso`：
 
 | 项目 | x64 | ARM64 |
 | --- | --- | --- |
-| 文件 | `BATCAVE-OS-3.1.1.iso` | `BATCAVE-OS-3.1.1-arm64.iso` |
+| 文件 | 该次构建的 x64 ISO | 该次构建的 ARM64 ISO |
 | 字节数 | 9,249,867,776 | 8,971,454,464 |
 | SHA-256 | `5ae1a37ee61309cbee1e994b451ffb1b3c2cc93e8f2351ce1a026965bf728bd3` | `983e8ab5f70849aec4fcbdc36614ef03faab94c16346376c612c07f1d79e4261` |
 | 引导 | BIOS + UEFI | UEFI |
 | WIM 架构 | x64 | arm64 |
 | 内置 Node.js | 26.13.0 / `0x8664` | 24.22.1 / `0xAA64` |
-| 卷标 | `BATCAVE_OS_311_X64` | `BATCAVE_OS_311_ARM64` |
+| 卷标 | `BATCAVE_OS_<版本>_X64` | `BATCAVE_OS_<版本>_ARM64` |
 | `allCoreOk` | `true` | `true` |
 
 > 两份 ISO 均已挂载校验安装树、引导项、WIM 架构、Node/EFI 架构与 `$OEM$` 载荷，但尚未在实体硬件上做启动回归。

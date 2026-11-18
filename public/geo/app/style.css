@@ -701,3 +701,4 @@ body[data-theme="light"] .leaflet-control-attribution { background: rgba(255, 25
   .panel::before, .map::before, .map::after { display: none !important; }
   body { background: #fff; color: #000; }
 }
+

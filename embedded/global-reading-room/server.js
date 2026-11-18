@@ -58,6 +58,16 @@ const SECURITY_HEADERS = {
   'Referrer-Policy': 'no-referrer',
 };
 
+const EMBED_CSP = SECURITY_HEADERS['Content-Security-Policy'].replace("frame-ancestors 'none'", "frame-ancestors http://127.0.0.1:* http://localhost:*");
+
+function secHeadersFor(embed) {
+  if (!embed) return SECURITY_HEADERS;
+  const copy = { ...SECURITY_HEADERS };
+  delete copy['X-Frame-Options'];
+  copy['Content-Security-Policy'] = EMBED_CSP;
+  return copy;
+}
+
 function httpError(message, status = 400, code = '') {
   const error = new Error(message);
   error.status = status;
@@ -331,8 +341,9 @@ async function startServer(options = {}) {
       return;
     }
     const type = MIME[path.extname(file).toLowerCase()] || 'application/octet-stream';
+    const embed = pathname === '/index.html' && url.searchParams.get('embed') === 'batcave';
     res.writeHead(200, {
-      ...SECURITY_HEADERS,
+      ...secHeadersFor(embed),
       'Content-Type': type,
       'Content-Length': data.length,
       'Cache-Control': 'no-cache',

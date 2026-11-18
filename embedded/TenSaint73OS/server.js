@@ -277,6 +277,14 @@ const SEC_HEADERS = {
   'Referrer-Policy': 'no-referrer',
 };
 
+function secHeadersFor(embed) {
+  if (!embed) return SEC_HEADERS;
+  const copy = Object.assign({}, SEC_HEADERS);
+  delete copy['X-Frame-Options'];
+  copy['Content-Security-Policy'] = "frame-ancestors http://127.0.0.1:* http://localhost:*";
+  return copy;
+}
+
 function send(res, code, obj, headers = {}) {
   const body = typeof obj === 'string' ? obj : JSON.stringify(obj);
   res.writeHead(code, Object.assign({ 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }, SEC_HEADERS, headers));
@@ -316,13 +324,14 @@ const MIME = {
   '.webmanifest': 'application/manifest+json; charset=utf-8',
 };
 
-function serveStatic(res, urlPath) {
+function serveStatic(req, res, urlPath) {
   let rel = decodeURIComponent(urlPath.split('?')[0]).replace(/^\/+/, '');
   if (!rel) rel = 'index.html';
   const file = util.safeJoin(PUBLIC, rel);
   if (!file || !fs.existsSync(file) || !fs.statSync(file).isFile()) { send(res, 404, { error: 'NOT_FOUND' }); return; }
   const ext = path.extname(file).toLowerCase();
-  res.writeHead(200, Object.assign({ 'Content-Type': MIME[ext] || 'application/octet-stream' }, SEC_HEADERS));
+  const embed = ext === '.html' && /[?&]embed=batcave(?:&|$)/.test(String(req.url || ''));
+  res.writeHead(200, Object.assign({ 'Content-Type': MIME[ext] || 'application/octet-stream' }, secHeadersFor(embed)));
   fs.createReadStream(file).pipe(res);
 }
 
@@ -1680,7 +1689,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'GET' && (pathname === '/' || pathname === '/index.html')) {
       auth.noteVisitor({ ip: clientIp(req), ua: req.headers['user-agent'], kind: 'page', path: '/' });
     }
-    serveStatic(res, pathname);
+    serveStatic(req, res, pathname);
   } catch (e) {
     send(res, 500, { error: 'INTERNAL_ERROR', detail: e.message });
   }

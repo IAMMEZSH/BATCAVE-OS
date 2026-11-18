@@ -181,7 +181,7 @@ node server.js --port=8080 --host=127.0.0.1
 
 首次启动会在映射根目录生成：
 
-- `README.md`：BATCAVE OS // SENTINEL 3.1 简介。
+- `README.md`：BATCAVE OS // SENTINEL 3.1.3 简介。
 - `Documents/SENTINEL-BRIEFING.md`：示例夜间简报。
 - `Projects/`：示例 Python 脚本等。
 - `Pictures/`、`Music/`、`Videos/`、`Downloads/`、`Notes/`：空目录，分别供图片查看器、影音播放器、下载与代号笔记使用。

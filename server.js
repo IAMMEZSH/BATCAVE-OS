@@ -23,7 +23,7 @@ const update = require('./lib/update');
 const appUpdates = require('./lib/app-updates');
 const releaseFeed = require('./lib/release-feed');
 
-const VERSION = '3.1.4';
+const VERSION = '3.1.5';
 const REVISION = 0;
 const BUILD = '2026-11-18';
 const CODENAME = 'SENTINEL';
@@ -57,7 +57,7 @@ function parseArgs(argv) {
 }
 
 const argv = parseArgs(process.argv.slice(2));
-const PORT = Number(process.env.BATCAVE_PORT || argv.port || 7777);
+let PORT = Number(process.env.BATCAVE_PORT || argv.port || 7777);
 const HOST = process.env.BATCAVE_HOST || argv.host || '127.0.0.1';
 const OPEN_BROWSER = argv.open === false ? false : !argv.tui;
 const KIOSK = !!argv.kiosk;
@@ -2005,6 +2005,8 @@ async function start(options = {}) {
       throw e;
     }
   }
+  PORT = port;
+  update.configure({ port });
   const url = `http://${HOST === '0.0.0.0' ? '127.0.0.1' : HOST}:${port}/`;
   releaseFeed.startWatching();
   console.log(banner(port));

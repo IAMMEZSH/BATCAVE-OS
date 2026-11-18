@@ -9,7 +9,7 @@ BATCAVE OS 是一个运行在 Windows 之上的本地 Web 桌面：终端、代�
 本目录的镜像有两种形态，均使用你自己的官方 Windows 11 安装介质制作，
 不含第三方修改版 Windows，不含激活密钥，也不绕过激活：
 
-1. 可启动 ISO：BATCAVE-OS-3.1.4.iso / BATCAVE-OS-3.1.4-arm64.iso
+1. 可启动 ISO：BATCAVE-OS-3.1.5.iso / BATCAVE-OS-3.1.5-arm64.iso
    像普通 Windows 安装盘一样安装，装完即带 BATCAVE。
 2. Windows To Go VHD：BATCAVE-Win11-Pro.vhd / BATCAVE-Win11-Pro-arm64.vhd
    放入 Ventoy、直写 U 盘或挂进虚拟机使用。

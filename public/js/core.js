@@ -50,7 +50,7 @@
     if (els.loginBg) els.loginBg.style.backgroundImage = 'url("' + wallpaperUrl(settings.wallpaper) + '")';
     $$('#loginName, #launcherName').forEach(el => { el.textContent = settings.account || 'BRUCE'; });
     if (els.loginHost) els.loginHost.textContent = BOOT.hostname || 'LOCAL';
-    if (els.launcherBuild) els.launcherBuild.textContent = (BOOT.codename || 'SENTINEL') + ' v' + (BOOT.version || '3.1.4') + (BOOT.revision ? ' · r' + BOOT.revision : '');
+    if (els.launcherBuild) els.launcherBuild.textContent = (BOOT.codename || 'SENTINEL') + ' v' + (BOOT.version || '3.1.5') + (BOOT.revision ? ' · r' + BOOT.revision : '');
     updateTrayLinux();
     if (settings.matrix) startMatrix(); else stopMatrix();
   }
@@ -98,7 +98,7 @@
     const reduce = !settings.motion || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
     const step = reduce ? 45 : 330;
     const lines = [
-      ['BOOTSTRAP // BATCAVE OS ' + (BOOT.version || '3.1.4') + (BOOT.revision ? ' r' + BOOT.revision : '') + ' · ' + (BOOT.codename || 'SENTINEL'), 'ok'],
+      ['BOOTSTRAP // BATCAVE OS ' + (BOOT.version || '3.1.5') + (BOOT.revision ? ' r' + BOOT.revision : '') + ' · ' + (BOOT.codename || 'SENTINEL'), 'ok'],
       ['LINK // ' + (BOOT.hostname || 'LOCAL') + ' · ' + String(BOOT.platform || 'unknown').toUpperCase() + ' · ' + (BOOT.user || 'operator'), ''],
       ['TOKEN GATE // ' + (A.token ? 'ARMED · LOCAL API' : 'OFFLINE · SERVE VIA NODE'), A.token ? 'ok' : 'warn'],
       ['HOME // ' + (BOOT.home || '—'), 'dim'],

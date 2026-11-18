@@ -86,8 +86,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
 
 ```text
 iso/out/
-├── BATCAVE-OS-3.1.4.iso
-├── BATCAVE-OS-3.1.4-arm64.iso
+├── BATCAVE-OS-3.1.5.iso
+├── BATCAVE-OS-3.1.5-arm64.iso
 ├── ISO-BUILD.json / ISO-BUILD-arm64.json
 ├── VERIFY-ISO.json / VERIFY-ISO-arm64.json
 ├── ISO-SHA256SUMS.txt
@@ -103,8 +103,8 @@ iso/out/
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\verify-iso.ps1 `
-  -Iso iso\out\BATCAVE-OS-3.1.4.iso -Arch x64 -Index 4 `
-  -ExpectVersion 3.1.4 -Report iso\out\VERIFY-ISO.json
+  -Iso iso\out\BATCAVE-OS-3.1.5.iso -Arch x64 -Index 4 `
+  -ExpectVersion 3.1.5 -Report iso\out\VERIFY-ISO.json
 ```
 
 `verify-iso.ps1` 只读挂载 ISO，检查：
@@ -125,7 +125,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\verify-iso.ps1 `
 
 ### 1.7 本机实测结果（2026-11-17）
 
-> 此后只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.4*.iso`。
+> 此后只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.5*.iso`。
 
 | 项目 | x64 | ARM64 |
 | --- | --- | --- |

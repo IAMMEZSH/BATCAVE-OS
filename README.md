@@ -1,28 +1,29 @@
-# BATCAVE OS v3.1.4 · SENTINEL
+# BATCAVE OS v3.1.5 · SENTINEL
 
 一个可离线运行、可制作成可启动 Windows 安装 ISO 或 Windows To Go 系统盘的本地 Web 桌面。后端是零依赖的 Node.js 服务，前端是原生 JavaScript 窗口管理器；终端、编译器、网络、软件中心、邮件、内嵌应用与系统更新都调用真实能力，不是静态演示页。
 
-**当前版本：3.1.4 SENTINEL · 发布于 2026-11-18 · MIT License**
+**当前版本：3.1.5 SENTINEL · 发布于 2026-11-18 · MIT License**
 
 ## 下载
 
 | 内容 | GitHub | GitCode |
 | --- | --- | --- |
-| 程序包 v3.1.4（ZIP，用于安装或应用内更新） | [BATCAVE-OS-3.1.4.zip](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.4/BATCAVE-OS-3.1.4.zip) | [BATCAVE-OS-3.1.4.zip](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.4/BATCAVE-OS-3.1.4.zip) |
-| SHA-256 校验值 | [SHA256SUMS.txt](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.4/SHA256SUMS.txt) | [SHA256SUMS.txt](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.4/SHA256SUMS.txt) |
-| 发布页与完整更新说明 | [Release v3.1.4](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4) | [Release v3.1.4](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.4) |
+| 程序包 v3.1.5（ZIP，用于安装或应用内更新） | [BATCAVE-OS-3.1.5.zip](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.5/BATCAVE-OS-3.1.5.zip) | [BATCAVE-OS-3.1.5.zip](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.5/BATCAVE-OS-3.1.5.zip) |
+| SHA-256 校验值 | [SHA256SUMS.txt](https://github.com/IAMMEZSH/BATCAVE-OS/releases/download/v3.1.5/SHA256SUMS.txt) | [SHA256SUMS.txt](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/download/v3.1.5/SHA256SUMS.txt) |
+| 发布页与完整更新说明 | [Release v3.1.5](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.5) | [Release v3.1.5](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.5) |
 | 源码仓库 | [IAMMEZSH/BATCAVE-OS](https://github.com/IAMMEZSH/BATCAVE-OS) | [gcw_So3EkhfR/BATCAVE-OS](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS) |
 
 两个平台发布**同一个 ZIP、同一个 SHA-256、同一份说明**。已安装旧版本的用户不需要重新下载镜像或重装系统，直接在应用内打开"系统更新"，选择 GitHub 或 GitCode 即可升级。
 
-### 3.1.4 更新说明
+### 3.1.5 更新说明
 
-- 修复 TenSaint73OS、环球报阁、CodeForge AI 三个内嵌应用在 BATCAVE 桌面中一直加载、无法打开的问题。
-- 只对带 `?embed=batcave` 的内嵌地址放宽 `X-Frame-Options` 与 CSP `frame-ancestors`；直接访问应用地址仍然返回 `DENY`，安全边界不变。
-- 版本号升级到 3.1.4，已安装旧版的用户会按正常版本更新提示安装；原有账号、文章、工作区与应用数据保留。
-- 更新器新增 revision 修订号能力；本次 revision 为 0。安装包仍由 `tools/package-update.js` 生成并校验 SHA-256。
+- 修复 BATCAVE 在默认端口 7777 被占用、自动回退到其他端口后，所有带 Origin 的 POST 请求被误判为跨站并返回 403 的问题；根因是 Origin 校验始终对比配置端口 7777，而不是实际监听端口。
+- 服务绑定端口后把实际端口同步给 Origin 校验与更新器，更新器重启也使用实际端口；端口回退时内嵌应用启动、文件操作、终端等 POST 功能恢复正常。
+- 保留 3.1.4 的内嵌 iframe 修复：仅带 `?embed=batcave` 的地址放宽 frame 限制；直接访问 TenSaint73OS、环球报阁仍返回 `DENY`。
+- 版本号升级到 3.1.5；数据位于 `data/`，升级不覆盖账号、文章、工作区与内嵌应用数据。
+- 更新器仍支持 revision 修订号；本次 revision 为 0。安装包由 `tools/package-update.js` 生成并校验 SHA-256。
 
-完整说明见 [Release v3.1.4](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4) 或 [GitCode 发布页](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.4)。
+完整说明见 [Release v3.1.5](https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.5) 或 [GitCode 发布页](https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.5)。
 
 > 可启动 ISO 包含微软 Windows 安装文件，体积约 8–9 GB，并受 Windows 许可约束，**不随项目公开分发**；仓库提供构建脚本，使用自己的官方 ISO 在本机构建。Windows To Go 的 VHD 实际大小约 16–17 GB，超过 GitHub / GitCode 单个 Release 资产限制，因此发布的是**构建脚本**而非系统镜像。Windows 与激活密钥均不随项目分发，请使用自己的官方 ISO 与本机合法许可。
 
@@ -177,7 +178,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
   -NodeExe "D:\tools\node-v24.22.1-win-arm64.exe"
 ```
 
-产物为 `iso\out\BATCAVE-OS-3.1.4.iso` 与 `BATCAVE-OS-3.1.4-arm64.iso`，相邻目录同时生成 `VERIFY-ISO*.json`、`ISO-BUILD*.json` 与 `ISO-SHA256SUMS.txt`。构建会校验：
+产物为 `iso\out\BATCAVE-OS-3.1.5.iso` 与 `BATCAVE-OS-3.1.5-arm64.iso`，相邻目录同时生成 `VERIFY-ISO*.json`、`ISO-BUILD*.json` 与 `ISO-SHA256SUMS.txt`。构建会校验：
 
 - `install.wim` 索引名称与架构（x64 / ARM64）。
 - El Torito 引导目录：x64 同时包含 BIOS 与 UEFI，ARM64 为 UEFI。
@@ -185,7 +186,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File iso\winbase\build-iso.ps1 `
 - 载荷中不存在 `.tsowner`、`OWNER.pin`、`auth.json`、`system.db`、`data/` 或任何任务进度组件。
 - 输出 ISO 的 SHA-256、字节数、卷标与安装树完整性。
 
-此前一次本机实际构建与挂载校验结果（2026-11-17）。此后只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.4*.iso`：
+此前一次本机实际构建与挂载校验结果（2026-11-17）。此后只更新程序包，未重新构建 ISO；使用同一脚本会输出 `BATCAVE-OS-3.1.5*.iso`：
 
 | 项目 | x64 | ARM64 |
 | --- | --- | --- |

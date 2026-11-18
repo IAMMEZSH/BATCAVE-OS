@@ -114,7 +114,7 @@ dist/SHA256SUMS.txt
 
 ```powershell
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[IO.Compression.ZipFile]::OpenRead("$PWD\dist\BATCAVE-OS-3.1.4.zip").Entries |
+[IO.Compression.ZipFile]::OpenRead("$PWD\dist\BATCAVE-OS-3.1.5.zip").Entries |
   Select-Object FullName, Length | Sort-Object FullName
 ```
 
@@ -143,20 +143,20 @@ curl -L "https://api.gitcode.com/api/v5/repos/gcw_So3EkhfR/BATCAVE-OS/contents/u
 ```json
 {
   "schema": 1,
-  "version": "3.1.4",
+  "version": "3.1.5",
   "revision": 0,
   "build": "2026-11-18",
   "codename": "SENTINEL",
   "released": "2026-11-18",
   "notes": "中文更新说明，最长 30000 字符",
-  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4",
+  "notesUrl": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.5",
   "notesUrls": {
-    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.4",
-    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.4"
+    "github": "https://github.com/IAMMEZSH/BATCAVE-OS/releases/tag/v3.1.5",
+    "gitcode": "https://gitcode.com/gcw_So3EkhfR/BATCAVE-OS/releases/v3.1.5"
   },
   "assets": {
-    "github": { "url": "https://.../BATCAVE-OS-3.1.4.zip", "sha256": "64位十六进制", "size": 12345678 },
-    "gitcode": { "url": "https://.../BATCAVE-OS-3.1.4.zip", "sha256": "64位十六进制", "size": 12345678 }
+    "github": { "url": "https://.../BATCAVE-OS-3.1.5.zip", "sha256": "64位十六进制", "size": 12345678 },
+    "gitcode": { "url": "https://.../BATCAVE-OS-3.1.5.zip", "sha256": "64位十六进制", "size": 12345678 }
   }
 }
 ```

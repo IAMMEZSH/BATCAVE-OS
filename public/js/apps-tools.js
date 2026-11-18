@@ -394,7 +394,7 @@
         panel.innerHTML =
           '<h3>系统与命令环境</h3><p class="sub">数据来自正在运行的本机服务。Linux 命令需要 WSL2 Linux Core 或 Batcave ISO。</p>' +
           '<div class="setting-group"><div class="setting-label">RUNTIME</div>' +
-            '<div class="kv"><span>VERSION</span><b>BATCAVE ' + U.esc(BC.BOOT.version || '3.1.4') + (BC.BOOT.revision ? ' r' + U.esc(BC.BOOT.revision) : '') + ' · ' + U.esc(BC.BOOT.codename || 'SENTINEL') + '</b></div>' +
+            '<div class="kv"><span>VERSION</span><b>BATCAVE ' + U.esc(BC.BOOT.version || '3.1.5') + (BC.BOOT.revision ? ' r' + U.esc(BC.BOOT.revision) : '') + ' · ' + U.esc(BC.BOOT.codename || 'SENTINEL') + '</b></div>' +
             '<div class="kv"><span>HOST / USER</span><b>' + U.esc(BC.BOOT.hostname || '') + ' · ' + U.esc(BC.BOOT.user || '') + '</b></div>' +
             '<div class="kv"><span>PLATFORM</span><b>' + U.esc(BC.BOOT.platform || '') + '</b></div>' +
             '<div class="kv"><span>HOME</span><b>' + U.esc(BC.BOOT.home || '') + '</b></div>' +
@@ -418,7 +418,7 @@
       } else {
         panel.innerHTML =
           '<h3>关于 BATCAVE</h3><p class="sub">一个以真实命令桥为核心的本地桌面环境。</p>' +
-          '<div class="about-card"><span class="logo-mark">' + U.icon('bat') + '</span><div><div class="ver">' + U.esc(BC.BOOT.codename || 'SENTINEL') + ' v' + U.esc(BC.BOOT.version || '3.1.4') + (BC.BOOT.revision ? ' r' + U.esc(BC.BOOT.revision) : '') + '</div><h4>BATCAVE OS</h4><p>零依赖 Node.js 服务 + 浏览器桌面。窗口、文件、终端与网页代理运行在本地；终端命令真实执行，不伪造输出。</p></div></div>' +
+          '<div class="about-card"><span class="logo-mark">' + U.icon('bat') + '</span><div><div class="ver">' + U.esc(BC.BOOT.codename || 'SENTINEL') + ' v' + U.esc(BC.BOOT.version || '3.1.5') + (BC.BOOT.revision ? ' r' + U.esc(BC.BOOT.revision) : '') + '</div><h4>BATCAVE OS</h4><p>零依赖 Node.js 服务 + 浏览器桌面。窗口、文件、终端与网页代理运行在本地；终端命令真实执行，不伪造输出。</p></div></div>' +
           '<div class="setting-group" style="margin-top:20px"><div class="setting-label">STACK</div>' +
             '<div class="kv"><span>UI</span><b>HTML · CSS · vanilla JS</b></div>' +
             '<div class="kv"><span>SERVER</span><b>Node.js · 无第三方依赖</b></div>' +
